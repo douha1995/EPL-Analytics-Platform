@@ -1,0 +1,44 @@
+[2026-03-09T16:45:19.166+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: epl_match_scheduler.schedule_runs scheduled__2026-03-08T06:00:00+00:00 [queued]>
+[2026-03-09T16:45:20.023+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: epl_match_scheduler.schedule_runs scheduled__2026-03-08T06:00:00+00:00 [queued]>
+[2026-03-09T16:45:20.024+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2026-03-09T16:45:20.808+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): schedule_runs> on 2026-03-08 06:00:00+00:00
+[2026-03-09T16:45:20.815+0000] {standard_task_runner.py:60} INFO - Started process 3217 to run task
+[2026-03-09T16:45:20.818+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'epl_match_scheduler', 'schedule_runs', 'scheduled__2026-03-08T06:00:00+00:00', '--job-id', '676', '--raw', '--subdir', 'DAGS_FOLDER/epl_match_scheduler.py', '--cfg-path', '/tmp/tmpz5had6cl']
+[2026-03-09T16:45:20.820+0000] {standard_task_runner.py:88} INFO - Job 676: Subtask schedule_runs
+[2026-03-09T16:45:21.075+0000] {task_command.py:423} INFO - Running <TaskInstance: epl_match_scheduler.schedule_runs scheduled__2026-03-08T06:00:00+00:00 [running]> on host 13250c608584
+[2026-03-09T16:45:21.281+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='epl_analytics' AIRFLOW_CTX_DAG_ID='epl_match_scheduler' AIRFLOW_CTX_TASK_ID='schedule_runs' AIRFLOW_CTX_EXECUTION_DATE='2026-03-08T06:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-08T06:00:00+00:00'
+[2026-03-09T16:45:21.297+0000] {epl_match_scheduler.py:118} INFO - Match: Arsenal vs Everton
+[2026-03-09T16:45:21.297+0000] {epl_match_scheduler.py:119} INFO -   Kickoff: 2026-03-15 15:00
+[2026-03-09T16:45:21.297+0000] {epl_match_scheduler.py:120} INFO -   Scrape scheduled: 2026-03-15 19:00
+[2026-03-09T16:45:21.297+0000] {epl_match_scheduler.py:118} INFO - Match: Manchester United vs Aston Villa
+[2026-03-09T16:45:21.297+0000] {epl_match_scheduler.py:119} INFO -   Kickoff: 2026-03-15 15:00
+[2026-03-09T16:45:21.298+0000] {epl_match_scheduler.py:120} INFO -   Scrape scheduled: 2026-03-15 19:00
+[2026-03-09T16:45:21.298+0000] {epl_match_scheduler.py:118} INFO - Match: Bournemouth vs Manchester United
+[2026-03-09T16:45:21.298+0000] {epl_match_scheduler.py:119} INFO -   Kickoff: 2026-03-20 15:00
+[2026-03-09T16:45:21.298+0000] {epl_match_scheduler.py:120} INFO -   Scrape scheduled: 2026-03-20 19:00
+[2026-03-09T16:45:21.298+0000] {epl_match_scheduler.py:118} INFO - Match: Arsenal vs Bournemouth
+[2026-03-09T16:45:21.298+0000] {epl_match_scheduler.py:119} INFO -   Kickoff: 2026-04-11 15:00
+[2026-03-09T16:45:21.298+0000] {epl_match_scheduler.py:120} INFO -   Scrape scheduled: 2026-04-11 19:00
+[2026-03-09T16:45:21.298+0000] {epl_match_scheduler.py:118} INFO - Match: Manchester United vs Leeds
+[2026-03-09T16:45:21.298+0000] {epl_match_scheduler.py:119} INFO -   Kickoff: 2026-04-11 15:00
+[2026-03-09T16:45:21.298+0000] {epl_match_scheduler.py:120} INFO -   Scrape scheduled: 2026-04-11 19:00
+[2026-03-09T16:45:21.298+0000] {epl_match_scheduler.py:118} INFO - Match: Manchester City vs Arsenal
+[2026-03-09T16:45:21.298+0000] {epl_match_scheduler.py:119} INFO -   Kickoff: 2026-04-18 15:00
+[2026-03-09T16:45:21.298+0000] {epl_match_scheduler.py:120} INFO -   Scrape scheduled: 2026-04-18 19:00
+[2026-03-09T16:45:21.299+0000] {epl_match_scheduler.py:118} INFO - Match: Chelsea vs Manchester United
+[2026-03-09T16:45:21.299+0000] {epl_match_scheduler.py:119} INFO -   Kickoff: 2026-04-18 15:00
+[2026-03-09T16:45:21.299+0000] {epl_match_scheduler.py:120} INFO -   Scrape scheduled: 2026-04-18 19:00
+[2026-03-09T16:45:21.299+0000] {epl_match_scheduler.py:118} INFO - Match: Arsenal vs Newcastle United
+[2026-03-09T16:45:21.299+0000] {epl_match_scheduler.py:119} INFO -   Kickoff: 2026-04-25 15:00
+[2026-03-09T16:45:21.299+0000] {epl_match_scheduler.py:120} INFO -   Scrape scheduled: 2026-04-25 19:00
+[2026-03-09T16:45:21.299+0000] {epl_match_scheduler.py:118} INFO - Match: Manchester United vs Brentford
+[2026-03-09T16:45:21.299+0000] {epl_match_scheduler.py:119} INFO -   Kickoff: 2026-04-25 15:00
+[2026-03-09T16:45:21.299+0000] {epl_match_scheduler.py:120} INFO -   Scrape scheduled: 2026-04-25 19:00
+[2026-03-09T16:45:21.299+0000] {epl_match_scheduler.py:118} INFO - Match: Arsenal vs Fulham
+[2026-03-09T16:45:21.299+0000] {epl_match_scheduler.py:119} INFO -   Kickoff: 2026-05-02 15:00
+[2026-03-09T16:45:21.300+0000] {epl_match_scheduler.py:120} INFO -   Scrape scheduled: 2026-05-02 19:00
+[2026-03-09T16:45:21.300+0000] {epl_match_scheduler.py:124} INFO - Scheduled 10 scraping runs
+[2026-03-09T16:45:21.300+0000] {python.py:201} INFO - Done. Returned value was: {'scheduled': 10, 'matches': ['Arsenal vs Everton', 'Manchester United vs Aston Villa', 'Bournemouth vs Manchester United', 'Arsenal vs Bournemouth', 'Manchester United vs Leeds', 'Manchester City vs Arsenal', 'Chelsea vs Manchester United', 'Arsenal vs Newcastle United', 'Manchester United vs Brentford', 'Arsenal vs Fulham']}
+[2026-03-09T16:45:21.459+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=epl_match_scheduler, task_id=schedule_runs, execution_date=20260308T060000, start_date=20260309T164520, end_date=20260309T164521
+[2026-03-09T16:45:21.552+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-09T16:45:21.574+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check

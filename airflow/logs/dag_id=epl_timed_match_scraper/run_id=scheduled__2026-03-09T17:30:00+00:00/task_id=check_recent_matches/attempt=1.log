@@ -1,0 +1,28 @@
+[2026-03-09T19:30:04.426+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: epl_timed_match_scraper.check_recent_matches scheduled__2026-03-09T17:30:00+00:00 [queued]>
+[2026-03-09T19:30:04.451+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: epl_timed_match_scraper.check_recent_matches scheduled__2026-03-09T17:30:00+00:00 [queued]>
+[2026-03-09T19:30:04.452+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2026-03-09T19:30:04.526+0000] {taskinstance.py:2191} INFO - Executing <Task(BranchPythonOperator): check_recent_matches> on 2026-03-09 17:30:00+00:00
+[2026-03-09T19:30:04.551+0000] {standard_task_runner.py:60} INFO - Started process 50502 to run task
+[2026-03-09T19:30:04.566+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'epl_timed_match_scraper', 'check_recent_matches', 'scheduled__2026-03-09T17:30:00+00:00', '--job-id', '726', '--raw', '--subdir', 'DAGS_FOLDER/epl_timed_scraper.py', '--cfg-path', '/tmp/tmpgiri_imr']
+[2026-03-09T19:30:04.572+0000] {standard_task_runner.py:88} INFO - Job 726: Subtask check_recent_matches
+[2026-03-09T19:30:05.037+0000] {task_command.py:423} INFO - Running <TaskInstance: epl_timed_match_scraper.check_recent_matches scheduled__2026-03-09T17:30:00+00:00 [running]> on host 13250c608584
+[2026-03-09T19:30:06.310+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='epl_analytics' AIRFLOW_CTX_DAG_ID='epl_timed_match_scraper' AIRFLOW_CTX_TASK_ID='check_recent_matches' AIRFLOW_CTX_EXECUTION_DATE='2026-03-09T17:30:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-09T17:30:00+00:00'
+[2026-03-09T19:30:06.314+0000] {epl_timed_scraper.py:53} INFO - Checking Arsenal for recent completed matches
+[2026-03-09T19:30:06.315+0000] {playwright_scraper.py:87} INFO - Scraping Understat fixtures for Arsenal: https://understat.com/team/Arsenal/2025
+[2026-03-09T19:30:43.253+0000] {playwright_scraper.py:118} INFO - Scraped 38 fixtures from Understat
+[2026-03-09T19:30:43.956+0000] {epl_timed_scraper.py:74} INFO - Found new match: Arsenal vs Liverpool
+[2026-03-09T19:30:43.958+0000] {epl_timed_scraper.py:74} INFO - Found new match: Arsenal vs Manchester United
+[2026-03-09T19:30:43.958+0000] {epl_timed_scraper.py:53} INFO - Checking Manchester United for recent completed matches
+[2026-03-09T19:30:45.908+0000] {playwright_scraper.py:87} INFO - Scraping Understat fixtures for Manchester_United: https://understat.com/team/Manchester_United/2025
+[2026-03-09T19:31:03.374+0000] {playwright_scraper.py:118} INFO - Scraped 38 fixtures from Understat
+[2026-03-09T19:31:03.608+0000] {epl_timed_scraper.py:74} INFO - Found new match: Manchester City vs Manchester United
+[2026-03-09T19:31:03.609+0000] {epl_timed_scraper.py:74} INFO - Found new match: Liverpool vs Manchester United
+[2026-03-09T19:31:03.610+0000] {epl_timed_scraper.py:74} INFO - Found new match: Manchester United vs Manchester City
+[2026-03-09T19:31:03.611+0000] {epl_timed_scraper.py:74} INFO - Found new match: Newcastle United vs Manchester United
+[2026-03-09T19:31:04.751+0000] {python.py:201} INFO - Done. Returned value was: scrape_matches
+[2026-03-09T19:31:04.757+0000] {branch.py:35} INFO - Branch into scrape_matches
+[2026-03-09T19:31:04.758+0000] {skipmixin.py:178} INFO - Following branch scrape_matches
+[2026-03-09T19:31:04.864+0000] {skipmixin.py:244} INFO - Skipping tasks [('skip_scraping', -1)]
+[2026-03-09T19:31:05.251+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=epl_timed_match_scraper, task_id=check_recent_matches, execution_date=20260309T173000, start_date=20260309T193004, end_date=20260309T193105
+[2026-03-09T19:31:05.348+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-09T19:31:05.467+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check

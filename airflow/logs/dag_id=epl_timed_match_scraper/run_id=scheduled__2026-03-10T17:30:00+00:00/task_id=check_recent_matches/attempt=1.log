@@ -1,0 +1,29 @@
+[2026-03-10T19:42:03.180+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: epl_timed_match_scraper.check_recent_matches scheduled__2026-03-10T17:30:00+00:00 [queued]>
+[2026-03-10T19:42:03.185+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: epl_timed_match_scraper.check_recent_matches scheduled__2026-03-10T17:30:00+00:00 [queued]>
+[2026-03-10T19:42:03.185+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2026-03-10T19:42:03.243+0000] {taskinstance.py:2191} INFO - Executing <Task(BranchPythonOperator): check_recent_matches> on 2026-03-10 17:30:00+00:00
+[2026-03-10T19:42:03.252+0000] {standard_task_runner.py:60} INFO - Started process 217 to run task
+[2026-03-10T19:42:03.256+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'epl_timed_match_scraper', 'check_recent_matches', 'scheduled__2026-03-10T17:30:00+00:00', '--job-id', '851', '--raw', '--subdir', 'DAGS_FOLDER/epl_timed_match_scraper.py', '--cfg-path', '/tmp/tmpng1ll9m8']
+[2026-03-10T19:42:03.259+0000] {standard_task_runner.py:88} INFO - Job 851: Subtask check_recent_matches
+[2026-03-10T19:42:03.365+0000] {task_command.py:423} INFO - Running <TaskInstance: epl_timed_match_scraper.check_recent_matches scheduled__2026-03-10T17:30:00+00:00 [running]> on host 13250c608584
+[2026-03-10T19:42:03.930+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='epl_analytics' AIRFLOW_CTX_DAG_ID='epl_timed_match_scraper' AIRFLOW_CTX_TASK_ID='check_recent_matches' AIRFLOW_CTX_EXECUTION_DATE='2026-03-10T17:30:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-10T17:30:00+00:00'
+[2026-03-10T19:42:03.931+0000] {epl_timed_match_scraper.py:54} INFO - Checking Arsenal for recent completed matches
+[2026-03-10T19:42:03.931+0000] {playwright_scraper.py:87} INFO - Scraping Understat fixtures for Arsenal: https://understat.com/team/Arsenal/2025
+[2026-03-10T19:42:48.812+0000] {playwright_scraper.py:118} INFO - Scraped 38 fixtures from Understat
+[2026-03-10T19:42:51.395+0000] {epl_timed_match_scraper.py:75} INFO - Found new match: Arsenal vs Liverpool (Arsenal)
+[2026-03-10T19:42:51.396+0000] {epl_timed_match_scraper.py:54} INFO - Checking Manchester United for recent completed matches
+[2026-03-10T19:42:51.396+0000] {playwright_scraper.py:87} INFO - Scraping Understat fixtures for Manchester_United: https://understat.com/team/Manchester_United/2025
+[2026-03-10T19:42:58.578+0000] {playwright_scraper.py:118} INFO - Scraped 38 fixtures from Understat
+[2026-03-10T19:42:58.627+0000] {epl_timed_match_scraper.py:54} INFO - Checking Manchester City for recent completed matches
+[2026-03-10T19:43:00.621+0000] {playwright_scraper.py:87} INFO - Scraping Understat fixtures for Manchester_City: https://understat.com/team/Manchester_City/2025
+[2026-03-10T19:43:07.123+0000] {playwright_scraper.py:118} INFO - Scraped 38 fixtures from Understat
+[2026-03-10T19:43:07.332+0000] {epl_timed_match_scraper.py:54} INFO - Checking Liverpool for recent completed matches
+[2026-03-10T19:43:09.320+0000] {playwright_scraper.py:87} INFO - Scraping Understat fixtures for Liverpool: https://understat.com/team/Liverpool/2025
+[2026-03-10T19:43:16.077+0000] {playwright_scraper.py:118} INFO - Scraped 38 fixtures from Understat
+[2026-03-10T19:43:17.632+0000] {python.py:201} INFO - Done. Returned value was: scrape_matches
+[2026-03-10T19:43:17.633+0000] {branch.py:35} INFO - Branch into scrape_matches
+[2026-03-10T19:43:17.633+0000] {skipmixin.py:178} INFO - Following branch scrape_matches
+[2026-03-10T19:43:17.667+0000] {skipmixin.py:244} INFO - Skipping tasks [('skip_scraping', -1)]
+[2026-03-10T19:43:17.844+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=epl_timed_match_scraper, task_id=check_recent_matches, execution_date=20260310T173000, start_date=20260310T194203, end_date=20260310T194317
+[2026-03-10T19:43:17.937+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-10T19:43:18.009+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check

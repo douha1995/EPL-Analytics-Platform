@@ -26,8 +26,9 @@ import ExportButton from '../ExportButton';
 import { exportSeasonSummaryToPDF, exportDataToCSV } from '@/utils/exportUtils';
 
 const GET_SEASON_SUMMARY = gql`
-  query GetSeasonSummary($season: String!) {
-    seasonSummary(season: $season) {
+  query GetSeasonSummary($season: String!, $team: String!) {
+    seasonSummary(season: $season, team: $team) {
+      teamName
       season
       matchesPlayed
       wins
@@ -45,20 +46,21 @@ const GET_SEASON_SUMMARY = gql`
       awayMatches
       homeWins
       awayWins
+      winPercentage
     }
   }
 `;
 
 const GET_MATCHES = gql`
-  query GetMatches($season: String!) {
-    matches(season: $season, limit: 20) {
+  query GetMatches($season: String!, $team: String!) {
+    matches(season: $season, team: $team, limit: 20) {
       matchDate
       opponent
       venue
       result
-      arsenalGoals
+      teamGoals
       opponentGoals
-      arsenalXg
+      teamXg
       opponentXg
     }
   }
@@ -66,17 +68,18 @@ const GET_MATCHES = gql`
 
 interface SeasonOverviewProps {
   season: string;
+  team: string;
 }
 
-export default function SeasonOverview({ season }: SeasonOverviewProps) {
+export default function SeasonOverview({ season, team }: SeasonOverviewProps) {
   const { data: summaryData, loading: summaryLoading } = useQuery(GET_SEASON_SUMMARY, {
-    variables: { season: season || '2024-25' },
-    skip: !season,
+    variables: { season: season || '2024-25', team: team || 'Arsenal' },
+    skip: !season || !team,
   });
 
   const { data: matchesData, loading: matchesLoading } = useQuery(GET_MATCHES, {
-    variables: { season: season || '2024-25' },
-    skip: !season,
+    variables: { season: season || '2024-25', team: team || 'Arsenal' },
+    skip: !season || !team,
   });
 
   if (summaryLoading || matchesLoading) {
@@ -120,7 +123,7 @@ export default function SeasonOverview({ season }: SeasonOverviewProps) {
   // Prepare xG trend data
   const xgTrendData = matches.slice(0, 10).reverse().map((match: any) => ({
     date: format(new Date(match.matchDate), 'MMM d'),
-    arsenalXg: parseFloat(match.arsenalXg.toFixed(2)),
+    teamXg: parseFloat(match.teamXg.toFixed(2)),
     opponentXg: parseFloat(match.opponentXg.toFixed(2)),
   }));
 
@@ -142,14 +145,14 @@ export default function SeasonOverview({ season }: SeasonOverviewProps) {
   };
 
   const handleExportCSV = () => {
-    exportDataToCSV(matches, `arsenal_matches_${season}`);
+    exportDataToCSV(matches, `${team.toLowerCase()}_matches_${season}`);
   };
 
   return (
     <Box>
       <Flex justify="space-between" align="center" mb={6}>
         <Heading size="lg">
-          Season Overview: {summary.season}
+          {team} - Season {summary.season}
         </Heading>
         <ExportButton onExportPDF={handleExportPDF} onExportCSV={handleExportCSV} />
       </Flex>
@@ -220,7 +223,7 @@ export default function SeasonOverview({ season }: SeasonOverviewProps) {
                 }}
               />
               <Legend wrapperStyle={{ color: 'white' }} />
-              <Line type="monotone" dataKey="arsenalXg" stroke="#EF0107" strokeWidth={3} name="Arsenal xG" dot={{ fill: '#EF0107', r: 4 }} />
+              <Line type="monotone" dataKey="teamXg" stroke="#EF0107" strokeWidth={3} name={`${team} xG`} dot={{ fill: '#EF0107', r: 4 }} />
               <Line type="monotone" dataKey="opponentXg" stroke="#9CA3AF" strokeWidth={2} name="Opponent xG" dot={{ fill: '#9CA3AF', r: 3 }} />
             </LineChart>
           </ResponsiveContainer>
@@ -262,8 +265,8 @@ export default function SeasonOverview({ season }: SeasonOverviewProps) {
                       {match.result}
                     </Box>
                   </Td>
-                  <Td fontWeight="semibold">{match.arsenalGoals} - {match.opponentGoals}</Td>
-                  <Td fontSize="sm">{match.arsenalXg.toFixed(2)} - {match.opponentXg.toFixed(2)}</Td>
+                  <Td fontWeight="semibold">{match.teamGoals} - {match.opponentGoals}</Td>
+                  <Td fontSize="sm">{match.teamXg.toFixed(2)} - {match.opponentXg.toFixed(2)}</Td>
                 </Tr>
               ))}
             </Tbody>

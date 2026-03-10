@@ -2,29 +2,38 @@ import { query } from '../db/connection.js';
 
 export const advancedResolvers = {
   Query: {
-    async opponentComparison(_, { season }) {
-      let sql = 'SELECT * FROM metrics.opponent_comparison';
-      const params = [];
-
+    async opponentComparison(_, { season, team = 'Arsenal' }) {
+      let sql = `
+        SELECT 
+          m.opponent,
+          COUNT(*) as matches_played,
+          COUNT(*) FILTER (WHERE m.result = 'W') as wins,
+          COUNT(*) FILTER (WHERE m.result = 'D') as draws,
+          COUNT(*) FILTER (WHERE m.result = 'L') as losses,
+          ROUND(100.0 * COUNT(*) FILTER (WHERE m.result = 'W') / NULLIF(COUNT(*), 0), 1) as win_rate_pct,
+          SUM(m.team_goals) as goals_for,
+          SUM(m.opponent_goals) as goals_against,
+          ROUND(AVG(m.team_goals)::numeric, 2) as avg_goals_for,
+          ROUND(AVG(m.opponent_goals)::numeric, 2) as avg_goals_against,
+          ROUND(SUM(m.team_xg)::numeric, 2) as total_xg_for,
+          ROUND(SUM(m.opponent_xg)::numeric, 2) as total_xg_against,
+          ROUND(AVG(m.team_xg)::numeric, 2) as avg_xg_for,
+          ROUND(AVG(m.opponent_xg)::numeric, 2) as avg_xg_against,
+          COUNT(*) FILTER (WHERE m.opponent_goals = 0) as clean_sheets,
+          COUNT(*) FILTER (WHERE m.team_goals = 0) as failed_to_score,
+          MAX(m.match_date) as last_played
+        FROM metrics.team_matches m
+        WHERE m.team_name = $1
+      `;
+      const params = [team];
+      
       if (season) {
-        // Need to filter by season through matches
-        sql = `
-          SELECT 
-            oc.*
-          FROM metrics.opponent_comparison oc
-          INNER JOIN metrics.arsenal_matches m ON oc.opponent = m.opponent
-          WHERE m.season = $1
-          GROUP BY oc.opponent, oc.matches_played, oc.wins, oc.draws, oc.losses, 
-                   oc.win_rate_pct, oc.goals_for, oc.goals_against, oc.avg_goals_for,
-                   oc.avg_goals_against, oc.total_xg_for, oc.total_xg_against,
-                   oc.avg_xg_for, oc.avg_xg_against, oc.clean_sheets, oc.failed_to_score,
-                   oc.last_played, oc.last_result
-        `;
+        sql += ' AND m.season = $2';
         params.push(season);
       }
-
-      sql += ' ORDER BY matches_played DESC, win_rate_pct DESC';
-
+      
+      sql += ' GROUP BY m.opponent ORDER BY matches_played DESC, win_rate_pct DESC';
+      
       const result = await query(sql, params);
 
       return result.rows.map(row => ({
@@ -45,7 +54,7 @@ export const advancedResolvers = {
         cleanSheets: parseInt(row.clean_sheets) || 0,
         failedToScore: parseInt(row.failed_to_score) || 0,
         lastPlayed: row.last_played,
-        lastResult: row.last_result,
+        lastResult: null,
       }));
     },
 
@@ -89,30 +98,40 @@ export const advancedResolvers = {
       };
     },
 
-    async performanceTrends(_, { season, windowSize = 5 }) {
+    async performanceTrends(_, { season, team = 'Arsenal', windowSize = 5 }) {
       const result = await query(
-        `SELECT 
+        `WITH match_shots AS (
+          SELECT 
+            s.match_url,
+            COUNT(*) as shots,
+            COUNT(*) FILTER (WHERE s.result IN ('Goal', 'SavedShot', 'ShotOnPost')) as shots_on_target,
+            COUNT(*) FILTER (WHERE s.xg >= 0.35) as big_chances
+          FROM silver.shot_events s
+          WHERE s.season = $2 AND s.team = $3
+          GROUP BY s.match_url
+        )
+        SELECT 
           m.match_date,
           m.opponent,
           m.result,
-          m.arsenal_goals as goals,
-          m.arsenal_xg as xg,
-          mas.arsenal_shots as shots,
-          mas.arsenal_shots_on_target as shots_on_target,
-          mas.arsenal_big_chances as big_chances,
-          AVG(m.arsenal_xg) OVER (
+          m.team_goals as goals,
+          m.team_xg as xg,
+          COALESCE(ms.shots, 0) as shots,
+          COALESCE(ms.shots_on_target, 0) as shots_on_target,
+          COALESCE(ms.big_chances, 0) as big_chances,
+          AVG(m.team_xg) OVER (
             ORDER BY m.match_date 
             ROWS BETWEEN $1 PRECEDING AND CURRENT ROW
           ) as rolling_avg_xg,
-          AVG(m.arsenal_goals) OVER (
+          AVG(m.team_goals) OVER (
             ORDER BY m.match_date 
             ROWS BETWEEN $1 PRECEDING AND CURRENT ROW
           ) as rolling_avg_goals
-        FROM metrics.arsenal_matches m
-        LEFT JOIN metrics.match_advanced_stats mas ON m.match_url = mas.match_url
-        WHERE m.season = $2
+        FROM metrics.team_matches m
+        LEFT JOIN match_shots ms ON m.match_url = ms.match_url
+        WHERE m.season = $2 AND m.team_name = $3
         ORDER BY m.match_date ASC`,
-        [windowSize - 1, season]
+        [windowSize - 1, season, team]
       );
 
       return result.rows.map(row => ({
@@ -129,31 +148,27 @@ export const advancedResolvers = {
       }));
     },
 
-    async dataQuality() {
+    async dataQuality(_, { team = 'Arsenal' }) {
       const result = await query(`
         SELECT 
-          (SELECT COUNT(*) FROM metrics.arsenal_matches) as total_matches,
-          (SELECT COUNT(*) FROM silver.shot_events WHERE team = 'Arsenal') as total_shots,
-          (SELECT COUNT(DISTINCT season) FROM metrics.arsenal_matches) as seasons_count,
-          (SELECT MAX(match_date) FROM metrics.arsenal_matches) as last_update,
-          (SELECT COUNT(DISTINCT season) FROM metrics.arsenal_matches) as seasons_available
-      `);
+          (SELECT COUNT(*) FROM metrics.team_matches WHERE team_name = $1) as total_matches,
+          (SELECT COUNT(*) FROM silver.shot_events WHERE team = $1) as total_shots,
+          (SELECT COUNT(DISTINCT season) FROM metrics.team_matches WHERE team_name = $1) as seasons_count,
+          (SELECT MAX(match_date) FROM metrics.team_matches WHERE team_name = $1) as last_update
+      `, [team]);
 
       const row = result.rows[0];
       const totalMatches = parseInt(row.total_matches) || 0;
       const totalShots = parseInt(row.total_shots) || 0;
       const lastUpdate = row.last_update;
       
-      // Calculate data completeness (simplified - can be enhanced)
       const dataCompleteness = totalMatches > 0 && totalShots > 0 ? 95.0 : 0.0;
       
-      // Get available seasons
       const seasonsResult = await query(`
-        SELECT DISTINCT season FROM metrics.arsenal_matches ORDER BY season DESC
-      `);
+        SELECT DISTINCT season FROM metrics.team_matches WHERE team_name = $1 ORDER BY season DESC
+      `, [team]);
       const seasonsAvailable = seasonsResult.rows.map(r => r.season);
 
-      // Calculate data freshness
       const daysSinceUpdate = lastUpdate 
         ? Math.floor((new Date() - new Date(lastUpdate)) / (1000 * 60 * 60 * 24))
         : 999;
@@ -171,7 +186,7 @@ export const advancedResolvers = {
         dataCompleteness,
         lastUpdate,
         seasonsAvailable,
-        validationErrors: 0, // Can be enhanced with actual validation
+        validationErrors: 0,
         dataFreshness,
       };
     },

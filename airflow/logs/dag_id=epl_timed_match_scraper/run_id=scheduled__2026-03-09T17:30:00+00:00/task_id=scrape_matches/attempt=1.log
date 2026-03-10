@@ -1,0 +1,47 @@
+[2026-03-09T19:31:09.159+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: epl_timed_match_scraper.scrape_matches scheduled__2026-03-09T17:30:00+00:00 [queued]>
+[2026-03-09T19:31:09.195+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: epl_timed_match_scraper.scrape_matches scheduled__2026-03-09T17:30:00+00:00 [queued]>
+[2026-03-09T19:31:09.196+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2026-03-09T19:31:09.256+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): scrape_matches> on 2026-03-09 17:30:00+00:00
+[2026-03-09T19:31:09.272+0000] {standard_task_runner.py:60} INFO - Started process 50860 to run task
+[2026-03-09T19:31:09.281+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'epl_timed_match_scraper', 'scrape_matches', 'scheduled__2026-03-09T17:30:00+00:00', '--job-id', '727', '--raw', '--subdir', 'DAGS_FOLDER/epl_timed_scraper.py', '--cfg-path', '/tmp/tmp13oogili']
+[2026-03-09T19:31:09.289+0000] {standard_task_runner.py:88} INFO - Job 727: Subtask scrape_matches
+[2026-03-09T19:31:09.506+0000] {task_command.py:423} INFO - Running <TaskInstance: epl_timed_match_scraper.scrape_matches scheduled__2026-03-09T17:30:00+00:00 [running]> on host 13250c608584
+[2026-03-09T19:31:09.838+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='epl_analytics' AIRFLOW_CTX_DAG_ID='epl_timed_match_scraper' AIRFLOW_CTX_TASK_ID='scrape_matches' AIRFLOW_CTX_EXECUTION_DATE='2026-03-09T17:30:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-09T17:30:00+00:00'
+[2026-03-09T19:31:09.890+0000] {epl_timed_scraper.py:110} INFO - Scraping: Arsenal vs Liverpool on 2026-01-08
+[2026-03-09T19:31:09.891+0000] {playwright_scraper.py:140} INFO - Scraping match shots: https://understat.com/match/28980
+[2026-03-09T19:31:25.105+0000] {playwright_scraper.py:213} INFO - Scraped 17 shots for Arsenal vs Liverpool
+[2026-03-09T19:31:25.451+0000] {db_loader.py:196} INFO - Created scrape run: epl_timed_Arsenal_b9321431
+[2026-03-09T19:31:25.496+0000] {db_loader.py:359} INFO - Saved match reference for Arsenal vs Liverpool (Team: Arsenal)
+[2026-03-09T19:31:25.544+0000] {db_loader.py:150} INFO - Saved Understat data for match 20260108_arsenal_vs_liverpool (ID: 433, Team: Arsenal)
+[2026-03-09T19:31:25.626+0000] {db_loader.py:242} INFO - Updated scrape run epl_timed_Arsenal_b9321431: success
+[2026-03-09T19:31:25.628+0000] {epl_timed_scraper.py:128} INFO - ✓ Arsenal vs Liverpool: 17 shots, xG 0.70-0.32
+[2026-03-09T19:31:25.629+0000] {epl_timed_scraper.py:110} INFO - Scraping: Arsenal vs Manchester United on 2026-01-25
+[2026-03-09T19:31:27.354+0000] {playwright_scraper.py:140} INFO - Scraping match shots: https://understat.com/match/28999
+[2026-03-09T19:32:28.811+0000] {epl_timed_scraper.py:132} ERROR - Error scraping Arsenal vs Manchester United: Timeout loading https://understat.com/match/28999: Timeout 60000ms exceeded.
+[2026-03-09T19:32:28.812+0000] {epl_timed_scraper.py:110} INFO - Scraping: Manchester City vs Manchester United on 2025-09-14
+[2026-03-09T19:32:28.812+0000] {playwright_scraper.py:140} INFO - Scraping match shots: https://understat.com/match/28817
+[2026-03-09T19:33:30.094+0000] {epl_timed_scraper.py:132} ERROR - Error scraping Manchester City vs Manchester United: Timeout loading https://understat.com/match/28817: Timeout 60000ms exceeded.
+[2026-03-09T19:33:30.094+0000] {epl_timed_scraper.py:110} INFO - Scraping: Liverpool vs Manchester United on 2025-10-19
+[2026-03-09T19:33:30.095+0000] {playwright_scraper.py:140} INFO - Scraping match shots: https://understat.com/match/28852
+[2026-03-09T19:33:42.879+0000] {playwright_scraper.py:213} INFO - Scraped 31 shots for Liverpool vs Manchester United
+[2026-03-09T19:33:43.232+0000] {db_loader.py:196} INFO - Created scrape run: epl_timed_Manchester_United_388772e2
+[2026-03-09T19:33:43.289+0000] {db_loader.py:359} INFO - Saved match reference for Liverpool vs Manchester United (Team: Manchester United)
+[2026-03-09T19:33:43.318+0000] {db_loader.py:150} INFO - Saved Understat data for match 20251019_liverpool_vs_manchester_united (ID: 434, Team: Manchester United)
+[2026-03-09T19:33:43.379+0000] {db_loader.py:242} INFO - Updated scrape run epl_timed_Manchester_United_388772e2: success
+[2026-03-09T19:33:43.380+0000] {epl_timed_scraper.py:128} INFO - ✓ Liverpool vs Manchester United: 31 shots, xG 2.66-2.54
+[2026-03-09T19:33:43.380+0000] {epl_timed_scraper.py:110} INFO - Scraping: Manchester United vs Manchester City on 2026-01-17
+[2026-03-09T19:33:45.032+0000] {playwright_scraper.py:140} INFO - Scraping match shots: https://understat.com/match/28993
+[2026-03-09T19:33:57.110+0000] {playwright_scraper.py:213} INFO - Scraped 18 shots for Manchester United vs Manchester City
+[2026-03-09T19:33:57.693+0000] {db_loader.py:196} INFO - Created scrape run: epl_timed_Manchester_United_017d91b1
+[2026-03-09T19:33:57.749+0000] {db_loader.py:359} INFO - Saved match reference for Manchester United vs Manchester City (Team: Manchester United)
+[2026-03-09T19:33:57.772+0000] {db_loader.py:150} INFO - Saved Understat data for match 20260117_manchester_united_vs_manchester_city (ID: 435, Team: Manchester United)
+[2026-03-09T19:33:57.828+0000] {db_loader.py:242} INFO - Updated scrape run epl_timed_Manchester_United_017d91b1: success
+[2026-03-09T19:33:57.829+0000] {epl_timed_scraper.py:128} INFO - ✓ Manchester United vs Manchester City: 18 shots, xG 3.09-0.39
+[2026-03-09T19:33:57.829+0000] {epl_timed_scraper.py:110} INFO - Scraping: Newcastle United vs Manchester United on 2026-03-04
+[2026-03-09T19:33:59.257+0000] {playwright_scraper.py:140} INFO - Scraping match shots: https://understat.com/match/29065
+[2026-03-09T19:35:02.589+0000] {epl_timed_scraper.py:132} ERROR - Error scraping Newcastle United vs Manchester United: Timeout loading https://understat.com/match/29065: Timeout 60000ms exceeded.
+[2026-03-09T19:35:02.590+0000] {epl_timed_scraper.py:135} INFO - Completed: 3 matches scraped, 3 errors
+[2026-03-09T19:35:02.591+0000] {python.py:201} INFO - Done. Returned value was: {'scraped': 3, 'errors': 3}
+[2026-03-09T19:35:03.543+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=epl_timed_match_scraper, task_id=scrape_matches, execution_date=20260309T173000, start_date=20260309T193109, end_date=20260309T193503
+[2026-03-09T19:35:03.642+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-09T19:35:03.723+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

@@ -26,8 +26,8 @@ import {
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar } from 'recharts';
 
 const GET_PLAYER_STATS = gql`
-  query GetPlayerStats($season: String!, $limit: Int) {
-    playerStats(season: $season, limit: $limit) {
+  query GetPlayerStats($season: String!, $team: String!, $limit: Int) {
+    playerStats(season: $season, team: $team, limit: $limit) {
       playerName
       goals
       totalXg
@@ -46,12 +46,13 @@ const GET_PLAYER_STATS = gql`
 
 interface PlayerComparisonProps {
   season: string;
+  team: string;
 }
 
-export default function PlayerComparison({ season }: PlayerComparisonProps) {
+export default function PlayerComparison({ season, team }: PlayerComparisonProps) {
   const { data, loading, error } = useQuery(GET_PLAYER_STATS, {
-    variables: { season: season || '2024-25', limit: 50 },
-    skip: !season,
+    variables: { season: season || '2024-25', team: team || 'Arsenal', limit: 50 },
+    skip: !season || !team,
     errorPolicy: 'all',
   });
 
@@ -134,7 +135,7 @@ export default function PlayerComparison({ season }: PlayerComparisonProps) {
   return (
     <Box>
       <Heading size="lg" mb={6}>
-        Player Comparison: {season}
+        {team} Player Comparison: {season}
       </Heading>
 
       {/* Player Selectors */}

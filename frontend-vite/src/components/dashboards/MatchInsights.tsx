@@ -27,8 +27,8 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 import { format } from 'date-fns';
 
 const GET_MATCH_LIST = gql`
-  query GetMatchList($season: String!) {
-    matchList(season: $season) {
+  query GetMatchList($season: String!, $team: String!) {
+    matchList(season: $season, team: $team) {
       matchId
       matchName
       matchDate
@@ -68,25 +68,27 @@ const GET_MATCH_ADVANCED_STATS = gql`
 `;
 
 const GET_MATCH_SHOTS = gql`
-  query GetMatchShots($matchId: String!) {
-    matchShots(matchId: $matchId) {
+  query GetMatchShots($matchId: String!, $team: String) {
+    matchShots(matchId: $matchId, team: $team) {
       minute
       result
       xg
       playerName
       situation
+      team
     }
   }
 `;
 
 interface MatchInsightsProps {
   season: string;
+  team: string;
 }
 
-export default function MatchInsights({ season }: MatchInsightsProps) {
+export default function MatchInsights({ season, team }: MatchInsightsProps) {
   const { data: matchListData, loading: matchListLoading, error: matchListError } = useQuery(GET_MATCH_LIST, {
-    variables: { season: season || '2024-25' },
-    skip: !season,
+    variables: { season: season || '2024-25', team: team || 'Arsenal' },
+    skip: !season || !team,
     errorPolicy: 'all',
   });
 
@@ -99,7 +101,7 @@ export default function MatchInsights({ season }: MatchInsightsProps) {
   });
 
   const { data: shotsData, loading: shotsLoading, error: shotsError } = useQuery(GET_MATCH_SHOTS, {
-    variables: { matchId: selectedMatch },
+    variables: { matchId: selectedMatch, team: team },
     skip: !selectedMatch,
     errorPolicy: 'all',
   });
@@ -195,7 +197,7 @@ export default function MatchInsights({ season }: MatchInsightsProps) {
   return (
     <Box>
       <Heading size="lg" mb={6}>
-        Match Insights: {season}
+        {team} Match Insights: {season}
       </Heading>
 
       {matches.length > 0 && (
@@ -365,7 +367,7 @@ export default function MatchInsights({ season }: MatchInsightsProps) {
             <Heading size="md" mb={4}>Shot Quality Analysis</Heading>
             <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6}>
               <Box>
-                <Text fontWeight="medium" mb={2}>Arsenal</Text>
+                <Text fontWeight="medium" mb={2}>{team}</Text>
                 <Text>Avg Shot xG: <strong>{stats.arsenalAvgShotXg.toFixed(3)}</strong></Text>
                 <Text>Box Shots: {stats.arsenalBoxShots}</Text>
                 <Text>Outside Box: {stats.arsenalOutsideBoxShots}</Text>

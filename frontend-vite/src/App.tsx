@@ -2,6 +2,7 @@ import { Container, Tabs, TabList, TabPanels, Tab, TabPanel, Box } from '@chakra
 import Header from './components/Header'
 import Footer from './components/Footer'
 import { SeasonProvider, useSeason } from './contexts/SeasonContext'
+import { TeamProvider, useTeam } from './contexts/TeamContext'
 import SeasonOverview from './components/dashboards/SeasonOverview'
 import MatchDetail from './components/dashboards/MatchDetail'
 import PlayerStats from './components/dashboards/PlayerStats'
@@ -13,11 +14,14 @@ import OpponentAnalysis from './components/dashboards/OpponentAnalysis'
 import PerformanceTrends from './components/dashboards/PerformanceTrends'
 import PlayerComparison from './components/dashboards/PlayerComparison'
 import MatchInsights from './components/dashboards/MatchInsights'
+import { PassingNetwork, DefensiveBlock, ProgressivePasses, ZoneAnalysis } from './components/dashboards/advanced'
 import AIChatbot from './components/AIChatbot'
 
 function AppContent() {
   const { season } = useSeason()
+  const { team } = useTeam()
   const currentSeason = season || '2024-25'
+  const currentTeam = team || 'Arsenal'
 
   return (
     <Box minH="100vh">
@@ -55,41 +59,57 @@ function AppContent() {
             <Tab>📉 Performance Trends</Tab>
             <Tab>⚖️ Player Comparison</Tab>
             <Tab>💡 Match Insights</Tab>
+            <Tab>🔀 Passing Network</Tab>
+            <Tab>🛡️ Defensive Block</Tab>
+            <Tab>➡️ Progressive Passes</Tab>
+            <Tab>📐 Zone Analysis</Tab>
           </TabList>
 
           <TabPanels>
             <TabPanel>
-              <SeasonOverview season={currentSeason} />
+              <SeasonOverview season={currentSeason} team={currentTeam} />
             </TabPanel>
             <TabPanel>
-              <MatchDetail season={currentSeason} />
+              <MatchDetail season={currentSeason} team={currentTeam} />
             </TabPanel>
             <TabPanel>
-              <PlayerStats season={currentSeason} />
+              <PlayerStats season={currentSeason} team={currentTeam} />
             </TabPanel>
             <TabPanel>
-              <TacticalAnalysis season={currentSeason} />
+              <TacticalAnalysis season={currentSeason} team={currentTeam} />
             </TabPanel>
             <TabPanel>
-              <ShotNetworks season={currentSeason} />
+              <ShotNetworks season={currentSeason} team={currentTeam} />
             </TabPanel>
             <TabPanel>
-              <ExpectedThreat season={currentSeason} />
+              <ExpectedThreat season={currentSeason} team={currentTeam} />
             </TabPanel>
             <TabPanel>
-              <PlayerMatchAnalysis season={currentSeason} />
+              <PlayerMatchAnalysis season={currentSeason} team={currentTeam} />
             </TabPanel>
             <TabPanel>
-              <OpponentAnalysis season={currentSeason} />
+              <OpponentAnalysis season={currentSeason} team={currentTeam} />
             </TabPanel>
             <TabPanel>
-              <PerformanceTrends season={currentSeason} />
+              <PerformanceTrends season={currentSeason} team={currentTeam} />
             </TabPanel>
             <TabPanel>
-              <PlayerComparison season={currentSeason} />
+              <PlayerComparison season={currentSeason} team={currentTeam} />
             </TabPanel>
             <TabPanel>
-              <MatchInsights season={currentSeason} />
+              <MatchInsights season={currentSeason} team={currentTeam} />
+            </TabPanel>
+            <TabPanel>
+              <PassingNetwork season={currentSeason} team={currentTeam} />
+            </TabPanel>
+            <TabPanel>
+              <DefensiveBlock season={currentSeason} team={currentTeam} />
+            </TabPanel>
+            <TabPanel>
+              <ProgressivePasses season={currentSeason} team={currentTeam} />
+            </TabPanel>
+            <TabPanel>
+              <ZoneAnalysis season={currentSeason} team={currentTeam} />
             </TabPanel>
           </TabPanels>
         </Tabs>
@@ -102,9 +122,11 @@ function AppContent() {
 
 function App() {
   return (
-    <SeasonProvider>
-      <AppContent />
-    </SeasonProvider>
+    <TeamProvider>
+      <SeasonProvider>
+        <AppContent />
+      </SeasonProvider>
+    </TeamProvider>
   )
 }
 

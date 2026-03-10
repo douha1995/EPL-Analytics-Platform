@@ -5,8 +5,16 @@ export const typeDefs = gql`
   scalar Date
   scalar Decimal
 
+  # Team Info
+  type Team {
+    name: String!
+    seasonsCount: Int!
+    totalMatches: Int!
+  }
+
   # Season Summary
   type SeasonSummary {
+    teamName: String!
     season: String!
     matchesPlayed: Int!
     wins: Int!
@@ -24,6 +32,37 @@ export const typeDefs = gql`
     awayMatches: Int!
     homeWins: Int!
     awayWins: Int!
+    winPercentage: Float!
+  }
+
+  # EPL Standings Row
+  type StandingsRow {
+    position: Int!
+    teamName: String!
+    season: String!
+    played: Int!
+    won: Int!
+    drawn: Int!
+    lost: Int!
+    goalsFor: Int!
+    goalsAgainst: Int!
+    goalDifference: Int!
+    points: Int!
+  }
+
+  # Head to Head Stats
+  type HeadToHead {
+    team1: String!
+    team2: String!
+    season: String!
+    matchesPlayed: Int!
+    team1Wins: Int!
+    draws: Int!
+    team2Wins: Int!
+    team1Goals: Int!
+    team2Goals: Int!
+    team1AvgXg: Float!
+    team2AvgXg: Float!
   }
 
   # Match
@@ -32,14 +71,18 @@ export const typeDefs = gql`
     matchId: String
     matchDate: Date!
     season: String!
+    teamName: String!
     opponent: String!
     venue: String!
     result: String!
-    arsenalGoals: Int!
+    teamGoals: Int!
     opponentGoals: Int!
-    arsenalXg: Float!
+    teamXg: Float!
     opponentXg: Float!
     xgOverperformance: Float!
+    # Backward compatibility
+    arsenalGoals: Int
+    arsenalXg: Float
   }
 
   # Shot Detail
@@ -66,6 +109,10 @@ export const typeDefs = gql`
     xg: Float!
     assistedBy: String
     lastAction: String
+    # Tactical phase information
+    tacticalPhase: String # low_block, mid_block, high_press
+    pitchZone: String # defensive_third, middle_third, attacking_third
+    playerPositionStatus: String # in_position, out_of_position
   }
 
   # Player Advanced Stats
@@ -116,6 +163,23 @@ export const typeDefs = gql`
     assistsCount: Int!
     goalsFromAssists: Int!
     totalXgAssisted: Float!
+    # Tactical phase breakdown
+    lowBlockPasses: Int
+    midBlockPasses: Int
+    highPressPasses: Int
+    tacticalPhase: String
+  }
+
+  # Passing Phase Analysis
+  type PassingPhaseAnalysis {
+    phase: String! # low_block, mid_block, high_press
+    totalPasses: Int!
+    successfulPasses: Int!
+    assists: Int!
+    goals: Int!
+    totalXg: Float!
+    avgXgPerPass: Float!
+    passCompletionPct: Float!
   }
 
   # Expected Threat Stats
@@ -196,8 +260,8 @@ export const typeDefs = gql`
     avgXgAgainst: Float!
     cleanSheets: Int!
     failedToScore: Int!
-    lastPlayed: Date!
-    lastResult: String!
+    lastPlayed: Date
+    lastResult: String
   }
 
   # Match Advanced Stats
@@ -256,38 +320,46 @@ export const typeDefs = gql`
 
   # Query
   type Query {
+    # Team queries
+    teams: [Team!]!
+
     # Season queries
-    seasons: [String!]!
-    seasonSummary(season: String!): SeasonSummary
+    seasons(team: String): [String!]!
+    seasonSummary(season: String!, team: String!): SeasonSummary
+
+    # EPL Standings
+    eplStandings(season: String!): [StandingsRow!]!
+    headToHead(team1: String!, team2: String!, season: String): HeadToHead
 
     # Match queries
-    matches(season: String, limit: Int): [Match!]!
-    matchList(season: String!): [MatchListItem!]!
-    matchShots(matchId: String!): [Shot!]!
+    matches(season: String, team: String!, limit: Int): [Match!]!
+    matchList(season: String!, team: String!): [MatchListItem!]!
+    matchShots(matchId: String!, team: String): [Shot!]!
     matchShotsBySeason(season: String!, team: String): [Shot!]!
 
     # Player queries
-    playerStats(season: String!, limit: Int): [PlayerAdvancedStats!]!
-    playerShots(season: String!, playerName: String!): [Shot!]!
+    playerStats(season: String!, team: String, limit: Int): [PlayerAdvancedStats!]!
+    playerShots(season: String!, playerName: String!, team: String): [Shot!]!
 
     # Assist network
-    assistNetwork(season: String!, limit: Int): [AssistNetwork!]!
+    assistNetwork(season: String!, team: String, limit: Int): [AssistNetwork!]!
+    passingPhaseAnalysis(season: String!, team: String): [PassingPhaseAnalysis!]!
 
     # Expected Threat
-    playerXTStats(season: String!, limit: Int): [PlayerXTStats!]!
+    playerXTStats(season: String!, team: String, limit: Int): [PlayerXTStats!]!
 
     # Tactical analysis
-    tacticalAnalysis(season: String!): TacticalAnalysis
+    tacticalAnalysis(season: String!, team: String): TacticalAnalysis
 
     # Player match analysis
-    matchPlayerShots(matchId: String!, playerName: String!): [Shot!]!
-    matchPlayerNetwork(matchId: String!): [AssistNetwork!]!
-    matchPlayers(matchId: String!): [String!]!
+    matchPlayerShots(matchId: String!, playerName: String!, team: String): [Shot!]!
+    matchPlayerNetwork(matchId: String!, team: String): [AssistNetwork!]!
+    matchPlayers(matchId: String!, team: String): [String!]!
 
     # Advanced analytics
-    opponentComparison(season: String): [OpponentComparison!]!
+    opponentComparison(season: String, team: String): [OpponentComparison!]!
     matchAdvancedStats(matchId: String!): MatchAdvancedStats
-    performanceTrends(season: String!, windowSize: Int): [PerformanceTrend!]!
-    dataQuality: DataQuality!
+    performanceTrends(season: String!, team: String, windowSize: Int): [PerformanceTrend!]!
+    dataQuality(team: String): DataQuality!
   }
 `;

@@ -1,0 +1,612 @@
+[2026-03-09T16:45:07.978+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T16:45:07.992+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T16:45:07.992+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-03-09T16:45:08.037+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonSensor): wait_for_match_completion> on 2026-03-09 06:00:00+00:00
+[2026-03-09T16:45:08.046+0000] {standard_task_runner.py:60} INFO - Started process 2713 to run task
+[2026-03-09T16:45:08.047+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'arsenal_smart_match_scraper', 'wait_for_match_completion', 'scheduled__2026-03-09T06:00:00+00:00', '--job-id', '674', '--raw', '--subdir', 'DAGS_FOLDER/arsenal_smart_match_scraper.py', '--cfg-path', '/tmp/tmpbezj66ie']
+[2026-03-09T16:45:08.051+0000] {standard_task_runner.py:88} INFO - Job 674: Subtask wait_for_match_completion
+[2026-03-09T16:45:08.147+0000] {task_command.py:423} INFO - Running <TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [running]> on host 13250c608584
+[2026-03-09T16:45:08.363+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='arsenal_analytics' AIRFLOW_CTX_DAG_ID='arsenal_smart_match_scraper' AIRFLOW_CTX_TASK_ID='wait_for_match_completion' AIRFLOW_CTX_EXECUTION_DATE='2026-03-09T06:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-09T06:00:00+00:00'
+[2026-03-09T16:45:08.375+0000] {python.py:75} INFO - Poking callable: <function wait_for_match_completion at 0x774f490c0b80>
+[2026-03-09T16:45:08.391+0000] {arsenal_smart_match_scraper.py:91} INFO - Match date: 2026-03-15
+[2026-03-09T16:45:08.391+0000] {arsenal_smart_match_scraper.py:92} INFO - Estimated data availability: 2026-03-15 17:30:00
+[2026-03-09T16:45:08.391+0000] {arsenal_smart_match_scraper.py:93} INFO - Current time: 2026-03-09 16:45:08.391515
+[2026-03-09T16:45:08.392+0000] {arsenal_smart_match_scraper.py:101} INFO - Waiting 8685 more minutes for match data...
+[2026-03-09T16:45:08.981+0000] {taskinstance.py:2658} INFO - Rescheduling task, marking task as UP_FOR_RESCHEDULE
+[2026-03-09T16:45:09.025+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-09T16:45:09.092+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-09T16:55:10.460+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T16:55:11.294+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T16:55:11.294+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-03-09T16:55:11.323+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonSensor): wait_for_match_completion> on 2026-03-09 06:00:00+00:00
+[2026-03-09T16:55:11.327+0000] {standard_task_runner.py:60} INFO - Started process 8368 to run task
+[2026-03-09T16:55:11.328+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'arsenal_smart_match_scraper', 'wait_for_match_completion', 'scheduled__2026-03-09T06:00:00+00:00', '--job-id', '687', '--raw', '--subdir', 'DAGS_FOLDER/arsenal_smart_match_scraper.py', '--cfg-path', '/tmp/tmp1_pqmbvm']
+[2026-03-09T16:55:11.330+0000] {standard_task_runner.py:88} INFO - Job 687: Subtask wait_for_match_completion
+[2026-03-09T16:55:11.393+0000] {task_command.py:423} INFO - Running <TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [running]> on host 13250c608584
+[2026-03-09T16:55:11.509+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='arsenal_analytics' AIRFLOW_CTX_DAG_ID='arsenal_smart_match_scraper' AIRFLOW_CTX_TASK_ID='wait_for_match_completion' AIRFLOW_CTX_EXECUTION_DATE='2026-03-09T06:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-09T06:00:00+00:00'
+[2026-03-09T16:55:11.516+0000] {python.py:75} INFO - Poking callable: <function wait_for_match_completion at 0x774f490c0ae0>
+[2026-03-09T16:55:11.528+0000] {arsenal_smart_match_scraper.py:91} INFO - Match date: 2026-03-15
+[2026-03-09T16:55:11.528+0000] {arsenal_smart_match_scraper.py:92} INFO - Estimated data availability: 2026-03-15 17:30:00
+[2026-03-09T16:55:11.529+0000] {arsenal_smart_match_scraper.py:93} INFO - Current time: 2026-03-09 16:55:11.528794
+[2026-03-09T16:55:11.529+0000] {arsenal_smart_match_scraper.py:101} INFO - Waiting 8675 more minutes for match data...
+[2026-03-09T16:55:11.563+0000] {taskinstance.py:2658} INFO - Rescheduling task, marking task as UP_FOR_RESCHEDULE
+[2026-03-09T16:55:11.581+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-09T16:55:11.597+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-09T17:05:13.481+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T17:05:13.495+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T17:05:13.495+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-03-09T17:05:13.521+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonSensor): wait_for_match_completion> on 2026-03-09 06:00:00+00:00
+[2026-03-09T17:05:13.525+0000] {standard_task_runner.py:60} INFO - Started process 9213 to run task
+[2026-03-09T17:05:13.527+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'arsenal_smart_match_scraper', 'wait_for_match_completion', 'scheduled__2026-03-09T06:00:00+00:00', '--job-id', '692', '--raw', '--subdir', 'DAGS_FOLDER/arsenal_smart_match_scraper.py', '--cfg-path', '/tmp/tmp3s467bdd']
+[2026-03-09T17:05:13.528+0000] {standard_task_runner.py:88} INFO - Job 692: Subtask wait_for_match_completion
+[2026-03-09T17:05:13.580+0000] {task_command.py:423} INFO - Running <TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [running]> on host 13250c608584
+[2026-03-09T17:05:13.643+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='arsenal_analytics' AIRFLOW_CTX_DAG_ID='arsenal_smart_match_scraper' AIRFLOW_CTX_TASK_ID='wait_for_match_completion' AIRFLOW_CTX_EXECUTION_DATE='2026-03-09T06:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-09T06:00:00+00:00'
+[2026-03-09T17:05:13.651+0000] {python.py:75} INFO - Poking callable: <function wait_for_match_completion at 0x774f490c0ae0>
+[2026-03-09T17:05:13.680+0000] {arsenal_smart_match_scraper.py:91} INFO - Match date: 2026-03-15
+[2026-03-09T17:05:13.680+0000] {arsenal_smart_match_scraper.py:92} INFO - Estimated data availability: 2026-03-15 17:30:00
+[2026-03-09T17:05:13.681+0000] {arsenal_smart_match_scraper.py:93} INFO - Current time: 2026-03-09 17:05:13.680670
+[2026-03-09T17:05:13.681+0000] {arsenal_smart_match_scraper.py:101} INFO - Waiting 8665 more minutes for match data...
+[2026-03-09T17:05:13.717+0000] {taskinstance.py:2658} INFO - Rescheduling task, marking task as UP_FOR_RESCHEDULE
+[2026-03-09T17:05:13.739+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-09T17:05:13.757+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-09T17:15:16.100+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T17:15:16.123+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T17:15:16.123+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-03-09T17:15:16.190+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonSensor): wait_for_match_completion> on 2026-03-09 06:00:00+00:00
+[2026-03-09T17:15:16.194+0000] {standard_task_runner.py:60} INFO - Started process 9915 to run task
+[2026-03-09T17:15:16.196+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'arsenal_smart_match_scraper', 'wait_for_match_completion', 'scheduled__2026-03-09T06:00:00+00:00', '--job-id', '693', '--raw', '--subdir', 'DAGS_FOLDER/arsenal_smart_match_scraper.py', '--cfg-path', '/tmp/tmp7fh3a9f3']
+[2026-03-09T17:15:16.197+0000] {standard_task_runner.py:88} INFO - Job 693: Subtask wait_for_match_completion
+[2026-03-09T17:15:16.276+0000] {task_command.py:423} INFO - Running <TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [running]> on host 13250c608584
+[2026-03-09T17:15:16.381+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='arsenal_analytics' AIRFLOW_CTX_DAG_ID='arsenal_smart_match_scraper' AIRFLOW_CTX_TASK_ID='wait_for_match_completion' AIRFLOW_CTX_EXECUTION_DATE='2026-03-09T06:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-09T06:00:00+00:00'
+[2026-03-09T17:15:16.389+0000] {python.py:75} INFO - Poking callable: <function wait_for_match_completion at 0x774f490c0ae0>
+[2026-03-09T17:15:16.503+0000] {arsenal_smart_match_scraper.py:91} INFO - Match date: 2026-03-15
+[2026-03-09T17:15:16.504+0000] {arsenal_smart_match_scraper.py:92} INFO - Estimated data availability: 2026-03-15 17:30:00
+[2026-03-09T17:15:16.504+0000] {arsenal_smart_match_scraper.py:93} INFO - Current time: 2026-03-09 17:15:16.503763
+[2026-03-09T17:15:16.504+0000] {arsenal_smart_match_scraper.py:101} INFO - Waiting 8655 more minutes for match data...
+[2026-03-09T17:15:16.581+0000] {taskinstance.py:2658} INFO - Rescheduling task, marking task as UP_FOR_RESCHEDULE
+[2026-03-09T17:15:16.608+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-09T17:15:16.633+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-09T17:25:19.623+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T17:25:19.678+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T17:25:19.679+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-03-09T17:25:19.725+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonSensor): wait_for_match_completion> on 2026-03-09 06:00:00+00:00
+[2026-03-09T17:25:19.735+0000] {standard_task_runner.py:60} INFO - Started process 10626 to run task
+[2026-03-09T17:25:19.736+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'arsenal_smart_match_scraper', 'wait_for_match_completion', 'scheduled__2026-03-09T06:00:00+00:00', '--job-id', '694', '--raw', '--subdir', 'DAGS_FOLDER/arsenal_smart_match_scraper.py', '--cfg-path', '/tmp/tmppx86bmal']
+[2026-03-09T17:25:19.738+0000] {standard_task_runner.py:88} INFO - Job 694: Subtask wait_for_match_completion
+[2026-03-09T17:25:19.783+0000] {task_command.py:423} INFO - Running <TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [running]> on host 13250c608584
+[2026-03-09T17:25:19.865+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='arsenal_analytics' AIRFLOW_CTX_DAG_ID='arsenal_smart_match_scraper' AIRFLOW_CTX_TASK_ID='wait_for_match_completion' AIRFLOW_CTX_EXECUTION_DATE='2026-03-09T06:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-09T06:00:00+00:00'
+[2026-03-09T17:25:19.872+0000] {python.py:75} INFO - Poking callable: <function wait_for_match_completion at 0x774f490c0d60>
+[2026-03-09T17:25:19.883+0000] {arsenal_smart_match_scraper.py:91} INFO - Match date: 2026-03-15
+[2026-03-09T17:25:19.883+0000] {arsenal_smart_match_scraper.py:92} INFO - Estimated data availability: 2026-03-15 17:30:00
+[2026-03-09T17:25:19.883+0000] {arsenal_smart_match_scraper.py:93} INFO - Current time: 2026-03-09 17:25:19.883456
+[2026-03-09T17:25:19.883+0000] {arsenal_smart_match_scraper.py:101} INFO - Waiting 8645 more minutes for match data...
+[2026-03-09T17:25:19.908+0000] {taskinstance.py:2658} INFO - Rescheduling task, marking task as UP_FOR_RESCHEDULE
+[2026-03-09T17:25:19.949+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-09T17:25:19.983+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-09T17:35:22.425+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T17:35:22.453+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T17:35:22.453+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-03-09T17:35:22.518+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonSensor): wait_for_match_completion> on 2026-03-09 06:00:00+00:00
+[2026-03-09T17:35:22.525+0000] {standard_task_runner.py:60} INFO - Started process 12597 to run task
+[2026-03-09T17:35:22.527+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'arsenal_smart_match_scraper', 'wait_for_match_completion', 'scheduled__2026-03-09T06:00:00+00:00', '--job-id', '697', '--raw', '--subdir', 'DAGS_FOLDER/arsenal_smart_match_scraper.py', '--cfg-path', '/tmp/tmpojt6nvfh']
+[2026-03-09T17:35:22.529+0000] {standard_task_runner.py:88} INFO - Job 697: Subtask wait_for_match_completion
+[2026-03-09T17:35:22.753+0000] {task_command.py:423} INFO - Running <TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [running]> on host 13250c608584
+[2026-03-09T17:35:23.736+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='arsenal_analytics' AIRFLOW_CTX_DAG_ID='arsenal_smart_match_scraper' AIRFLOW_CTX_TASK_ID='wait_for_match_completion' AIRFLOW_CTX_EXECUTION_DATE='2026-03-09T06:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-09T06:00:00+00:00'
+[2026-03-09T17:35:23.745+0000] {python.py:75} INFO - Poking callable: <function wait_for_match_completion at 0x774f490c0d60>
+[2026-03-09T17:35:23.851+0000] {arsenal_smart_match_scraper.py:91} INFO - Match date: 2026-03-15
+[2026-03-09T17:35:23.851+0000] {arsenal_smart_match_scraper.py:92} INFO - Estimated data availability: 2026-03-15 17:30:00
+[2026-03-09T17:35:23.851+0000] {arsenal_smart_match_scraper.py:93} INFO - Current time: 2026-03-09 17:35:23.851063
+[2026-03-09T17:35:23.851+0000] {arsenal_smart_match_scraper.py:101} INFO - Waiting 8635 more minutes for match data...
+[2026-03-09T17:35:23.929+0000] {taskinstance.py:2658} INFO - Rescheduling task, marking task as UP_FOR_RESCHEDULE
+[2026-03-09T17:35:23.943+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-09T17:35:23.961+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-09T17:45:36.716+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T17:45:36.843+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T17:45:36.843+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-03-09T17:45:38.951+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonSensor): wait_for_match_completion> on 2026-03-09 06:00:00+00:00
+[2026-03-09T17:45:38.960+0000] {standard_task_runner.py:60} INFO - Started process 13318 to run task
+[2026-03-09T17:45:38.965+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'arsenal_smart_match_scraper', 'wait_for_match_completion', 'scheduled__2026-03-09T06:00:00+00:00', '--job-id', '698', '--raw', '--subdir', 'DAGS_FOLDER/arsenal_smart_match_scraper.py', '--cfg-path', '/tmp/tmp1x9y5w7v']
+[2026-03-09T17:45:38.968+0000] {standard_task_runner.py:88} INFO - Job 698: Subtask wait_for_match_completion
+[2026-03-09T17:45:40.726+0000] {task_command.py:423} INFO - Running <TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [running]> on host 13250c608584
+[2026-03-09T17:45:41.547+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='arsenal_analytics' AIRFLOW_CTX_DAG_ID='arsenal_smart_match_scraper' AIRFLOW_CTX_TASK_ID='wait_for_match_completion' AIRFLOW_CTX_EXECUTION_DATE='2026-03-09T06:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-09T06:00:00+00:00'
+[2026-03-09T17:45:41.554+0000] {python.py:75} INFO - Poking callable: <function wait_for_match_completion at 0x774f490c0b80>
+[2026-03-09T17:45:41.987+0000] {arsenal_smart_match_scraper.py:91} INFO - Match date: 2026-03-15
+[2026-03-09T17:45:41.988+0000] {arsenal_smart_match_scraper.py:92} INFO - Estimated data availability: 2026-03-15 17:30:00
+[2026-03-09T17:45:41.988+0000] {arsenal_smart_match_scraper.py:93} INFO - Current time: 2026-03-09 17:45:41.987718
+[2026-03-09T17:45:41.988+0000] {arsenal_smart_match_scraper.py:101} INFO - Waiting 8624 more minutes for match data...
+[2026-03-09T17:45:42.423+0000] {taskinstance.py:2658} INFO - Rescheduling task, marking task as UP_FOR_RESCHEDULE
+[2026-03-09T17:45:42.468+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-09T17:45:42.509+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-09T17:55:45.055+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T17:55:45.078+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T17:55:45.079+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-03-09T17:55:45.115+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonSensor): wait_for_match_completion> on 2026-03-09 06:00:00+00:00
+[2026-03-09T17:55:45.123+0000] {standard_task_runner.py:60} INFO - Started process 13997 to run task
+[2026-03-09T17:55:45.128+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'arsenal_smart_match_scraper', 'wait_for_match_completion', 'scheduled__2026-03-09T06:00:00+00:00', '--job-id', '699', '--raw', '--subdir', 'DAGS_FOLDER/arsenal_smart_match_scraper.py', '--cfg-path', '/tmp/tmpsm9766pp']
+[2026-03-09T17:55:45.131+0000] {standard_task_runner.py:88} INFO - Job 699: Subtask wait_for_match_completion
+[2026-03-09T17:55:45.228+0000] {task_command.py:423} INFO - Running <TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [running]> on host 13250c608584
+[2026-03-09T17:55:45.363+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='arsenal_analytics' AIRFLOW_CTX_DAG_ID='arsenal_smart_match_scraper' AIRFLOW_CTX_TASK_ID='wait_for_match_completion' AIRFLOW_CTX_EXECUTION_DATE='2026-03-09T06:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-09T06:00:00+00:00'
+[2026-03-09T17:55:45.380+0000] {python.py:75} INFO - Poking callable: <function wait_for_match_completion at 0x774f490c0ae0>
+[2026-03-09T17:55:45.407+0000] {arsenal_smart_match_scraper.py:91} INFO - Match date: 2026-03-15
+[2026-03-09T17:55:45.407+0000] {arsenal_smart_match_scraper.py:92} INFO - Estimated data availability: 2026-03-15 17:30:00
+[2026-03-09T17:55:45.408+0000] {arsenal_smart_match_scraper.py:93} INFO - Current time: 2026-03-09 17:55:45.407421
+[2026-03-09T17:55:45.408+0000] {arsenal_smart_match_scraper.py:101} INFO - Waiting 8614 more minutes for match data...
+[2026-03-09T17:55:45.450+0000] {taskinstance.py:2658} INFO - Rescheduling task, marking task as UP_FOR_RESCHEDULE
+[2026-03-09T17:55:45.500+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-09T17:55:45.549+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-09T18:05:47.715+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T18:05:47.739+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T18:05:47.740+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-03-09T18:05:47.776+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonSensor): wait_for_match_completion> on 2026-03-09 06:00:00+00:00
+[2026-03-09T18:05:47.785+0000] {standard_task_runner.py:60} INFO - Started process 16281 to run task
+[2026-03-09T18:05:47.789+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'arsenal_smart_match_scraper', 'wait_for_match_completion', 'scheduled__2026-03-09T06:00:00+00:00', '--job-id', '707', '--raw', '--subdir', 'DAGS_FOLDER/arsenal_smart_match_scraper.py', '--cfg-path', '/tmp/tmp8iml7hcm']
+[2026-03-09T18:05:47.792+0000] {standard_task_runner.py:88} INFO - Job 707: Subtask wait_for_match_completion
+[2026-03-09T18:05:47.888+0000] {task_command.py:423} INFO - Running <TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [running]> on host 13250c608584
+[2026-03-09T18:05:48.072+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='arsenal_analytics' AIRFLOW_CTX_DAG_ID='arsenal_smart_match_scraper' AIRFLOW_CTX_TASK_ID='wait_for_match_completion' AIRFLOW_CTX_EXECUTION_DATE='2026-03-09T06:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-09T06:00:00+00:00'
+[2026-03-09T18:05:48.092+0000] {python.py:75} INFO - Poking callable: <function wait_for_match_completion at 0x774f490c0ae0>
+[2026-03-09T18:05:48.132+0000] {arsenal_smart_match_scraper.py:91} INFO - Match date: 2026-03-15
+[2026-03-09T18:05:48.132+0000] {arsenal_smart_match_scraper.py:92} INFO - Estimated data availability: 2026-03-15 17:30:00
+[2026-03-09T18:05:48.133+0000] {arsenal_smart_match_scraper.py:93} INFO - Current time: 2026-03-09 18:05:48.132205
+[2026-03-09T18:05:48.133+0000] {arsenal_smart_match_scraper.py:101} INFO - Waiting 8604 more minutes for match data...
+[2026-03-09T18:05:48.192+0000] {taskinstance.py:2658} INFO - Rescheduling task, marking task as UP_FOR_RESCHEDULE
+[2026-03-09T18:05:48.242+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-09T18:05:48.298+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-09T18:15:50.031+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T18:15:50.250+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T18:15:50.251+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-03-09T18:15:50.747+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonSensor): wait_for_match_completion> on 2026-03-09 06:00:00+00:00
+[2026-03-09T18:15:50.770+0000] {standard_task_runner.py:60} INFO - Started process 21155 to run task
+[2026-03-09T18:15:50.785+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'arsenal_smart_match_scraper', 'wait_for_match_completion', 'scheduled__2026-03-09T06:00:00+00:00', '--job-id', '711', '--raw', '--subdir', 'DAGS_FOLDER/arsenal_smart_match_scraper.py', '--cfg-path', '/tmp/tmpibh64my_']
+[2026-03-09T18:15:50.793+0000] {standard_task_runner.py:88} INFO - Job 711: Subtask wait_for_match_completion
+[2026-03-09T18:15:50.981+0000] {task_command.py:423} INFO - Running <TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [running]> on host 13250c608584
+[2026-03-09T18:15:51.242+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='arsenal_analytics' AIRFLOW_CTX_DAG_ID='arsenal_smart_match_scraper' AIRFLOW_CTX_TASK_ID='wait_for_match_completion' AIRFLOW_CTX_EXECUTION_DATE='2026-03-09T06:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-09T06:00:00+00:00'
+[2026-03-09T18:15:51.265+0000] {python.py:75} INFO - Poking callable: <function wait_for_match_completion at 0x774f490c0ae0>
+[2026-03-09T18:15:51.306+0000] {arsenal_smart_match_scraper.py:91} INFO - Match date: 2026-03-15
+[2026-03-09T18:15:51.306+0000] {arsenal_smart_match_scraper.py:92} INFO - Estimated data availability: 2026-03-15 17:30:00
+[2026-03-09T18:15:51.307+0000] {arsenal_smart_match_scraper.py:93} INFO - Current time: 2026-03-09 18:15:51.306371
+[2026-03-09T18:15:51.307+0000] {arsenal_smart_match_scraper.py:101} INFO - Waiting 8594 more minutes for match data...
+[2026-03-09T18:15:51.393+0000] {taskinstance.py:2658} INFO - Rescheduling task, marking task as UP_FOR_RESCHEDULE
+[2026-03-09T18:15:51.444+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-09T18:15:51.499+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-09T18:27:06.445+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T18:27:06.650+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T18:27:06.680+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-03-09T18:27:06.762+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonSensor): wait_for_match_completion> on 2026-03-09 06:00:00+00:00
+[2026-03-09T18:27:06.768+0000] {standard_task_runner.py:60} INFO - Started process 31368 to run task
+[2026-03-09T18:27:06.772+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'arsenal_smart_match_scraper', 'wait_for_match_completion', 'scheduled__2026-03-09T06:00:00+00:00', '--job-id', '713', '--raw', '--subdir', 'DAGS_FOLDER/arsenal_smart_match_scraper.py', '--cfg-path', '/tmp/tmph0xzbi70']
+[2026-03-09T18:27:06.774+0000] {standard_task_runner.py:88} INFO - Job 713: Subtask wait_for_match_completion
+[2026-03-09T18:27:06.886+0000] {task_command.py:423} INFO - Running <TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [running]> on host 13250c608584
+[2026-03-09T18:27:07.197+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='arsenal_analytics' AIRFLOW_CTX_DAG_ID='arsenal_smart_match_scraper' AIRFLOW_CTX_TASK_ID='wait_for_match_completion' AIRFLOW_CTX_EXECUTION_DATE='2026-03-09T06:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-09T06:00:00+00:00'
+[2026-03-09T18:27:07.213+0000] {python.py:75} INFO - Poking callable: <function wait_for_match_completion at 0x774f4586a020>
+[2026-03-09T18:27:07.413+0000] {arsenal_smart_match_scraper.py:91} INFO - Match date: 2026-03-15
+[2026-03-09T18:27:07.414+0000] {arsenal_smart_match_scraper.py:92} INFO - Estimated data availability: 2026-03-15 17:30:00
+[2026-03-09T18:27:07.414+0000] {arsenal_smart_match_scraper.py:93} INFO - Current time: 2026-03-09 18:27:07.413839
+[2026-03-09T18:27:07.414+0000] {arsenal_smart_match_scraper.py:101} INFO - Waiting 8583 more minutes for match data...
+[2026-03-09T18:27:07.576+0000] {taskinstance.py:2658} INFO - Rescheduling task, marking task as UP_FOR_RESCHEDULE
+[2026-03-09T18:27:07.769+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-09T18:27:07.809+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-09T18:37:26.066+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T18:37:26.124+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T18:37:26.125+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-03-09T18:37:27.631+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonSensor): wait_for_match_completion> on 2026-03-09 06:00:00+00:00
+[2026-03-09T18:37:27.651+0000] {standard_task_runner.py:60} INFO - Started process 38950 to run task
+[2026-03-09T18:37:27.687+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'arsenal_smart_match_scraper', 'wait_for_match_completion', 'scheduled__2026-03-09T06:00:00+00:00', '--job-id', '715', '--raw', '--subdir', 'DAGS_FOLDER/arsenal_smart_match_scraper.py', '--cfg-path', '/tmp/tmpnc7e2427']
+[2026-03-09T18:37:27.696+0000] {standard_task_runner.py:88} INFO - Job 715: Subtask wait_for_match_completion
+[2026-03-09T18:37:28.215+0000] {task_command.py:423} INFO - Running <TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [running]> on host 13250c608584
+[2026-03-09T18:37:29.775+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='arsenal_analytics' AIRFLOW_CTX_DAG_ID='arsenal_smart_match_scraper' AIRFLOW_CTX_TASK_ID='wait_for_match_completion' AIRFLOW_CTX_EXECUTION_DATE='2026-03-09T06:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-09T06:00:00+00:00'
+[2026-03-09T18:37:29.862+0000] {python.py:75} INFO - Poking callable: <function wait_for_match_completion at 0x774f490c0ae0>
+[2026-03-09T18:37:30.866+0000] {arsenal_smart_match_scraper.py:91} INFO - Match date: 2026-03-15
+[2026-03-09T18:37:30.867+0000] {arsenal_smart_match_scraper.py:92} INFO - Estimated data availability: 2026-03-15 17:30:00
+[2026-03-09T18:37:30.867+0000] {arsenal_smart_match_scraper.py:93} INFO - Current time: 2026-03-09 18:37:30.866609
+[2026-03-09T18:37:30.868+0000] {arsenal_smart_match_scraper.py:101} INFO - Waiting 8572 more minutes for match data...
+[2026-03-09T18:37:30.993+0000] {taskinstance.py:2658} INFO - Rescheduling task, marking task as UP_FOR_RESCHEDULE
+[2026-03-09T18:37:31.052+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-09T18:37:31.172+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-09T18:47:46.822+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T18:47:46.884+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T18:47:46.884+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-03-09T18:47:47.187+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonSensor): wait_for_match_completion> on 2026-03-09 06:00:00+00:00
+[2026-03-09T18:47:47.196+0000] {standard_task_runner.py:60} INFO - Started process 44261 to run task
+[2026-03-09T18:47:47.285+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'arsenal_smart_match_scraper', 'wait_for_match_completion', 'scheduled__2026-03-09T06:00:00+00:00', '--job-id', '717', '--raw', '--subdir', 'DAGS_FOLDER/arsenal_smart_match_scraper.py', '--cfg-path', '/tmp/tmpi7xjo9aj']
+[2026-03-09T18:47:47.288+0000] {standard_task_runner.py:88} INFO - Job 717: Subtask wait_for_match_completion
+[2026-03-09T18:47:47.449+0000] {task_command.py:423} INFO - Running <TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [running]> on host 13250c608584
+[2026-03-09T18:47:47.631+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='arsenal_analytics' AIRFLOW_CTX_DAG_ID='arsenal_smart_match_scraper' AIRFLOW_CTX_TASK_ID='wait_for_match_completion' AIRFLOW_CTX_EXECUTION_DATE='2026-03-09T06:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-09T06:00:00+00:00'
+[2026-03-09T18:47:47.644+0000] {python.py:75} INFO - Poking callable: <function wait_for_match_completion at 0x774f490c0ae0>
+[2026-03-09T18:47:47.666+0000] {arsenal_smart_match_scraper.py:91} INFO - Match date: 2026-03-15
+[2026-03-09T18:47:47.666+0000] {arsenal_smart_match_scraper.py:92} INFO - Estimated data availability: 2026-03-15 17:30:00
+[2026-03-09T18:47:47.666+0000] {arsenal_smart_match_scraper.py:93} INFO - Current time: 2026-03-09 18:47:47.666240
+[2026-03-09T18:47:47.667+0000] {arsenal_smart_match_scraper.py:101} INFO - Waiting 8562 more minutes for match data...
+[2026-03-09T18:47:47.843+0000] {taskinstance.py:2658} INFO - Rescheduling task, marking task as UP_FOR_RESCHEDULE
+[2026-03-09T18:47:47.894+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-09T18:47:48.079+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-09T18:57:55.852+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T18:57:55.898+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T18:57:55.899+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-03-09T18:57:55.943+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonSensor): wait_for_match_completion> on 2026-03-09 06:00:00+00:00
+[2026-03-09T18:57:55.956+0000] {standard_task_runner.py:60} INFO - Started process 48122 to run task
+[2026-03-09T18:57:55.962+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'arsenal_smart_match_scraper', 'wait_for_match_completion', 'scheduled__2026-03-09T06:00:00+00:00', '--job-id', '719', '--raw', '--subdir', 'DAGS_FOLDER/arsenal_smart_match_scraper.py', '--cfg-path', '/tmp/tmprtzg4gib']
+[2026-03-09T18:57:55.967+0000] {standard_task_runner.py:88} INFO - Job 719: Subtask wait_for_match_completion
+[2026-03-09T18:57:56.114+0000] {task_command.py:423} INFO - Running <TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [running]> on host 13250c608584
+[2026-03-09T18:57:56.286+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='arsenal_analytics' AIRFLOW_CTX_DAG_ID='arsenal_smart_match_scraper' AIRFLOW_CTX_TASK_ID='wait_for_match_completion' AIRFLOW_CTX_EXECUTION_DATE='2026-03-09T06:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-09T06:00:00+00:00'
+[2026-03-09T18:57:56.310+0000] {python.py:75} INFO - Poking callable: <function wait_for_match_completion at 0x774f490c0ae0>
+[2026-03-09T18:57:56.347+0000] {arsenal_smart_match_scraper.py:91} INFO - Match date: 2026-03-15
+[2026-03-09T18:57:56.347+0000] {arsenal_smart_match_scraper.py:92} INFO - Estimated data availability: 2026-03-15 17:30:00
+[2026-03-09T18:57:56.348+0000] {arsenal_smart_match_scraper.py:93} INFO - Current time: 2026-03-09 18:57:56.347346
+[2026-03-09T18:57:56.348+0000] {arsenal_smart_match_scraper.py:101} INFO - Waiting 8552 more minutes for match data...
+[2026-03-09T18:57:56.406+0000] {taskinstance.py:2658} INFO - Rescheduling task, marking task as UP_FOR_RESCHEDULE
+[2026-03-09T18:57:56.459+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-09T18:57:56.526+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-09T19:08:03.216+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T19:08:03.269+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T19:08:03.270+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-03-09T19:08:03.338+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonSensor): wait_for_match_completion> on 2026-03-09 06:00:00+00:00
+[2026-03-09T19:08:03.351+0000] {standard_task_runner.py:60} INFO - Started process 48964 to run task
+[2026-03-09T19:08:03.359+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'arsenal_smart_match_scraper', 'wait_for_match_completion', 'scheduled__2026-03-09T06:00:00+00:00', '--job-id', '721', '--raw', '--subdir', 'DAGS_FOLDER/arsenal_smart_match_scraper.py', '--cfg-path', '/tmp/tmp737uoty6']
+[2026-03-09T19:08:03.363+0000] {standard_task_runner.py:88} INFO - Job 721: Subtask wait_for_match_completion
+[2026-03-09T19:08:03.534+0000] {task_command.py:423} INFO - Running <TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [running]> on host 13250c608584
+[2026-03-09T19:08:03.842+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='arsenal_analytics' AIRFLOW_CTX_DAG_ID='arsenal_smart_match_scraper' AIRFLOW_CTX_TASK_ID='wait_for_match_completion' AIRFLOW_CTX_EXECUTION_DATE='2026-03-09T06:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-09T06:00:00+00:00'
+[2026-03-09T19:08:03.887+0000] {python.py:75} INFO - Poking callable: <function wait_for_match_completion at 0x774f490c0ae0>
+[2026-03-09T19:08:03.978+0000] {arsenal_smart_match_scraper.py:91} INFO - Match date: 2026-03-15
+[2026-03-09T19:08:03.980+0000] {arsenal_smart_match_scraper.py:92} INFO - Estimated data availability: 2026-03-15 17:30:00
+[2026-03-09T19:08:03.982+0000] {arsenal_smart_match_scraper.py:93} INFO - Current time: 2026-03-09 19:08:03.978102
+[2026-03-09T19:08:03.985+0000] {arsenal_smart_match_scraper.py:101} INFO - Waiting 8542 more minutes for match data...
+[2026-03-09T19:08:04.102+0000] {taskinstance.py:2658} INFO - Rescheduling task, marking task as UP_FOR_RESCHEDULE
+[2026-03-09T19:08:04.138+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-09T19:08:04.219+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-09T19:18:06.342+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T19:18:06.425+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T19:18:06.426+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-03-09T19:18:06.501+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonSensor): wait_for_match_completion> on 2026-03-09 06:00:00+00:00
+[2026-03-09T19:18:06.525+0000] {standard_task_runner.py:60} INFO - Started process 49671 to run task
+[2026-03-09T19:18:06.551+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'arsenal_smart_match_scraper', 'wait_for_match_completion', 'scheduled__2026-03-09T06:00:00+00:00', '--job-id', '723', '--raw', '--subdir', 'DAGS_FOLDER/arsenal_smart_match_scraper.py', '--cfg-path', '/tmp/tmp7pkbjeq8']
+[2026-03-09T19:18:06.563+0000] {standard_task_runner.py:88} INFO - Job 723: Subtask wait_for_match_completion
+[2026-03-09T19:18:06.825+0000] {task_command.py:423} INFO - Running <TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [running]> on host 13250c608584
+[2026-03-09T19:18:07.140+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='arsenal_analytics' AIRFLOW_CTX_DAG_ID='arsenal_smart_match_scraper' AIRFLOW_CTX_TASK_ID='wait_for_match_completion' AIRFLOW_CTX_EXECUTION_DATE='2026-03-09T06:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-09T06:00:00+00:00'
+[2026-03-09T19:18:07.194+0000] {python.py:75} INFO - Poking callable: <function wait_for_match_completion at 0x774f490c0ae0>
+[2026-03-09T19:18:07.287+0000] {arsenal_smart_match_scraper.py:91} INFO - Match date: 2026-03-15
+[2026-03-09T19:18:07.290+0000] {arsenal_smart_match_scraper.py:92} INFO - Estimated data availability: 2026-03-15 17:30:00
+[2026-03-09T19:18:07.293+0000] {arsenal_smart_match_scraper.py:93} INFO - Current time: 2026-03-09 19:18:07.287549
+[2026-03-09T19:18:07.295+0000] {arsenal_smart_match_scraper.py:101} INFO - Waiting 8532 more minutes for match data...
+[2026-03-09T19:18:07.433+0000] {taskinstance.py:2658} INFO - Rescheduling task, marking task as UP_FOR_RESCHEDULE
+[2026-03-09T19:18:07.502+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-09T19:18:07.746+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-09T19:28:13.559+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T19:28:13.605+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T19:28:13.606+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-03-09T19:28:13.684+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonSensor): wait_for_match_completion> on 2026-03-09 06:00:00+00:00
+[2026-03-09T19:28:13.706+0000] {standard_task_runner.py:60} INFO - Started process 50370 to run task
+[2026-03-09T19:28:13.716+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'arsenal_smart_match_scraper', 'wait_for_match_completion', 'scheduled__2026-03-09T06:00:00+00:00', '--job-id', '725', '--raw', '--subdir', 'DAGS_FOLDER/arsenal_smart_match_scraper.py', '--cfg-path', '/tmp/tmpxrsbm329']
+[2026-03-09T19:28:13.723+0000] {standard_task_runner.py:88} INFO - Job 725: Subtask wait_for_match_completion
+[2026-03-09T19:28:13.925+0000] {task_command.py:423} INFO - Running <TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [running]> on host 13250c608584
+[2026-03-09T19:28:14.342+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='arsenal_analytics' AIRFLOW_CTX_DAG_ID='arsenal_smart_match_scraper' AIRFLOW_CTX_TASK_ID='wait_for_match_completion' AIRFLOW_CTX_EXECUTION_DATE='2026-03-09T06:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-09T06:00:00+00:00'
+[2026-03-09T19:28:14.430+0000] {python.py:75} INFO - Poking callable: <function wait_for_match_completion at 0x774f490c0ae0>
+[2026-03-09T19:28:14.579+0000] {arsenal_smart_match_scraper.py:91} INFO - Match date: 2026-03-15
+[2026-03-09T19:28:14.580+0000] {arsenal_smart_match_scraper.py:92} INFO - Estimated data availability: 2026-03-15 17:30:00
+[2026-03-09T19:28:14.581+0000] {arsenal_smart_match_scraper.py:93} INFO - Current time: 2026-03-09 19:28:14.579755
+[2026-03-09T19:28:14.581+0000] {arsenal_smart_match_scraper.py:101} INFO - Waiting 8522 more minutes for match data...
+[2026-03-09T19:28:14.681+0000] {taskinstance.py:2658} INFO - Rescheduling task, marking task as UP_FOR_RESCHEDULE
+[2026-03-09T19:28:14.741+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-09T19:28:14.847+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-09T19:38:16.612+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T19:38:16.658+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T19:38:16.659+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-03-09T19:38:16.719+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonSensor): wait_for_match_completion> on 2026-03-09 06:00:00+00:00
+[2026-03-09T19:38:16.733+0000] {standard_task_runner.py:60} INFO - Started process 52220 to run task
+[2026-03-09T19:38:16.741+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'arsenal_smart_match_scraper', 'wait_for_match_completion', 'scheduled__2026-03-09T06:00:00+00:00', '--job-id', '729', '--raw', '--subdir', 'DAGS_FOLDER/arsenal_smart_match_scraper.py', '--cfg-path', '/tmp/tmpgrwhczk2']
+[2026-03-09T19:38:16.746+0000] {standard_task_runner.py:88} INFO - Job 729: Subtask wait_for_match_completion
+[2026-03-09T19:38:16.930+0000] {task_command.py:423} INFO - Running <TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [running]> on host 13250c608584
+[2026-03-09T19:38:17.254+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='arsenal_analytics' AIRFLOW_CTX_DAG_ID='arsenal_smart_match_scraper' AIRFLOW_CTX_TASK_ID='wait_for_match_completion' AIRFLOW_CTX_EXECUTION_DATE='2026-03-09T06:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-09T06:00:00+00:00'
+[2026-03-09T19:38:17.300+0000] {python.py:75} INFO - Poking callable: <function wait_for_match_completion at 0x774f490c0d60>
+[2026-03-09T19:38:17.364+0000] {arsenal_smart_match_scraper.py:91} INFO - Match date: 2026-03-15
+[2026-03-09T19:38:17.364+0000] {arsenal_smart_match_scraper.py:92} INFO - Estimated data availability: 2026-03-15 17:30:00
+[2026-03-09T19:38:17.365+0000] {arsenal_smart_match_scraper.py:93} INFO - Current time: 2026-03-09 19:38:17.364048
+[2026-03-09T19:38:17.365+0000] {arsenal_smart_match_scraper.py:101} INFO - Waiting 8512 more minutes for match data...
+[2026-03-09T19:38:19.400+0000] {taskinstance.py:2658} INFO - Rescheduling task, marking task as UP_FOR_RESCHEDULE
+[2026-03-09T19:38:19.444+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-09T19:38:19.547+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-09T19:48:21.247+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T19:48:21.302+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T19:48:21.304+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-03-09T19:48:21.372+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonSensor): wait_for_match_completion> on 2026-03-09 06:00:00+00:00
+[2026-03-09T19:48:21.391+0000] {standard_task_runner.py:60} INFO - Started process 52915 to run task
+[2026-03-09T19:48:21.398+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'arsenal_smart_match_scraper', 'wait_for_match_completion', 'scheduled__2026-03-09T06:00:00+00:00', '--job-id', '731', '--raw', '--subdir', 'DAGS_FOLDER/arsenal_smart_match_scraper.py', '--cfg-path', '/tmp/tmp31kje4c7']
+[2026-03-09T19:48:21.404+0000] {standard_task_runner.py:88} INFO - Job 731: Subtask wait_for_match_completion
+[2026-03-09T19:48:21.609+0000] {task_command.py:423} INFO - Running <TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [running]> on host 13250c608584
+[2026-03-09T19:48:21.926+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='arsenal_analytics' AIRFLOW_CTX_DAG_ID='arsenal_smart_match_scraper' AIRFLOW_CTX_TASK_ID='wait_for_match_completion' AIRFLOW_CTX_EXECUTION_DATE='2026-03-09T06:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-09T06:00:00+00:00'
+[2026-03-09T19:48:21.971+0000] {python.py:75} INFO - Poking callable: <function wait_for_match_completion at 0x774f490c0ae0>
+[2026-03-09T19:48:22.042+0000] {arsenal_smart_match_scraper.py:91} INFO - Match date: 2026-03-15
+[2026-03-09T19:48:22.043+0000] {arsenal_smart_match_scraper.py:92} INFO - Estimated data availability: 2026-03-15 17:30:00
+[2026-03-09T19:48:22.044+0000] {arsenal_smart_match_scraper.py:93} INFO - Current time: 2026-03-09 19:48:22.041914
+[2026-03-09T19:48:22.045+0000] {arsenal_smart_match_scraper.py:101} INFO - Waiting 8502 more minutes for match data...
+[2026-03-09T19:48:22.126+0000] {taskinstance.py:2658} INFO - Rescheduling task, marking task as UP_FOR_RESCHEDULE
+[2026-03-09T19:48:22.174+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-09T19:48:22.280+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-09T19:58:24.852+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T19:58:24.902+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T19:58:24.903+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-03-09T19:58:24.971+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonSensor): wait_for_match_completion> on 2026-03-09 06:00:00+00:00
+[2026-03-09T19:58:24.988+0000] {standard_task_runner.py:60} INFO - Started process 53621 to run task
+[2026-03-09T19:58:24.998+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'arsenal_smart_match_scraper', 'wait_for_match_completion', 'scheduled__2026-03-09T06:00:00+00:00', '--job-id', '733', '--raw', '--subdir', 'DAGS_FOLDER/arsenal_smart_match_scraper.py', '--cfg-path', '/tmp/tmphwklbf2_']
+[2026-03-09T19:58:25.005+0000] {standard_task_runner.py:88} INFO - Job 733: Subtask wait_for_match_completion
+[2026-03-09T19:58:25.195+0000] {task_command.py:423} INFO - Running <TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [running]> on host 13250c608584
+[2026-03-09T19:58:25.480+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='arsenal_analytics' AIRFLOW_CTX_DAG_ID='arsenal_smart_match_scraper' AIRFLOW_CTX_TASK_ID='wait_for_match_completion' AIRFLOW_CTX_EXECUTION_DATE='2026-03-09T06:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-09T06:00:00+00:00'
+[2026-03-09T19:58:25.515+0000] {python.py:75} INFO - Poking callable: <function wait_for_match_completion at 0x774f490c0ae0>
+[2026-03-09T19:58:25.578+0000] {arsenal_smart_match_scraper.py:91} INFO - Match date: 2026-03-15
+[2026-03-09T19:58:25.579+0000] {arsenal_smart_match_scraper.py:92} INFO - Estimated data availability: 2026-03-15 17:30:00
+[2026-03-09T19:58:25.580+0000] {arsenal_smart_match_scraper.py:93} INFO - Current time: 2026-03-09 19:58:25.578933
+[2026-03-09T19:58:25.580+0000] {arsenal_smart_match_scraper.py:101} INFO - Waiting 8492 more minutes for match data...
+[2026-03-09T19:58:25.666+0000] {taskinstance.py:2658} INFO - Rescheduling task, marking task as UP_FOR_RESCHEDULE
+[2026-03-09T19:58:25.690+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-09T19:58:25.797+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-09T20:08:28.075+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T20:08:28.116+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T20:08:28.117+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-03-09T20:08:28.179+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonSensor): wait_for_match_completion> on 2026-03-09 06:00:00+00:00
+[2026-03-09T20:08:28.194+0000] {standard_task_runner.py:60} INFO - Started process 58360 to run task
+[2026-03-09T20:08:28.204+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'arsenal_smart_match_scraper', 'wait_for_match_completion', 'scheduled__2026-03-09T06:00:00+00:00', '--job-id', '742', '--raw', '--subdir', 'DAGS_FOLDER/arsenal_smart_match_scraper.py', '--cfg-path', '/tmp/tmp_0f12c9y']
+[2026-03-09T20:08:28.212+0000] {standard_task_runner.py:88} INFO - Job 742: Subtask wait_for_match_completion
+[2026-03-09T20:08:28.380+0000] {task_command.py:423} INFO - Running <TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [running]> on host 13250c608584
+[2026-03-09T20:08:28.652+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='arsenal_analytics' AIRFLOW_CTX_DAG_ID='arsenal_smart_match_scraper' AIRFLOW_CTX_TASK_ID='wait_for_match_completion' AIRFLOW_CTX_EXECUTION_DATE='2026-03-09T06:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-09T06:00:00+00:00'
+[2026-03-09T20:08:28.690+0000] {python.py:75} INFO - Poking callable: <function wait_for_match_completion at 0x774f490c0c20>
+[2026-03-09T20:08:28.763+0000] {arsenal_smart_match_scraper.py:91} INFO - Match date: 2026-03-15
+[2026-03-09T20:08:28.766+0000] {arsenal_smart_match_scraper.py:92} INFO - Estimated data availability: 2026-03-15 17:30:00
+[2026-03-09T20:08:28.767+0000] {arsenal_smart_match_scraper.py:93} INFO - Current time: 2026-03-09 20:08:28.763799
+[2026-03-09T20:08:28.767+0000] {arsenal_smart_match_scraper.py:101} INFO - Waiting 8482 more minutes for match data...
+[2026-03-09T20:08:28.844+0000] {taskinstance.py:2658} INFO - Rescheduling task, marking task as UP_FOR_RESCHEDULE
+[2026-03-09T20:08:28.899+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-09T20:08:29.000+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-09T20:18:32.025+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T20:18:32.074+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T20:18:32.076+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-03-09T20:18:32.144+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonSensor): wait_for_match_completion> on 2026-03-09 06:00:00+00:00
+[2026-03-09T20:18:32.156+0000] {standard_task_runner.py:60} INFO - Started process 59498 to run task
+[2026-03-09T20:18:32.165+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'arsenal_smart_match_scraper', 'wait_for_match_completion', 'scheduled__2026-03-09T06:00:00+00:00', '--job-id', '746', '--raw', '--subdir', 'DAGS_FOLDER/arsenal_smart_match_scraper.py', '--cfg-path', '/tmp/tmp63byovf4']
+[2026-03-09T20:18:32.171+0000] {standard_task_runner.py:88} INFO - Job 746: Subtask wait_for_match_completion
+[2026-03-09T20:18:32.327+0000] {task_command.py:423} INFO - Running <TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [running]> on host 13250c608584
+[2026-03-09T20:18:32.626+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='arsenal_analytics' AIRFLOW_CTX_DAG_ID='arsenal_smart_match_scraper' AIRFLOW_CTX_TASK_ID='wait_for_match_completion' AIRFLOW_CTX_EXECUTION_DATE='2026-03-09T06:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-09T06:00:00+00:00'
+[2026-03-09T20:18:32.670+0000] {python.py:75} INFO - Poking callable: <function wait_for_match_completion at 0x774f490c0ae0>
+[2026-03-09T20:18:32.744+0000] {arsenal_smart_match_scraper.py:91} INFO - Match date: 2026-03-15
+[2026-03-09T20:18:32.745+0000] {arsenal_smart_match_scraper.py:92} INFO - Estimated data availability: 2026-03-15 17:30:00
+[2026-03-09T20:18:32.746+0000] {arsenal_smart_match_scraper.py:93} INFO - Current time: 2026-03-09 20:18:32.744884
+[2026-03-09T20:18:32.746+0000] {arsenal_smart_match_scraper.py:101} INFO - Waiting 8471 more minutes for match data...
+[2026-03-09T20:18:32.810+0000] {taskinstance.py:2658} INFO - Rescheduling task, marking task as UP_FOR_RESCHEDULE
+[2026-03-09T20:18:32.858+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-09T20:18:32.970+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-09T20:28:35.944+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T20:28:35.979+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T20:28:35.980+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-03-09T20:28:36.024+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonSensor): wait_for_match_completion> on 2026-03-09 06:00:00+00:00
+[2026-03-09T20:28:36.043+0000] {standard_task_runner.py:60} INFO - Started process 60192 to run task
+[2026-03-09T20:28:36.053+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'arsenal_smart_match_scraper', 'wait_for_match_completion', 'scheduled__2026-03-09T06:00:00+00:00', '--job-id', '748', '--raw', '--subdir', 'DAGS_FOLDER/arsenal_smart_match_scraper.py', '--cfg-path', '/tmp/tmpm2rainav']
+[2026-03-09T20:28:36.059+0000] {standard_task_runner.py:88} INFO - Job 748: Subtask wait_for_match_completion
+[2026-03-09T20:28:36.256+0000] {task_command.py:423} INFO - Running <TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [running]> on host 13250c608584
+[2026-03-09T20:28:36.546+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='arsenal_analytics' AIRFLOW_CTX_DAG_ID='arsenal_smart_match_scraper' AIRFLOW_CTX_TASK_ID='wait_for_match_completion' AIRFLOW_CTX_EXECUTION_DATE='2026-03-09T06:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-09T06:00:00+00:00'
+[2026-03-09T20:28:36.576+0000] {python.py:75} INFO - Poking callable: <function wait_for_match_completion at 0x774f490c0ae0>
+[2026-03-09T20:28:36.646+0000] {arsenal_smart_match_scraper.py:91} INFO - Match date: 2026-03-15
+[2026-03-09T20:28:36.647+0000] {arsenal_smart_match_scraper.py:92} INFO - Estimated data availability: 2026-03-15 17:30:00
+[2026-03-09T20:28:36.648+0000] {arsenal_smart_match_scraper.py:93} INFO - Current time: 2026-03-09 20:28:36.646528
+[2026-03-09T20:28:36.649+0000] {arsenal_smart_match_scraper.py:101} INFO - Waiting 8461 more minutes for match data...
+[2026-03-09T20:28:36.725+0000] {taskinstance.py:2658} INFO - Rescheduling task, marking task as UP_FOR_RESCHEDULE
+[2026-03-09T20:28:36.787+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-09T20:28:36.892+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-09T20:38:39.330+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T20:38:39.376+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T20:38:39.377+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-03-09T20:38:39.441+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonSensor): wait_for_match_completion> on 2026-03-09 06:00:00+00:00
+[2026-03-09T20:38:39.457+0000] {standard_task_runner.py:60} INFO - Started process 60886 to run task
+[2026-03-09T20:38:39.463+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'arsenal_smart_match_scraper', 'wait_for_match_completion', 'scheduled__2026-03-09T06:00:00+00:00', '--job-id', '750', '--raw', '--subdir', 'DAGS_FOLDER/arsenal_smart_match_scraper.py', '--cfg-path', '/tmp/tmpxhwuusdw']
+[2026-03-09T20:38:39.468+0000] {standard_task_runner.py:88} INFO - Job 750: Subtask wait_for_match_completion
+[2026-03-09T20:38:39.639+0000] {task_command.py:423} INFO - Running <TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [running]> on host 13250c608584
+[2026-03-09T20:38:39.942+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='arsenal_analytics' AIRFLOW_CTX_DAG_ID='arsenal_smart_match_scraper' AIRFLOW_CTX_TASK_ID='wait_for_match_completion' AIRFLOW_CTX_EXECUTION_DATE='2026-03-09T06:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-09T06:00:00+00:00'
+[2026-03-09T20:38:39.975+0000] {python.py:75} INFO - Poking callable: <function wait_for_match_completion at 0x774f490c0ae0>
+[2026-03-09T20:38:40.030+0000] {arsenal_smart_match_scraper.py:91} INFO - Match date: 2026-03-15
+[2026-03-09T20:38:40.031+0000] {arsenal_smart_match_scraper.py:92} INFO - Estimated data availability: 2026-03-15 17:30:00
+[2026-03-09T20:38:40.032+0000] {arsenal_smart_match_scraper.py:93} INFO - Current time: 2026-03-09 20:38:40.030813
+[2026-03-09T20:38:40.032+0000] {arsenal_smart_match_scraper.py:101} INFO - Waiting 8451 more minutes for match data...
+[2026-03-09T20:38:40.507+0000] {taskinstance.py:2658} INFO - Rescheduling task, marking task as UP_FOR_RESCHEDULE
+[2026-03-09T20:38:40.563+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-09T20:38:40.673+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-09T20:48:45.073+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T20:48:45.128+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T20:48:45.129+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-03-09T20:48:45.182+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonSensor): wait_for_match_completion> on 2026-03-09 06:00:00+00:00
+[2026-03-09T20:48:45.199+0000] {standard_task_runner.py:60} INFO - Started process 61610 to run task
+[2026-03-09T20:48:45.204+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'arsenal_smart_match_scraper', 'wait_for_match_completion', 'scheduled__2026-03-09T06:00:00+00:00', '--job-id', '752', '--raw', '--subdir', 'DAGS_FOLDER/arsenal_smart_match_scraper.py', '--cfg-path', '/tmp/tmp5f2r2ig2']
+[2026-03-09T20:48:45.208+0000] {standard_task_runner.py:88} INFO - Job 752: Subtask wait_for_match_completion
+[2026-03-09T20:48:45.395+0000] {task_command.py:423} INFO - Running <TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [running]> on host 13250c608584
+[2026-03-09T20:48:45.673+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='arsenal_analytics' AIRFLOW_CTX_DAG_ID='arsenal_smart_match_scraper' AIRFLOW_CTX_TASK_ID='wait_for_match_completion' AIRFLOW_CTX_EXECUTION_DATE='2026-03-09T06:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-09T06:00:00+00:00'
+[2026-03-09T20:48:45.718+0000] {python.py:75} INFO - Poking callable: <function wait_for_match_completion at 0x774f490c0ae0>
+[2026-03-09T20:48:45.787+0000] {arsenal_smart_match_scraper.py:91} INFO - Match date: 2026-03-15
+[2026-03-09T20:48:45.788+0000] {arsenal_smart_match_scraper.py:92} INFO - Estimated data availability: 2026-03-15 17:30:00
+[2026-03-09T20:48:45.788+0000] {arsenal_smart_match_scraper.py:93} INFO - Current time: 2026-03-09 20:48:45.787145
+[2026-03-09T20:48:45.789+0000] {arsenal_smart_match_scraper.py:101} INFO - Waiting 8441 more minutes for match data...
+[2026-03-09T20:48:45.849+0000] {taskinstance.py:2658} INFO - Rescheduling task, marking task as UP_FOR_RESCHEDULE
+[2026-03-09T20:48:45.898+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-09T20:48:46.012+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-09T20:58:49.055+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T20:58:49.115+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T20:58:49.117+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-03-09T20:58:49.181+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonSensor): wait_for_match_completion> on 2026-03-09 06:00:00+00:00
+[2026-03-09T20:58:49.194+0000] {standard_task_runner.py:60} INFO - Started process 62305 to run task
+[2026-03-09T20:58:49.203+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'arsenal_smart_match_scraper', 'wait_for_match_completion', 'scheduled__2026-03-09T06:00:00+00:00', '--job-id', '754', '--raw', '--subdir', 'DAGS_FOLDER/arsenal_smart_match_scraper.py', '--cfg-path', '/tmp/tmp3th8l4c7']
+[2026-03-09T20:58:49.212+0000] {standard_task_runner.py:88} INFO - Job 754: Subtask wait_for_match_completion
+[2026-03-09T20:58:49.406+0000] {task_command.py:423} INFO - Running <TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [running]> on host 13250c608584
+[2026-03-09T20:58:49.725+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='arsenal_analytics' AIRFLOW_CTX_DAG_ID='arsenal_smart_match_scraper' AIRFLOW_CTX_TASK_ID='wait_for_match_completion' AIRFLOW_CTX_EXECUTION_DATE='2026-03-09T06:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-09T06:00:00+00:00'
+[2026-03-09T20:58:49.757+0000] {python.py:75} INFO - Poking callable: <function wait_for_match_completion at 0x774f490c0ae0>
+[2026-03-09T20:58:49.832+0000] {arsenal_smart_match_scraper.py:91} INFO - Match date: 2026-03-15
+[2026-03-09T20:58:49.833+0000] {arsenal_smart_match_scraper.py:92} INFO - Estimated data availability: 2026-03-15 17:30:00
+[2026-03-09T20:58:49.834+0000] {arsenal_smart_match_scraper.py:93} INFO - Current time: 2026-03-09 20:58:49.832651
+[2026-03-09T20:58:49.835+0000] {arsenal_smart_match_scraper.py:101} INFO - Waiting 8431 more minutes for match data...
+[2026-03-09T20:58:49.924+0000] {taskinstance.py:2658} INFO - Rescheduling task, marking task as UP_FOR_RESCHEDULE
+[2026-03-09T20:58:49.978+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-09T20:58:50.089+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-09T21:08:50.738+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T21:08:50.775+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T21:08:50.776+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-03-09T21:08:50.834+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonSensor): wait_for_match_completion> on 2026-03-09 06:00:00+00:00
+[2026-03-09T21:08:50.847+0000] {standard_task_runner.py:60} INFO - Started process 63008 to run task
+[2026-03-09T21:08:50.854+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'arsenal_smart_match_scraper', 'wait_for_match_completion', 'scheduled__2026-03-09T06:00:00+00:00', '--job-id', '756', '--raw', '--subdir', 'DAGS_FOLDER/arsenal_smart_match_scraper.py', '--cfg-path', '/tmp/tmpni2tk549']
+[2026-03-09T21:08:50.862+0000] {standard_task_runner.py:88} INFO - Job 756: Subtask wait_for_match_completion
+[2026-03-09T21:08:51.058+0000] {task_command.py:423} INFO - Running <TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [running]> on host 13250c608584
+[2026-03-09T21:08:51.320+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='arsenal_analytics' AIRFLOW_CTX_DAG_ID='arsenal_smart_match_scraper' AIRFLOW_CTX_TASK_ID='wait_for_match_completion' AIRFLOW_CTX_EXECUTION_DATE='2026-03-09T06:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-09T06:00:00+00:00'
+[2026-03-09T21:08:51.362+0000] {python.py:75} INFO - Poking callable: <function wait_for_match_completion at 0x774f490c0ae0>
+[2026-03-09T21:08:51.435+0000] {arsenal_smart_match_scraper.py:91} INFO - Match date: 2026-03-15
+[2026-03-09T21:08:51.435+0000] {arsenal_smart_match_scraper.py:92} INFO - Estimated data availability: 2026-03-15 17:30:00
+[2026-03-09T21:08:51.436+0000] {arsenal_smart_match_scraper.py:93} INFO - Current time: 2026-03-09 21:08:51.434961
+[2026-03-09T21:08:51.437+0000] {arsenal_smart_match_scraper.py:101} INFO - Waiting 8421 more minutes for match data...
+[2026-03-09T21:08:51.524+0000] {taskinstance.py:2658} INFO - Rescheduling task, marking task as UP_FOR_RESCHEDULE
+[2026-03-09T21:08:51.548+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-09T21:08:51.659+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-09T21:18:53.113+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T21:18:53.140+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T21:18:53.141+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-03-09T21:18:53.188+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonSensor): wait_for_match_completion> on 2026-03-09 06:00:00+00:00
+[2026-03-09T21:18:53.208+0000] {standard_task_runner.py:60} INFO - Started process 63728 to run task
+[2026-03-09T21:18:53.217+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'arsenal_smart_match_scraper', 'wait_for_match_completion', 'scheduled__2026-03-09T06:00:00+00:00', '--job-id', '758', '--raw', '--subdir', 'DAGS_FOLDER/arsenal_smart_match_scraper.py', '--cfg-path', '/tmp/tmpi536f10y']
+[2026-03-09T21:18:53.224+0000] {standard_task_runner.py:88} INFO - Job 758: Subtask wait_for_match_completion
+[2026-03-09T21:18:53.423+0000] {task_command.py:423} INFO - Running <TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [running]> on host 13250c608584
+[2026-03-09T21:18:53.710+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='arsenal_analytics' AIRFLOW_CTX_DAG_ID='arsenal_smart_match_scraper' AIRFLOW_CTX_TASK_ID='wait_for_match_completion' AIRFLOW_CTX_EXECUTION_DATE='2026-03-09T06:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-09T06:00:00+00:00'
+[2026-03-09T21:18:53.743+0000] {python.py:75} INFO - Poking callable: <function wait_for_match_completion at 0x774f490c0d60>
+[2026-03-09T21:18:53.810+0000] {arsenal_smart_match_scraper.py:91} INFO - Match date: 2026-03-15
+[2026-03-09T21:18:53.810+0000] {arsenal_smart_match_scraper.py:92} INFO - Estimated data availability: 2026-03-15 17:30:00
+[2026-03-09T21:18:53.811+0000] {arsenal_smart_match_scraper.py:93} INFO - Current time: 2026-03-09 21:18:53.810024
+[2026-03-09T21:18:53.811+0000] {arsenal_smart_match_scraper.py:101} INFO - Waiting 8411 more minutes for match data...
+[2026-03-09T21:18:54.776+0000] {taskinstance.py:2658} INFO - Rescheduling task, marking task as UP_FOR_RESCHEDULE
+[2026-03-09T21:18:54.836+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-09T21:18:54.929+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-09T21:28:56.379+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T21:28:56.420+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T21:28:56.421+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-03-09T21:28:56.491+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonSensor): wait_for_match_completion> on 2026-03-09 06:00:00+00:00
+[2026-03-09T21:28:56.506+0000] {standard_task_runner.py:60} INFO - Started process 64435 to run task
+[2026-03-09T21:28:56.516+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'arsenal_smart_match_scraper', 'wait_for_match_completion', 'scheduled__2026-03-09T06:00:00+00:00', '--job-id', '760', '--raw', '--subdir', 'DAGS_FOLDER/arsenal_smart_match_scraper.py', '--cfg-path', '/tmp/tmpgzeakh2d']
+[2026-03-09T21:28:56.524+0000] {standard_task_runner.py:88} INFO - Job 760: Subtask wait_for_match_completion
+[2026-03-09T21:28:56.711+0000] {task_command.py:423} INFO - Running <TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [running]> on host 13250c608584
+[2026-03-09T21:28:56.988+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='arsenal_analytics' AIRFLOW_CTX_DAG_ID='arsenal_smart_match_scraper' AIRFLOW_CTX_TASK_ID='wait_for_match_completion' AIRFLOW_CTX_EXECUTION_DATE='2026-03-09T06:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-09T06:00:00+00:00'
+[2026-03-09T21:28:57.018+0000] {python.py:75} INFO - Poking callable: <function wait_for_match_completion at 0x774f490c0cc0>
+[2026-03-09T21:28:57.101+0000] {arsenal_smart_match_scraper.py:91} INFO - Match date: 2026-03-15
+[2026-03-09T21:28:57.102+0000] {arsenal_smart_match_scraper.py:92} INFO - Estimated data availability: 2026-03-15 17:30:00
+[2026-03-09T21:28:57.102+0000] {arsenal_smart_match_scraper.py:93} INFO - Current time: 2026-03-09 21:28:57.101257
+[2026-03-09T21:28:57.103+0000] {arsenal_smart_match_scraper.py:101} INFO - Waiting 8401 more minutes for match data...
+[2026-03-09T21:28:57.192+0000] {taskinstance.py:2658} INFO - Rescheduling task, marking task as UP_FOR_RESCHEDULE
+[2026-03-09T21:28:57.250+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-09T21:28:57.364+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-09T21:38:58.272+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T21:38:58.312+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T21:38:58.313+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-03-09T21:38:58.372+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonSensor): wait_for_match_completion> on 2026-03-09 06:00:00+00:00
+[2026-03-09T21:38:58.387+0000] {standard_task_runner.py:60} INFO - Started process 65152 to run task
+[2026-03-09T21:38:58.397+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'arsenal_smart_match_scraper', 'wait_for_match_completion', 'scheduled__2026-03-09T06:00:00+00:00', '--job-id', '762', '--raw', '--subdir', 'DAGS_FOLDER/arsenal_smart_match_scraper.py', '--cfg-path', '/tmp/tmp50ts50j1']
+[2026-03-09T21:38:58.402+0000] {standard_task_runner.py:88} INFO - Job 762: Subtask wait_for_match_completion
+[2026-03-09T21:38:58.593+0000] {task_command.py:423} INFO - Running <TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [running]> on host 13250c608584
+[2026-03-09T21:38:58.859+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='arsenal_analytics' AIRFLOW_CTX_DAG_ID='arsenal_smart_match_scraper' AIRFLOW_CTX_TASK_ID='wait_for_match_completion' AIRFLOW_CTX_EXECUTION_DATE='2026-03-09T06:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-09T06:00:00+00:00'
+[2026-03-09T21:38:58.890+0000] {python.py:75} INFO - Poking callable: <function wait_for_match_completion at 0x774f490c0b80>
+[2026-03-09T21:38:58.963+0000] {arsenal_smart_match_scraper.py:91} INFO - Match date: 2026-03-15
+[2026-03-09T21:38:58.964+0000] {arsenal_smart_match_scraper.py:92} INFO - Estimated data availability: 2026-03-15 17:30:00
+[2026-03-09T21:38:58.964+0000] {arsenal_smart_match_scraper.py:93} INFO - Current time: 2026-03-09 21:38:58.963561
+[2026-03-09T21:38:58.964+0000] {arsenal_smart_match_scraper.py:101} INFO - Waiting 8391 more minutes for match data...
+[2026-03-09T21:38:59.045+0000] {taskinstance.py:2658} INFO - Rescheduling task, marking task as UP_FOR_RESCHEDULE
+[2026-03-09T21:38:59.091+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-09T21:38:59.211+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-09T21:49:01.499+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T21:49:01.545+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T21:49:01.546+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-03-09T21:49:01.615+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonSensor): wait_for_match_completion> on 2026-03-09 06:00:00+00:00
+[2026-03-09T21:49:01.628+0000] {standard_task_runner.py:60} INFO - Started process 65855 to run task
+[2026-03-09T21:49:01.636+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'arsenal_smart_match_scraper', 'wait_for_match_completion', 'scheduled__2026-03-09T06:00:00+00:00', '--job-id', '764', '--raw', '--subdir', 'DAGS_FOLDER/arsenal_smart_match_scraper.py', '--cfg-path', '/tmp/tmpzgmihahg']
+[2026-03-09T21:49:01.643+0000] {standard_task_runner.py:88} INFO - Job 764: Subtask wait_for_match_completion
+[2026-03-09T21:49:01.820+0000] {task_command.py:423} INFO - Running <TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [running]> on host 13250c608584
+[2026-03-09T21:49:02.125+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='arsenal_analytics' AIRFLOW_CTX_DAG_ID='arsenal_smart_match_scraper' AIRFLOW_CTX_TASK_ID='wait_for_match_completion' AIRFLOW_CTX_EXECUTION_DATE='2026-03-09T06:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-09T06:00:00+00:00'
+[2026-03-09T21:49:02.175+0000] {python.py:75} INFO - Poking callable: <function wait_for_match_completion at 0x774f490c0d60>
+[2026-03-09T21:49:02.243+0000] {arsenal_smart_match_scraper.py:91} INFO - Match date: 2026-03-15
+[2026-03-09T21:49:02.244+0000] {arsenal_smart_match_scraper.py:92} INFO - Estimated data availability: 2026-03-15 17:30:00
+[2026-03-09T21:49:02.244+0000] {arsenal_smart_match_scraper.py:93} INFO - Current time: 2026-03-09 21:49:02.243056
+[2026-03-09T21:49:02.244+0000] {arsenal_smart_match_scraper.py:101} INFO - Waiting 8381 more minutes for match data...
+[2026-03-09T21:49:02.404+0000] {taskinstance.py:2658} INFO - Rescheduling task, marking task as UP_FOR_RESCHEDULE
+[2026-03-09T21:49:02.453+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-09T21:49:02.566+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-09T21:59:03.932+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T21:59:03.972+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T21:59:03.974+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-03-09T21:59:04.034+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonSensor): wait_for_match_completion> on 2026-03-09 06:00:00+00:00
+[2026-03-09T21:59:04.047+0000] {standard_task_runner.py:60} INFO - Started process 68177 to run task
+[2026-03-09T21:59:04.056+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'arsenal_smart_match_scraper', 'wait_for_match_completion', 'scheduled__2026-03-09T06:00:00+00:00', '--job-id', '766', '--raw', '--subdir', 'DAGS_FOLDER/arsenal_smart_match_scraper.py', '--cfg-path', '/tmp/tmp61fbh0vh']
+[2026-03-09T21:59:04.064+0000] {standard_task_runner.py:88} INFO - Job 766: Subtask wait_for_match_completion
+[2026-03-09T21:59:04.231+0000] {task_command.py:423} INFO - Running <TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [running]> on host 13250c608584
+[2026-03-09T21:59:04.507+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='arsenal_analytics' AIRFLOW_CTX_DAG_ID='arsenal_smart_match_scraper' AIRFLOW_CTX_TASK_ID='wait_for_match_completion' AIRFLOW_CTX_EXECUTION_DATE='2026-03-09T06:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-09T06:00:00+00:00'
+[2026-03-09T21:59:04.551+0000] {python.py:75} INFO - Poking callable: <function wait_for_match_completion at 0x774f490c0b80>
+[2026-03-09T21:59:04.615+0000] {arsenal_smart_match_scraper.py:91} INFO - Match date: 2026-03-15
+[2026-03-09T21:59:04.616+0000] {arsenal_smart_match_scraper.py:92} INFO - Estimated data availability: 2026-03-15 17:30:00
+[2026-03-09T21:59:04.616+0000] {arsenal_smart_match_scraper.py:93} INFO - Current time: 2026-03-09 21:59:04.615406
+[2026-03-09T21:59:04.616+0000] {arsenal_smart_match_scraper.py:101} INFO - Waiting 8371 more minutes for match data...
+[2026-03-09T21:59:04.709+0000] {taskinstance.py:2658} INFO - Rescheduling task, marking task as UP_FOR_RESCHEDULE
+[2026-03-09T21:59:04.752+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-09T21:59:04.845+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-09T22:09:06.143+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T22:09:06.169+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T22:09:06.170+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-03-09T22:09:06.208+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonSensor): wait_for_match_completion> on 2026-03-09 06:00:00+00:00
+[2026-03-09T22:09:06.215+0000] {standard_task_runner.py:60} INFO - Started process 74628 to run task
+[2026-03-09T22:09:06.220+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'arsenal_smart_match_scraper', 'wait_for_match_completion', 'scheduled__2026-03-09T06:00:00+00:00', '--job-id', '776', '--raw', '--subdir', 'DAGS_FOLDER/arsenal_smart_match_scraper.py', '--cfg-path', '/tmp/tmpiawf4kk8']
+[2026-03-09T22:09:06.223+0000] {standard_task_runner.py:88} INFO - Job 776: Subtask wait_for_match_completion
+[2026-03-09T22:09:06.319+0000] {task_command.py:423} INFO - Running <TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [running]> on host 13250c608584
+[2026-03-09T22:09:06.464+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='arsenal_analytics' AIRFLOW_CTX_DAG_ID='arsenal_smart_match_scraper' AIRFLOW_CTX_TASK_ID='wait_for_match_completion' AIRFLOW_CTX_EXECUTION_DATE='2026-03-09T06:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-09T06:00:00+00:00'
+[2026-03-09T22:09:06.486+0000] {python.py:75} INFO - Poking callable: <function wait_for_match_completion at 0x774f490c0c20>
+[2026-03-09T22:09:06.536+0000] {arsenal_smart_match_scraper.py:91} INFO - Match date: 2026-03-15
+[2026-03-09T22:09:06.536+0000] {arsenal_smart_match_scraper.py:92} INFO - Estimated data availability: 2026-03-15 17:30:00
+[2026-03-09T22:09:06.537+0000] {arsenal_smart_match_scraper.py:93} INFO - Current time: 2026-03-09 22:09:06.536153
+[2026-03-09T22:09:06.537+0000] {arsenal_smart_match_scraper.py:101} INFO - Waiting 8361 more minutes for match data...
+[2026-03-09T22:09:06.592+0000] {taskinstance.py:2658} INFO - Rescheduling task, marking task as UP_FOR_RESCHEDULE
+[2026-03-09T22:09:06.631+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-09T22:09:06.682+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-09T22:19:08.704+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T22:19:08.729+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T22:19:08.729+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-03-09T22:19:08.764+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonSensor): wait_for_match_completion> on 2026-03-09 06:00:00+00:00
+[2026-03-09T22:19:08.773+0000] {standard_task_runner.py:60} INFO - Started process 79201 to run task
+[2026-03-09T22:19:08.779+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'arsenal_smart_match_scraper', 'wait_for_match_completion', 'scheduled__2026-03-09T06:00:00+00:00', '--job-id', '779', '--raw', '--subdir', 'DAGS_FOLDER/arsenal_smart_match_scraper.py', '--cfg-path', '/tmp/tmp0yfcm2zj']
+[2026-03-09T22:19:08.782+0000] {standard_task_runner.py:88} INFO - Job 779: Subtask wait_for_match_completion
+[2026-03-09T22:19:08.918+0000] {task_command.py:423} INFO - Running <TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [running]> on host 13250c608584
+[2026-03-09T22:19:09.057+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='arsenal_analytics' AIRFLOW_CTX_DAG_ID='arsenal_smart_match_scraper' AIRFLOW_CTX_TASK_ID='wait_for_match_completion' AIRFLOW_CTX_EXECUTION_DATE='2026-03-09T06:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-09T06:00:00+00:00'
+[2026-03-09T22:19:09.072+0000] {python.py:75} INFO - Poking callable: <function wait_for_match_completion at 0x774f490c0ae0>
+[2026-03-09T22:19:09.102+0000] {arsenal_smart_match_scraper.py:91} INFO - Match date: 2026-03-15
+[2026-03-09T22:19:09.103+0000] {arsenal_smart_match_scraper.py:92} INFO - Estimated data availability: 2026-03-15 17:30:00
+[2026-03-09T22:19:09.103+0000] {arsenal_smart_match_scraper.py:93} INFO - Current time: 2026-03-09 22:19:09.102842
+[2026-03-09T22:19:09.103+0000] {arsenal_smart_match_scraper.py:101} INFO - Waiting 8351 more minutes for match data...
+[2026-03-09T22:19:10.182+0000] {taskinstance.py:2658} INFO - Rescheduling task, marking task as UP_FOR_RESCHEDULE
+[2026-03-09T22:19:10.234+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-09T22:19:10.277+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-09T22:29:11.873+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T22:29:11.896+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T22:29:11.897+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-03-09T22:29:11.945+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonSensor): wait_for_match_completion> on 2026-03-09 06:00:00+00:00
+[2026-03-09T22:29:11.956+0000] {standard_task_runner.py:60} INFO - Started process 86025 to run task
+[2026-03-09T22:29:11.961+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'arsenal_smart_match_scraper', 'wait_for_match_completion', 'scheduled__2026-03-09T06:00:00+00:00', '--job-id', '781', '--raw', '--subdir', 'DAGS_FOLDER/arsenal_smart_match_scraper.py', '--cfg-path', '/tmp/tmp09v_ki6z']
+[2026-03-09T22:29:11.964+0000] {standard_task_runner.py:88} INFO - Job 781: Subtask wait_for_match_completion
+[2026-03-09T22:29:12.076+0000] {task_command.py:423} INFO - Running <TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [running]> on host 13250c608584
+[2026-03-09T22:29:12.264+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='arsenal_analytics' AIRFLOW_CTX_DAG_ID='arsenal_smart_match_scraper' AIRFLOW_CTX_TASK_ID='wait_for_match_completion' AIRFLOW_CTX_EXECUTION_DATE='2026-03-09T06:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-09T06:00:00+00:00'
+[2026-03-09T22:29:12.279+0000] {python.py:75} INFO - Poking callable: <function wait_for_match_completion at 0x774f490c0ae0>
+[2026-03-09T22:29:12.307+0000] {arsenal_smart_match_scraper.py:91} INFO - Match date: 2026-03-15
+[2026-03-09T22:29:12.307+0000] {arsenal_smart_match_scraper.py:92} INFO - Estimated data availability: 2026-03-15 17:30:00
+[2026-03-09T22:29:12.308+0000] {arsenal_smart_match_scraper.py:93} INFO - Current time: 2026-03-09 22:29:12.307377
+[2026-03-09T22:29:12.308+0000] {arsenal_smart_match_scraper.py:101} INFO - Waiting 8341 more minutes for match data...
+[2026-03-09T22:29:12.357+0000] {taskinstance.py:2658} INFO - Rescheduling task, marking task as UP_FOR_RESCHEDULE
+[2026-03-09T22:29:12.374+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-09T22:29:12.418+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-09T22:39:14.444+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T22:39:14.479+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-09T22:39:14.480+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-03-09T22:39:14.530+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonSensor): wait_for_match_completion> on 2026-03-09 06:00:00+00:00
+[2026-03-09T22:39:14.537+0000] {standard_task_runner.py:60} INFO - Started process 93585 to run task
+[2026-03-09T22:39:14.541+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'arsenal_smart_match_scraper', 'wait_for_match_completion', 'scheduled__2026-03-09T06:00:00+00:00', '--job-id', '785', '--raw', '--subdir', 'DAGS_FOLDER/arsenal_smart_match_scraper.py', '--cfg-path', '/tmp/tmpp_99hnfs']
+[2026-03-09T22:39:14.544+0000] {standard_task_runner.py:88} INFO - Job 785: Subtask wait_for_match_completion
+[2026-03-09T22:39:14.675+0000] {task_command.py:423} INFO - Running <TaskInstance: arsenal_smart_match_scraper.wait_for_match_completion scheduled__2026-03-09T06:00:00+00:00 [running]> on host 13250c608584
+[2026-03-09T22:39:14.847+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='arsenal_analytics' AIRFLOW_CTX_DAG_ID='arsenal_smart_match_scraper' AIRFLOW_CTX_TASK_ID='wait_for_match_completion' AIRFLOW_CTX_EXECUTION_DATE='2026-03-09T06:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-09T06:00:00+00:00'
+[2026-03-09T22:39:14.863+0000] {python.py:75} INFO - Poking callable: <function wait_for_match_completion at 0x774f490c0ae0>
+[2026-03-09T22:39:14.884+0000] {arsenal_smart_match_scraper.py:91} INFO - Match date: 2026-03-15
+[2026-03-09T22:39:14.884+0000] {arsenal_smart_match_scraper.py:92} INFO - Estimated data availability: 2026-03-15 17:30:00
+[2026-03-09T22:39:14.884+0000] {arsenal_smart_match_scraper.py:93} INFO - Current time: 2026-03-09 22:39:14.884572
+[2026-03-09T22:39:14.885+0000] {arsenal_smart_match_scraper.py:101} INFO - Waiting 8331 more minutes for match data...
+[2026-03-09T22:39:14.976+0000] {taskinstance.py:2658} INFO - Rescheduling task, marking task as UP_FOR_RESCHEDULE
+[2026-03-09T22:39:14.993+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-09T22:39:15.028+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

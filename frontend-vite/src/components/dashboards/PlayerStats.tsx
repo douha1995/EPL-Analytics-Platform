@@ -25,8 +25,8 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsive
 import Pitch from '@/components/Pitch';
 
 const GET_PLAYER_STATS = gql`
-  query GetPlayerStats($season: String!, $limit: Int) {
-    playerStats(season: $season, limit: $limit) {
+  query GetPlayerStats($season: String!, $team: String!, $limit: Int) {
+    playerStats(season: $season, team: $team, limit: $limit) {
       playerName
       season
       matchesPlayed
@@ -44,8 +44,8 @@ const GET_PLAYER_STATS = gql`
 `;
 
 const GET_PLAYER_SHOTS = gql`
-  query GetPlayerShots($season: String!, $playerName: String!) {
-    playerShots(season: $season, playerName: $playerName) {
+  query GetPlayerShots($season: String!, $team: String!, $playerName: String!) {
+    playerShots(season: $season, team: $team, playerName: $playerName) {
       x
       y
       xg
@@ -57,19 +57,20 @@ const GET_PLAYER_SHOTS = gql`
 
 interface PlayerStatsProps {
   season: string;
+  team: string;
 }
 
-export default function PlayerStats({ season }: PlayerStatsProps) {
+export default function PlayerStats({ season, team }: PlayerStatsProps) {
   const { data, loading } = useQuery(GET_PLAYER_STATS, {
-    variables: { season: season || '2024-25', limit: 20 },
-    skip: !season,
+    variables: { season: season || '2024-25', team: team || 'Arsenal', limit: 20 },
+    skip: !season || !team,
   });
 
   const [selectedPlayer, setSelectedPlayer] = useState<string>('');
 
   const { data: shotsData, loading: shotsLoading } = useQuery(GET_PLAYER_SHOTS, {
-    variables: { season: season || '2024-25', playerName: selectedPlayer },
-    skip: !selectedPlayer || !season,
+    variables: { season: season || '2024-25', team: team || 'Arsenal', playerName: selectedPlayer },
+    skip: !selectedPlayer || !season || !team,
   });
 
   if (loading) {
@@ -97,7 +98,7 @@ export default function PlayerStats({ season }: PlayerStatsProps) {
   return (
     <Box>
       <Heading size="lg" mb={6}>
-        Player Statistics: {season}
+        {team} Player Statistics: {season}
       </Heading>
 
       <SimpleGrid columns={{ base: 1, md: 3 }} spacing={4} mb={6}>

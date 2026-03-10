@@ -1,0 +1,26 @@
+[2026-01-14T02:24:29.390+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: arsenal_auto_match_scraper.run_dbt_transformations scheduled__2026-01-14T00:00:00+00:00 [queued]>
+[2026-01-14T02:24:29.405+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: arsenal_auto_match_scraper.run_dbt_transformations scheduled__2026-01-14T00:00:00+00:00 [queued]>
+[2026-01-14T02:24:29.405+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-01-14T02:24:29.510+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): run_dbt_transformations> on 2026-01-14 00:00:00+00:00
+[2026-01-14T02:24:29.525+0000] {standard_task_runner.py:60} INFO - Started process 10572 to run task
+[2026-01-14T02:24:29.531+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'arsenal_auto_match_scraper', 'run_dbt_transformations', 'scheduled__2026-01-14T00:00:00+00:00', '--job-id', '25', '--raw', '--subdir', 'DAGS_FOLDER/arsenal_auto_match_scraper.py', '--cfg-path', '/tmp/tmpiu3gph73']
+[2026-01-14T02:24:29.537+0000] {standard_task_runner.py:88} INFO - Job 25: Subtask run_dbt_transformations
+[2026-01-14T02:24:29.675+0000] {task_command.py:423} INFO - Running <TaskInstance: arsenal_auto_match_scraper.run_dbt_transformations scheduled__2026-01-14T00:00:00+00:00 [running]> on host dd03882071e2
+[2026-01-14T02:24:29.974+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='arsenal_analytics' AIRFLOW_CTX_DAG_ID='arsenal_auto_match_scraper' AIRFLOW_CTX_TASK_ID='run_dbt_transformations' AIRFLOW_CTX_EXECUTION_DATE='2026-01-14T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-01-14T00:00:00+00:00'
+[2026-01-14T02:24:29.975+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2026-01-14T02:24:29.976+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'cd /opt/***/dbt && dbt run --profiles-dir .']
+[2026-01-14T02:24:29.999+0000] {subprocess.py:86} INFO - Output:
+[2026-01-14T02:24:30.003+0000] {subprocess.py:93} INFO - /usr/bin/bash: line 1: cd: /opt/***/dbt: No such file or directory
+[2026-01-14T02:24:30.004+0000] {subprocess.py:97} INFO - Command exited with return code 1
+[2026-01-14T02:24:30.032+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/bash.py", line 212, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 1.
+[2026-01-14T02:24:30.040+0000] {taskinstance.py:1138} INFO - Marking task as UP_FOR_RETRY. dag_id=arsenal_auto_match_scraper, task_id=run_dbt_transformations, execution_date=20260114T000000, start_date=20260114T022429, end_date=20260114T022430
+[2026-01-14T02:24:30.105+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 25 for task run_dbt_transformations (Bash command failed. The command returned a non-zero exit code 1.; 10572)
+[2026-01-14T02:24:30.143+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2026-01-14T02:24:30.203+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

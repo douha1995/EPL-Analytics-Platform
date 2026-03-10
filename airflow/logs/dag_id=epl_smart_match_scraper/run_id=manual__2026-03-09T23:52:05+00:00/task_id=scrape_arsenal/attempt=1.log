@@ -1,0 +1,34 @@
+[2026-03-09T23:57:45.671+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: epl_smart_match_scraper.scrape_arsenal manual__2026-03-09T23:52:05+00:00 [queued]>
+[2026-03-09T23:57:45.686+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: epl_smart_match_scraper.scrape_arsenal manual__2026-03-09T23:52:05+00:00 [queued]>
+[2026-03-09T23:57:45.687+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-03-09T23:57:45.990+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): scrape_arsenal> on 2026-03-09 23:52:05+00:00
+[2026-03-09T23:57:46.004+0000] {standard_task_runner.py:60} INFO - Started process 11644 to run task
+[2026-03-09T23:57:46.009+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'epl_smart_match_scraper', 'scrape_arsenal', 'manual__2026-03-09T23:52:05+00:00', '--job-id', '790', '--raw', '--subdir', 'DAGS_FOLDER/epl_smart_match_scraper.py', '--cfg-path', '/tmp/tmpfr4ydje4']
+[2026-03-09T23:57:46.013+0000] {standard_task_runner.py:88} INFO - Job 790: Subtask scrape_arsenal
+[2026-03-09T23:57:46.231+0000] {task_command.py:423} INFO - Running <TaskInstance: epl_smart_match_scraper.scrape_arsenal manual__2026-03-09T23:52:05+00:00 [running]> on host 13250c608584
+[2026-03-09T23:57:46.657+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='epl_analytics' AIRFLOW_CTX_DAG_ID='epl_smart_match_scraper' AIRFLOW_CTX_TASK_ID='scrape_arsenal' AIRFLOW_CTX_EXECUTION_DATE='2026-03-09T23:52:05+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-03-09T23:52:05+00:00'
+[2026-03-09T23:57:46.659+0000] {epl_smart_match_scraper.py:42} INFO - Checking Arsenal matches for 2025-26
+[2026-03-09T23:57:46.659+0000] {playwright_scraper.py:87} INFO - Scraping Understat fixtures for Arsenal: https://understat.com/team/Arsenal/2025
+[2026-03-09T23:58:24.128+0000] {playwright_scraper.py:118} INFO - Scraped 38 fixtures from Understat
+[2026-03-09T23:58:33.973+0000] {playwright_scraper.py:140} INFO - Scraping match shots: https://understat.com/match/28786
+[2026-03-09T23:58:47.894+0000] {playwright_scraper.py:213} INFO - Scraped 31 shots for Manchester United vs Arsenal
+[2026-03-09T23:58:53.885+0000] {db_loader.py:196} INFO - Created scrape run: epl_smart_Arsenal_c8f23778
+[2026-03-09T23:58:54.003+0000] {db_loader.py:359} INFO - Saved match reference for Manchester United vs Arsenal (Team: Arsenal)
+[2026-03-09T23:58:54.026+0000] {db_loader.py:150} INFO - Saved Understat data for match 20250817_manchester_united_vs_arsenal (ID: 324, Team: Arsenal)
+[2026-03-09T23:58:54.989+0000] {db_loader.py:242} INFO - Updated scrape run epl_smart_Arsenal_c8f23778: success
+[2026-03-09T23:58:54.990+0000] {epl_smart_match_scraper.py:83} INFO - ✓ Manchester United vs Arsenal: 31 shots
+[2026-03-09T23:58:55.782+0000] {playwright_scraper.py:140} INFO - Scraping match shots: https://understat.com/match/28806
+[2026-03-10T00:00:57.341+0000] {epl_smart_match_scraper.py:86} ERROR - Error: Timeout loading https://understat.com/match/28806: Timeout 120000ms exceeded.
+[2026-03-10T00:00:57.341+0000] {playwright_scraper.py:140} INFO - Scraping match shots: https://understat.com/match/28827
+[2026-03-10T00:01:07.718+0000] {playwright_scraper.py:213} INFO - Scraped 17 shots for Arsenal vs Manchester City
+[2026-03-10T00:01:07.874+0000] {db_loader.py:196} INFO - Created scrape run: epl_smart_Arsenal_2613c618
+[2026-03-10T00:01:07.949+0000] {db_loader.py:359} INFO - Saved match reference for Arsenal vs Manchester City (Team: Arsenal)
+[2026-03-10T00:01:07.961+0000] {db_loader.py:150} INFO - Saved Understat data for match 20250921_arsenal_vs_manchester_city (ID: 442, Team: Arsenal)
+[2026-03-10T00:01:08.098+0000] {db_loader.py:242} INFO - Updated scrape run epl_smart_Arsenal_2613c618: success
+[2026-03-10T00:01:08.099+0000] {epl_smart_match_scraper.py:83} INFO - ✓ Arsenal vs Manchester City: 17 shots
+[2026-03-10T00:01:09.799+0000] {playwright_scraper.py:140} INFO - Scraping match shots: https://understat.com/match/28999
+[2026-03-10T00:03:10.624+0000] {epl_smart_match_scraper.py:86} ERROR - Error: Timeout loading https://understat.com/match/28999: Timeout 120000ms exceeded.
+[2026-03-10T00:03:10.624+0000] {python.py:201} INFO - Done. Returned value was: {'team': 'Arsenal', 'status': 'success', 'scraped': 2}
+[2026-03-10T00:03:10.683+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=epl_smart_match_scraper, task_id=scrape_arsenal, execution_date=20260309T235205, start_date=20260309T235745, end_date=20260310T000310
+[2026-03-10T00:03:10.768+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-10T00:03:10.813+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

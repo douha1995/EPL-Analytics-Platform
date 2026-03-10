@@ -19,8 +19,8 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 import { format } from 'date-fns';
 
 const GET_PERFORMANCE_TRENDS = gql`
-  query GetPerformanceTrends($season: String!, $windowSize: Int) {
-    performanceTrends(season: $season, windowSize: $windowSize) {
+  query GetPerformanceTrends($season: String!, $team: String!, $windowSize: Int) {
+    performanceTrends(season: $season, team: $team, windowSize: $windowSize) {
       matchDate
       opponent
       result
@@ -37,14 +37,15 @@ const GET_PERFORMANCE_TRENDS = gql`
 
 interface PerformanceTrendsProps {
   season: string;
+  team: string;
 }
 
-export default function PerformanceTrends({ season }: PerformanceTrendsProps) {
+export default function PerformanceTrends({ season, team }: PerformanceTrendsProps) {
   const [windowSize, setWindowSize] = useState(5);
 
   const { data, loading, error } = useQuery(GET_PERFORMANCE_TRENDS, {
-    variables: { season: season || '2024-25', windowSize },
-    skip: !season,
+    variables: { season: season || '2024-25', team: team || 'Arsenal', windowSize },
+    skip: !season || !team,
     errorPolicy: 'all',
   });
 
@@ -98,7 +99,7 @@ export default function PerformanceTrends({ season }: PerformanceTrendsProps) {
   return (
     <Box>
       <Heading size="lg" mb={6}>
-        Performance Trends: {season}
+        {team} Performance Trends: {season}
       </Heading>
 
       <HStack mb={6} spacing={4}>

@@ -1,0 +1,17 @@
+[2026-03-09T22:30:22.549+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: epl_timed_match_scraper.scrape_matches scheduled__2026-03-09T19:30:00+00:00 [queued]>
+[2026-03-09T22:30:22.568+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: epl_timed_match_scraper.scrape_matches scheduled__2026-03-09T19:30:00+00:00 [queued]>
+[2026-03-09T22:30:22.568+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2026-03-09T22:30:22.623+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): scrape_matches> on 2026-03-09 19:30:00+00:00
+[2026-03-09T22:30:22.635+0000] {standard_task_runner.py:60} INFO - Started process 86988 to run task
+[2026-03-09T22:30:22.653+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'epl_timed_match_scraper', 'scrape_matches', 'scheduled__2026-03-09T19:30:00+00:00', '--job-id', '783', '--raw', '--subdir', 'DAGS_FOLDER/epl_timed_scraper.py', '--cfg-path', '/tmp/tmp075ibmqb']
+[2026-03-09T22:30:22.656+0000] {standard_task_runner.py:88} INFO - Job 783: Subtask scrape_matches
+[2026-03-09T22:30:22.787+0000] {task_command.py:423} INFO - Running <TaskInstance: epl_timed_match_scraper.scrape_matches scheduled__2026-03-09T19:30:00+00:00 [running]> on host 13250c608584
+[2026-03-09T22:30:22.999+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='epl_analytics' AIRFLOW_CTX_DAG_ID='epl_timed_match_scraper' AIRFLOW_CTX_TASK_ID='scrape_matches' AIRFLOW_CTX_EXECUTION_DATE='2026-03-09T19:30:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-09T19:30:00+00:00'
+[2026-03-09T22:30:23.027+0000] {epl_timed_scraper.py:110} INFO - Scraping: Arsenal vs Manchester United on 2026-01-25
+[2026-03-09T22:30:23.027+0000] {playwright_scraper.py:140} INFO - Scraping match shots: https://understat.com/match/28999
+[2026-03-09T22:31:24.001+0000] {epl_timed_scraper.py:132} ERROR - Error scraping Arsenal vs Manchester United: Timeout loading https://understat.com/match/28999: Timeout 60000ms exceeded.
+[2026-03-09T22:31:24.001+0000] {epl_timed_scraper.py:135} INFO - Completed: 0 matches scraped, 1 errors
+[2026-03-09T22:31:24.002+0000] {python.py:201} INFO - Done. Returned value was: {'scraped': 0, 'errors': 1}
+[2026-03-09T22:31:24.059+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=epl_timed_match_scraper, task_id=scrape_matches, execution_date=20260309T193000, start_date=20260309T223022, end_date=20260309T223124
+[2026-03-09T22:31:24.140+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-09T22:31:24.187+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

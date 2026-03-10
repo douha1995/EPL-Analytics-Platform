@@ -15,8 +15,8 @@ import {
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, BarChart, Bar, XAxis, YAxis, CartesianGrid, Legend } from 'recharts';
 
 const GET_TACTICAL_ANALYSIS = gql`
-  query GetTacticalAnalysis($season: String!) {
-    tacticalAnalysis(season: $season) {
+  query GetTacticalAnalysis($season: String!, $team: String!) {
+    tacticalAnalysis(season: $season, team: $team) {
       season
       arsenalShots0_15
       arsenalShots16_30
@@ -53,7 +53,7 @@ const GET_TACTICAL_ANALYSIS = gql`
 `;
 
 const GET_MATCH_SHOTS = gql`
-  query GetMatchShotsBySeason($season: String!, $team: String) {
+  query GetMatchShotsBySeason($season: String!, $team: String!) {
     matchShotsBySeason(season: $season, team: $team) {
       x
       y
@@ -65,17 +65,18 @@ const GET_MATCH_SHOTS = gql`
 
 interface TacticalAnalysisProps {
   season: string;
+  team: string;
 }
 
-export default function TacticalAnalysis({ season }: TacticalAnalysisProps) {
+export default function TacticalAnalysis({ season, team }: TacticalAnalysisProps) {
   const { data: tacticalData, loading: tacticalLoading } = useQuery(GET_TACTICAL_ANALYSIS, {
-    variables: { season: season || '2024-25' },
-    skip: !season,
+    variables: { season: season || '2024-25', team: team || 'Arsenal' },
+    skip: !season || !team,
   });
 
   const { data: shotsData, loading: shotsLoading } = useQuery(GET_MATCH_SHOTS, {
-    variables: { season: season || '2024-25', team: 'Arsenal' },
-    skip: !season,
+    variables: { season: season || '2024-25', team: team || 'Arsenal' },
+    skip: !season || !team,
   });
 
   if (tacticalLoading || shotsLoading) {
@@ -174,7 +175,7 @@ export default function TacticalAnalysis({ season }: TacticalAnalysisProps) {
   return (
     <Box>
       <Heading size="lg" mb={6}>
-        Tactical Analysis: {season}
+        {team} Tactical Analysis: {season}
       </Heading>
 
       <SimpleGrid columns={{ base: 2, md: 4 }} spacing={4} mb={6}>

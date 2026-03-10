@@ -25,8 +25,8 @@ import {
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar } from 'recharts';
 
 const GET_OPPONENT_COMPARISON = gql`
-  query GetOpponentComparison($season: String) {
-    opponentComparison(season: $season) {
+  query GetOpponentComparison($season: String, $team: String!) {
+    opponentComparison(season: $season, team: $team) {
       opponent
       matchesPlayed
       wins
@@ -51,12 +51,13 @@ const GET_OPPONENT_COMPARISON = gql`
 
 interface OpponentAnalysisProps {
   season: string;
+  team: string;
 }
 
-export default function OpponentAnalysis({ season }: OpponentAnalysisProps) {
+export default function OpponentAnalysis({ season, team }: OpponentAnalysisProps) {
   const { data, loading, error } = useQuery(GET_OPPONENT_COMPARISON, {
-    variables: { season: season || undefined },
-    skip: !season,
+    variables: { season: season || undefined, team: team || 'Arsenal' },
+    skip: !season || !team,
     errorPolicy: 'all',
   });
 
@@ -119,7 +120,7 @@ export default function OpponentAnalysis({ season }: OpponentAnalysisProps) {
   return (
     <Box>
       <Heading size="lg" mb={6}>
-        Opponent Analysis: {season || 'All Seasons'}
+        {team} Opponent Analysis: {season || 'All Seasons'}
       </Heading>
 
       {/* Key Metrics */}
@@ -170,7 +171,7 @@ export default function OpponentAnalysis({ season }: OpponentAnalysisProps) {
               <YAxis />
               <Tooltip />
               <Legend />
-              <Bar dataKey="avgXgFor" fill="#10B981" name="Arsenal xG" />
+              <Bar dataKey="avgXgFor" fill="#10B981" name={`${team} xG`} />
               <Bar dataKey="avgXgAgainst" fill="#EF4444" name="Opponent xG" />
             </BarChart>
           </ResponsiveContainer>

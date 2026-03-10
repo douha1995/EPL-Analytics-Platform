@@ -1,0 +1,36 @@
+[2026-03-09T23:57:45.671+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: epl_smart_match_scraper.scrape_manchester_city manual__2026-03-09T23:52:05+00:00 [queued]>
+[2026-03-09T23:57:45.685+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: epl_smart_match_scraper.scrape_manchester_city manual__2026-03-09T23:52:05+00:00 [queued]>
+[2026-03-09T23:57:45.685+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-03-09T23:57:45.991+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): scrape_manchester_city> on 2026-03-09 23:52:05+00:00
+[2026-03-09T23:57:46.009+0000] {standard_task_runner.py:60} INFO - Started process 11646 to run task
+[2026-03-09T23:57:46.014+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'epl_smart_match_scraper', 'scrape_manchester_city', 'manual__2026-03-09T23:52:05+00:00', '--job-id', '788', '--raw', '--subdir', 'DAGS_FOLDER/epl_smart_match_scraper.py', '--cfg-path', '/tmp/tmp2w418o97']
+[2026-03-09T23:57:46.019+0000] {standard_task_runner.py:88} INFO - Job 788: Subtask scrape_manchester_city
+[2026-03-09T23:57:46.269+0000] {task_command.py:423} INFO - Running <TaskInstance: epl_smart_match_scraper.scrape_manchester_city manual__2026-03-09T23:52:05+00:00 [running]> on host 13250c608584
+[2026-03-09T23:57:46.657+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='epl_analytics' AIRFLOW_CTX_DAG_ID='epl_smart_match_scraper' AIRFLOW_CTX_TASK_ID='scrape_manchester_city' AIRFLOW_CTX_EXECUTION_DATE='2026-03-09T23:52:05+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-03-09T23:52:05+00:00'
+[2026-03-09T23:57:46.659+0000] {epl_smart_match_scraper.py:42} INFO - Checking Manchester City matches for 2025-26
+[2026-03-09T23:57:46.660+0000] {playwright_scraper.py:87} INFO - Scraping Understat fixtures for Manchester_City: https://understat.com/team/Manchester_City/2025
+[2026-03-09T23:58:24.159+0000] {playwright_scraper.py:118} INFO - Scraped 38 fixtures from Understat
+[2026-03-09T23:58:33.972+0000] {playwright_scraper.py:140} INFO - Scraping match shots: https://understat.com/match/28817
+[2026-03-09T23:58:50.199+0000] {playwright_scraper.py:213} INFO - Scraped 25 shots for Manchester City vs Manchester United
+[2026-03-09T23:58:53.347+0000] {db_loader.py:196} INFO - Created scrape run: epl_smart_Manchester_City_2154e379
+[2026-03-09T23:58:53.484+0000] {db_loader.py:359} INFO - Saved match reference for Manchester City vs Manchester United (Team: Manchester City)
+[2026-03-09T23:58:53.629+0000] {db_loader.py:150} INFO - Saved Understat data for match 20250914_manchester_city_vs_manchester_united (ID: 436, Team: Manchester City)
+[2026-03-09T23:58:53.885+0000] {db_loader.py:242} INFO - Updated scrape run epl_smart_Manchester_City_2154e379: success
+[2026-03-09T23:58:53.886+0000] {epl_smart_match_scraper.py:83} INFO - ✓ Manchester City vs Manchester United: 25 shots
+[2026-03-09T23:58:55.171+0000] {playwright_scraper.py:140} INFO - Scraping match shots: https://understat.com/match/28873
+[2026-03-09T23:59:05.862+0000] {playwright_scraper.py:213} INFO - Scraped 23 shots for Manchester City vs Bournemouth
+[2026-03-09T23:59:07.274+0000] {db_loader.py:196} INFO - Created scrape run: epl_smart_Manchester_City_ec72c31a
+[2026-03-09T23:59:07.353+0000] {db_loader.py:359} INFO - Saved match reference for Manchester City vs Bournemouth (Team: Manchester City)
+[2026-03-09T23:59:07.370+0000] {db_loader.py:150} INFO - Saved Understat data for match 20251102_manchester_city_vs_bournemouth (ID: 558, Team: Manchester City)
+[2026-03-09T23:59:07.520+0000] {db_loader.py:242} INFO - Updated scrape run epl_smart_Manchester_City_ec72c31a: success
+[2026-03-09T23:59:07.521+0000] {epl_smart_match_scraper.py:83} INFO - ✓ Manchester City vs Bournemouth: 23 shots
+[2026-03-09T23:59:09.243+0000] {playwright_scraper.py:140} INFO - Scraping match shots: https://understat.com/match/28896
+[2026-03-10T00:01:10.479+0000] {epl_smart_match_scraper.py:86} ERROR - Error: Timeout loading https://understat.com/match/28896: Timeout 120000ms exceeded.
+[2026-03-10T00:01:10.479+0000] {playwright_scraper.py:140} INFO - Scraping match shots: https://understat.com/match/28977
+[2026-03-10T00:03:11.335+0000] {epl_smart_match_scraper.py:86} ERROR - Error: Timeout loading https://understat.com/match/28977: Timeout 120000ms exceeded.
+[2026-03-10T00:03:11.336+0000] {playwright_scraper.py:140} INFO - Scraping match shots: https://understat.com/match/29033
+[2026-03-10T00:05:12.215+0000] {epl_smart_match_scraper.py:86} ERROR - Error: Timeout loading https://understat.com/match/29033: Timeout 120000ms exceeded.
+[2026-03-10T00:05:12.216+0000] {python.py:201} INFO - Done. Returned value was: {'team': 'Manchester City', 'status': 'success', 'scraped': 2}
+[2026-03-10T00:05:12.630+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=epl_smart_match_scraper, task_id=scrape_manchester_city, execution_date=20260309T235205, start_date=20260309T235745, end_date=20260310T000512
+[2026-03-10T00:05:12.920+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-10T00:05:12.962+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check

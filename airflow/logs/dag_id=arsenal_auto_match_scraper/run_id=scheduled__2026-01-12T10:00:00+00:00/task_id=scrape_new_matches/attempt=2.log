@@ -1,0 +1,61 @@
+[2026-01-14T03:32:35.267+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: arsenal_auto_match_scraper.scrape_new_matches scheduled__2026-01-12T10:00:00+00:00 [queued]>
+[2026-01-14T03:32:35.370+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: arsenal_auto_match_scraper.scrape_new_matches scheduled__2026-01-12T10:00:00+00:00 [queued]>
+[2026-01-14T03:32:35.376+0000] {taskinstance.py:2170} INFO - Starting attempt 2 of 3
+[2026-01-14T03:32:35.809+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): scrape_new_matches> on 2026-01-12 10:00:00+00:00
+[2026-01-14T03:32:35.825+0000] {standard_task_runner.py:60} INFO - Started process 10594 to run task
+[2026-01-14T03:32:35.834+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'arsenal_auto_match_scraper', 'scrape_new_matches', 'scheduled__2026-01-12T10:00:00+00:00', '--job-id', '27', '--raw', '--subdir', 'DAGS_FOLDER/arsenal_auto_match_scraper.py', '--cfg-path', '/tmp/tmp1u47n5pn']
+[2026-01-14T03:32:35.839+0000] {standard_task_runner.py:88} INFO - Job 27: Subtask scrape_new_matches
+[2026-01-14T03:32:36.183+0000] {task_command.py:423} INFO - Running <TaskInstance: arsenal_auto_match_scraper.scrape_new_matches scheduled__2026-01-12T10:00:00+00:00 [running]> on host dd03882071e2
+[2026-01-14T03:32:36.602+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='arsenal_analytics' AIRFLOW_CTX_DAG_ID='arsenal_auto_match_scraper' AIRFLOW_CTX_TASK_ID='scrape_new_matches' AIRFLOW_CTX_EXECUTION_DATE='2026-01-12T10:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-01-12T10:00:00+00:00'
+[2026-01-14T03:32:36.604+0000] {arsenal_auto_match_scraper.py:48} INFO - Checking for new Arsenal matches in 2025-2026 season
+[2026-01-14T03:32:36.605+0000] {playwright_scraper.py:86} INFO - Scraping Understat fixtures: https://understat.com/team/Arsenal/2025
+[2026-01-14T03:32:48.036+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/opt/airflow/scrapers/playwright_scraper.py", line 92, in scrape_season_fixtures
+    page.goto(arsenal_url, wait_until='domcontentloaded', timeout=60000)
+  File "/home/airflow/.local/lib/python3.11/site-packages/playwright/sync_api/_generated.py", line 9312, in goto
+    self._sync(
+  File "/home/airflow/.local/lib/python3.11/site-packages/playwright/_impl/_sync_base.py", line 115, in _sync
+    return task.result()
+           ^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/playwright/_impl/_page.py", line 475, in goto
+    return await self._main_frame.goto(**locals_to_params(locals()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/playwright/_impl/_frame.py", line 139, in goto
+    await self._channel.send("goto", locals_to_params(locals()))
+  File "/home/airflow/.local/lib/python3.11/site-packages/playwright/_impl/_connection.py", line 62, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/playwright/_impl/_connection.py", line 492, in wrap_api_call
+    return await cb()
+           ^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/playwright/_impl/_connection.py", line 100, in inner_send
+    result = next(iter(done)).result()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+playwright._impl._errors.Error: net::ERR_NAME_NOT_RESOLVED at https://understat.com/team/Arsenal/2025
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 216, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/arsenal_auto_match_scraper.py", line 51, in check_and_scrape_new_matches
+    fixtures = scraper.scrape_season_fixtures(season)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/scrapers/utils.py", line 73, in wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/scrapers/playwright_scraper.py", line 122, in scrape_season_fixtures
+    raise ScraperException(f"Error scraping Understat fixtures: {e}")
+utils.ScraperException: Error scraping Understat fixtures: net::ERR_NAME_NOT_RESOLVED at https://understat.com/team/Arsenal/2025
+[2026-01-14T03:32:48.062+0000] {taskinstance.py:1138} INFO - Marking task as UP_FOR_RETRY. dag_id=arsenal_auto_match_scraper, task_id=scrape_new_matches, execution_date=20260112T100000, start_date=20260114T033235, end_date=20260114T033248
+[2026-01-14T03:32:48.135+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 27 for task scrape_new_matches (Error scraping Understat fixtures: net::ERR_NAME_NOT_RESOLVED at https://understat.com/team/Arsenal/2025; 10594)
+[2026-01-14T03:32:48.175+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2026-01-14T03:32:48.215+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

@@ -1,0 +1,30 @@
+[2026-01-18T18:30:53.383+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: epl_smart_match_scraper.scrape_manchester_united scheduled__2026-01-18T16:00:00+00:00 [queued]>
+[2026-01-18T18:30:53.395+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: epl_smart_match_scraper.scrape_manchester_united scheduled__2026-01-18T16:00:00+00:00 [queued]>
+[2026-01-18T18:30:53.396+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-01-18T18:30:53.942+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): scrape_manchester_united> on 2026-01-18 16:00:00+00:00
+[2026-01-18T18:30:53.960+0000] {standard_task_runner.py:60} INFO - Started process 40669 to run task
+[2026-01-18T18:30:53.965+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'epl_smart_match_scraper', 'scrape_manchester_united', 'scheduled__2026-01-18T16:00:00+00:00', '--job-id', '464', '--raw', '--subdir', 'DAGS_FOLDER/epl_smart_match_scraper.py', '--cfg-path', '/tmp/tmppnk5oj34']
+[2026-01-18T18:30:53.969+0000] {standard_task_runner.py:88} INFO - Job 464: Subtask scrape_manchester_united
+[2026-01-18T18:30:54.726+0000] {task_command.py:423} INFO - Running <TaskInstance: epl_smart_match_scraper.scrape_manchester_united scheduled__2026-01-18T16:00:00+00:00 [running]> on host dd03882071e2
+[2026-01-18T18:30:54.947+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='epl_analytics' AIRFLOW_CTX_DAG_ID='epl_smart_match_scraper' AIRFLOW_CTX_TASK_ID='scrape_manchester_united' AIRFLOW_CTX_EXECUTION_DATE='2026-01-18T16:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-01-18T16:00:00+00:00'
+[2026-01-18T18:30:54.948+0000] {epl_smart_match_scraper.py:42} INFO - Checking Manchester United matches for 2025-26
+[2026-01-18T18:30:54.948+0000] {playwright_scraper.py:87} INFO - Scraping Understat fixtures for Manchester_United: https://understat.com/team/Manchester_United/2025
+[2026-01-18T18:31:05.045+0000] {playwright_scraper.py:118} INFO - Scraped 38 fixtures from Understat
+[2026-01-18T18:31:05.141+0000] {playwright_scraper.py:140} INFO - Scraping match shots: https://understat.com/match/28786
+[2026-01-18T18:31:17.379+0000] {playwright_scraper.py:213} INFO - Scraped 31 shots for Manchester United vs Arsenal
+[2026-01-18T18:31:18.152+0000] {db_loader.py:196} INFO - Created scrape run: epl_smart_Manchester_United_59020010
+[2026-01-18T18:31:18.168+0000] {db_loader.py:42} ERROR - Database error: column "id" does not exist
+LINE 8:                         RETURNING id
+                                          ^
+
+[2026-01-18T18:31:18.169+0000] {db_loader.py:362} ERROR - Failed to save match reference: column "id" does not exist
+LINE 8:                         RETURNING id
+                                          ^
+
+[2026-01-18T18:31:18.185+0000] {db_loader.py:150} INFO - Saved Understat data for match 20250817_manchester_united_vs_arsenal (ID: 324, Team: Manchester United)
+[2026-01-18T18:31:18.243+0000] {db_loader.py:242} INFO - Updated scrape run epl_smart_Manchester_United_59020010: success
+[2026-01-18T18:31:18.244+0000] {epl_smart_match_scraper.py:83} INFO - ✓ Manchester United vs Arsenal: 31 shots
+[2026-01-18T18:31:18.244+0000] {python.py:201} INFO - Done. Returned value was: {'team': 'Manchester United', 'status': 'success', 'scraped': 1}
+[2026-01-18T18:31:18.330+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=epl_smart_match_scraper, task_id=scrape_manchester_united, execution_date=20260118T160000, start_date=20260118T183053, end_date=20260118T183118
+[2026-01-18T18:31:18.414+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-01-18T18:31:18.459+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check

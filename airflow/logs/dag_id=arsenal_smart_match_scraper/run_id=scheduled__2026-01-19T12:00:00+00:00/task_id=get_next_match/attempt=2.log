@@ -1,0 +1,17 @@
+[2026-01-23T12:28:00.609+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.get_next_match scheduled__2026-01-19T12:00:00+00:00 [queued]>
+[2026-01-23T12:28:00.615+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: arsenal_smart_match_scraper.get_next_match scheduled__2026-01-19T12:00:00+00:00 [queued]>
+[2026-01-23T12:28:00.616+0000] {taskinstance.py:2170} INFO - Starting attempt 2 of 3
+[2026-01-23T12:28:00.758+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): get_next_match> on 2026-01-19 12:00:00+00:00
+[2026-01-23T12:28:00.774+0000] {standard_task_runner.py:60} INFO - Started process 225 to run task
+[2026-01-23T12:28:00.781+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'arsenal_smart_match_scraper', 'get_next_match', 'scheduled__2026-01-19T12:00:00+00:00', '--job-id', '553', '--raw', '--subdir', 'DAGS_FOLDER/arsenal_smart_match_scraper.py', '--cfg-path', '/tmp/tmpuvk9x37r']
+[2026-01-23T12:28:00.784+0000] {standard_task_runner.py:88} INFO - Job 553: Subtask get_next_match
+[2026-01-23T12:28:00.945+0000] {task_command.py:423} INFO - Running <TaskInstance: arsenal_smart_match_scraper.get_next_match scheduled__2026-01-19T12:00:00+00:00 [running]> on host dd03882071e2
+[2026-01-23T12:28:01.743+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='arsenal_analytics' AIRFLOW_CTX_DAG_ID='arsenal_smart_match_scraper' AIRFLOW_CTX_TASK_ID='get_next_match' AIRFLOW_CTX_EXECUTION_DATE='2026-01-19T12:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-01-19T12:00:00+00:00'
+[2026-01-23T12:28:01.744+0000] {arsenal_smart_match_scraper.py:43} INFO - Checking Arsenal fixtures for 2025-2026 season
+[2026-01-23T12:28:01.745+0000] {playwright_scraper.py:87} INFO - Scraping Understat fixtures for Arsenal: https://understat.com/team/Arsenal/2025
+[2026-01-23T12:29:02.048+0000] {playwright_scraper.py:118} INFO - Scraped 38 fixtures from Understat
+[2026-01-23T12:29:02.194+0000] {arsenal_smart_match_scraper.py:59} INFO - Next Arsenal match: Arsenal vs Manchester United on 2026-01-25
+[2026-01-23T12:29:02.370+0000] {python.py:201} INFO - Done. Returned value was: {'match_id': '28999', 'match_url': 'https://understat.com/match/28999', 'home_team': 'Arsenal', 'away_team': 'Manchester United', 'match_date': '2026-01-25', 'is_result': False, 'team_name': 'Arsenal'}
+[2026-01-23T12:29:02.460+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=arsenal_smart_match_scraper, task_id=get_next_match, execution_date=20260119T120000, start_date=20260123T122800, end_date=20260123T122902
+[2026-01-23T12:29:02.612+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-01-23T12:29:02.631+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check

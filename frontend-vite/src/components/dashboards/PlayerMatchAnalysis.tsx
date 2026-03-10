@@ -19,8 +19,8 @@ import { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 
 const GET_MATCH_LIST = gql`
-  query GetMatchList($season: String!) {
-    matchList(season: $season) {
+  query GetMatchList($season: String!, $team: String!) {
+    matchList(season: $season, team: $team) {
       matchId
       matchName
       matchDate
@@ -62,12 +62,13 @@ const GET_MATCH_PLAYER_NETWORK = gql`
 
 interface PlayerMatchAnalysisProps {
   season: string;
+  team: string;
 }
 
-export default function PlayerMatchAnalysis({ season }: PlayerMatchAnalysisProps) {
+export default function PlayerMatchAnalysis({ season, team }: PlayerMatchAnalysisProps) {
   const { data: matchListData, loading: matchListLoading } = useQuery(GET_MATCH_LIST, {
-    variables: { season: season || '2024-25' },
-    skip: !season,
+    variables: { season: season || '2024-25', team: team || 'Arsenal' },
+    skip: !season || !team,
   });
 
   const [selectedMatch, setSelectedMatch] = useState<string>('');
@@ -259,7 +260,7 @@ export default function PlayerMatchAnalysis({ season }: PlayerMatchAnalysisProps
   return (
     <Box>
       <Heading size="lg" mb={6}>
-        Player Match Analysis: {season}
+        {team} Player Match Analysis: {season}
       </Heading>
 
       {/* Match Selector */}

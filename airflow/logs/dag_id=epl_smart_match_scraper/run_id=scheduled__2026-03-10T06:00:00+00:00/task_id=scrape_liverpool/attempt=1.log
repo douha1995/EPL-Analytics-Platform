@@ -1,0 +1,17 @@
+[2026-03-10T08:00:01.243+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: epl_smart_match_scraper.scrape_liverpool scheduled__2026-03-10T06:00:00+00:00 [queued]>
+[2026-03-10T08:00:01.256+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: epl_smart_match_scraper.scrape_liverpool scheduled__2026-03-10T06:00:00+00:00 [queued]>
+[2026-03-10T08:00:01.256+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-03-10T08:00:01.309+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): scrape_liverpool> on 2026-03-10 06:00:00+00:00
+[2026-03-10T08:00:01.320+0000] {standard_task_runner.py:60} INFO - Started process 53927 to run task
+[2026-03-10T08:00:01.323+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'epl_smart_match_scraper', 'scrape_liverpool', 'scheduled__2026-03-10T06:00:00+00:00', '--job-id', '819', '--raw', '--subdir', 'DAGS_FOLDER/epl_smart_match_scraper.py', '--cfg-path', '/tmp/tmpeeb5kc78']
+[2026-03-10T08:00:01.325+0000] {standard_task_runner.py:88} INFO - Job 819: Subtask scrape_liverpool
+[2026-03-10T08:00:01.438+0000] {task_command.py:423} INFO - Running <TaskInstance: epl_smart_match_scraper.scrape_liverpool scheduled__2026-03-10T06:00:00+00:00 [running]> on host 13250c608584
+[2026-03-10T08:00:01.682+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='epl_analytics' AIRFLOW_CTX_DAG_ID='epl_smart_match_scraper' AIRFLOW_CTX_TASK_ID='scrape_liverpool' AIRFLOW_CTX_EXECUTION_DATE='2026-03-10T06:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-10T06:00:00+00:00'
+[2026-03-10T08:00:01.684+0000] {epl_smart_match_scraper.py:42} INFO - Checking Liverpool matches for 2025-26
+[2026-03-10T08:00:01.685+0000] {playwright_scraper.py:87} INFO - Scraping Understat fixtures for Liverpool: https://understat.com/team/Liverpool/2025
+[2026-03-10T08:01:18.978+0000] {playwright_scraper.py:118} INFO - Scraped 38 fixtures from Understat
+[2026-03-10T08:01:19.067+0000] {epl_smart_match_scraper.py:62} INFO - All Liverpool matches up to date!
+[2026-03-10T08:01:19.068+0000] {python.py:201} INFO - Done. Returned value was: {'team': 'Liverpool', 'status': 'up_to_date', 'scraped': 0}
+[2026-03-10T08:01:19.135+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=epl_smart_match_scraper, task_id=scrape_liverpool, execution_date=20260310T060000, start_date=20260310T080001, end_date=20260310T080119
+[2026-03-10T08:01:19.222+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-10T08:01:19.261+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

@@ -22,8 +22,8 @@ import {
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 const GET_PLAYER_XT_STATS = gql`
-  query GetPlayerXTStats($season: String!, $limit: Int) {
-    playerXTStats(season: $season, limit: $limit) {
+  query GetPlayerXTStats($season: String!, $team: String!, $limit: Int) {
+    playerXTStats(season: $season, team: $team, limit: $limit) {
       playerName
       positionCategory
       season
@@ -43,12 +43,13 @@ const GET_PLAYER_XT_STATS = gql`
 
 interface ExpectedThreatProps {
   season: string;
+  team: string;
 }
 
-export default function ExpectedThreat({ season }: ExpectedThreatProps) {
+export default function ExpectedThreat({ season, team }: ExpectedThreatProps) {
   const { data, loading } = useQuery(GET_PLAYER_XT_STATS, {
-    variables: { season: season || '2024-25', limit: 20 },
-    skip: !season,
+    variables: { season: season || '2024-25', team: team || 'Arsenal', limit: 20 },
+    skip: !season || !team,
   });
 
   if (loading) {
@@ -75,7 +76,7 @@ export default function ExpectedThreat({ season }: ExpectedThreatProps) {
   return (
     <Box>
       <Heading size="lg" mb={6}>
-        Expected Threat (xT): {season}
+        {team} Expected Threat (xT): {season}
       </Heading>
 
       <SimpleGrid columns={{ base: 1, md: 3 }} spacing={4} mb={6}>

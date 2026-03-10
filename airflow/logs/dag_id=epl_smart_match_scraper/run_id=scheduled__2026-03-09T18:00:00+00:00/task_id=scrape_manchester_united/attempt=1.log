@@ -1,0 +1,30 @@
+[2026-03-09T20:00:05.532+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: epl_smart_match_scraper.scrape_manchester_united scheduled__2026-03-09T18:00:00+00:00 [queued]>
+[2026-03-09T20:00:05.560+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: epl_smart_match_scraper.scrape_manchester_united scheduled__2026-03-09T18:00:00+00:00 [queued]>
+[2026-03-09T20:00:05.561+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-03-09T20:00:05.763+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): scrape_manchester_united> on 2026-03-09 18:00:00+00:00
+[2026-03-09T20:00:05.779+0000] {standard_task_runner.py:60} INFO - Started process 53754 to run task
+[2026-03-09T20:00:05.788+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'epl_smart_match_scraper', 'scrape_manchester_united', 'scheduled__2026-03-09T18:00:00+00:00', '--job-id', '737', '--raw', '--subdir', 'DAGS_FOLDER/epl_smart_match_scraper.py', '--cfg-path', '/tmp/tmp9pjguj68']
+[2026-03-09T20:00:05.794+0000] {standard_task_runner.py:88} INFO - Job 737: Subtask scrape_manchester_united
+[2026-03-09T20:00:06.009+0000] {task_command.py:423} INFO - Running <TaskInstance: epl_smart_match_scraper.scrape_manchester_united scheduled__2026-03-09T18:00:00+00:00 [running]> on host 13250c608584
+[2026-03-09T20:00:06.485+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='epl_analytics' AIRFLOW_CTX_DAG_ID='epl_smart_match_scraper' AIRFLOW_CTX_TASK_ID='scrape_manchester_united' AIRFLOW_CTX_EXECUTION_DATE='2026-03-09T18:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-09T18:00:00+00:00'
+[2026-03-09T20:00:06.492+0000] {epl_smart_match_scraper.py:42} INFO - Checking Manchester United matches for 2025-26
+[2026-03-09T20:00:06.493+0000] {playwright_scraper.py:87} INFO - Scraping Understat fixtures for Manchester_United: https://understat.com/team/Manchester_United/2025
+[2026-03-09T20:00:16.450+0000] {playwright_scraper.py:118} INFO - Scraped 38 fixtures from Understat
+[2026-03-09T20:00:17.992+0000] {playwright_scraper.py:140} INFO - Scraping match shots: https://understat.com/match/28817
+[2026-03-09T20:00:30.434+0000] {playwright_scraper.py:213} INFO - Scraped 25 shots for Manchester City vs Manchester United
+[2026-03-09T20:00:30.626+0000] {db_loader.py:196} INFO - Created scrape run: epl_smart_Manchester_United_0d1b047b
+[2026-03-09T20:00:30.666+0000] {db_loader.py:359} INFO - Saved match reference for Manchester City vs Manchester United (Team: Manchester United)
+[2026-03-09T20:00:30.696+0000] {db_loader.py:150} INFO - Saved Understat data for match 20250914_manchester_city_vs_manchester_united (ID: 436, Team: Manchester United)
+[2026-03-09T20:00:30.756+0000] {db_loader.py:242} INFO - Updated scrape run epl_smart_Manchester_United_0d1b047b: success
+[2026-03-09T20:00:30.757+0000] {epl_smart_match_scraper.py:83} INFO - ✓ Manchester City vs Manchester United: 25 shots
+[2026-03-09T20:00:32.586+0000] {playwright_scraper.py:140} INFO - Scraping match shots: https://understat.com/match/29065
+[2026-03-09T20:00:45.047+0000] {playwright_scraper.py:213} INFO - Scraped 26 shots for Newcastle United vs Manchester United
+[2026-03-09T20:00:45.483+0000] {db_loader.py:196} INFO - Created scrape run: epl_smart_Manchester_United_731bb833
+[2026-03-09T20:00:45.529+0000] {db_loader.py:359} INFO - Saved match reference for Newcastle United vs Manchester United (Team: Manchester United)
+[2026-03-09T20:00:45.560+0000] {db_loader.py:150} INFO - Saved Understat data for match 20260304_newcastle_united_vs_manchester_united (ID: 440, Team: Manchester United)
+[2026-03-09T20:00:45.631+0000] {db_loader.py:242} INFO - Updated scrape run epl_smart_Manchester_United_731bb833: success
+[2026-03-09T20:00:45.632+0000] {epl_smart_match_scraper.py:83} INFO - ✓ Newcastle United vs Manchester United: 26 shots
+[2026-03-09T20:00:45.633+0000] {python.py:201} INFO - Done. Returned value was: {'team': 'Manchester United', 'status': 'success', 'scraped': 2}
+[2026-03-09T20:00:45.749+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=epl_smart_match_scraper, task_id=scrape_manchester_united, execution_date=20260309T180000, start_date=20260309T200005, end_date=20260309T200045
+[2026-03-09T20:00:45.855+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-09T20:00:45.945+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

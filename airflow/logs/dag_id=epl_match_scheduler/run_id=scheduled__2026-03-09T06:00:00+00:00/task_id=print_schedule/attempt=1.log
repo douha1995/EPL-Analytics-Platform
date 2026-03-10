@@ -1,0 +1,38 @@
+[2026-03-10T06:00:43.109+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: epl_match_scheduler.print_schedule scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-10T06:00:43.126+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: epl_match_scheduler.print_schedule scheduled__2026-03-09T06:00:00+00:00 [queued]>
+[2026-03-10T06:00:43.126+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2026-03-10T06:00:43.163+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): print_schedule> on 2026-03-09 06:00:00+00:00
+[2026-03-10T06:00:43.173+0000] {standard_task_runner.py:60} INFO - Started process 48822 to run task
+[2026-03-10T06:00:43.176+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'epl_match_scheduler', 'print_schedule', 'scheduled__2026-03-09T06:00:00+00:00', '--job-id', '816', '--raw', '--subdir', 'DAGS_FOLDER/epl_match_scheduler.py', '--cfg-path', '/tmp/tmpsancwag2']
+[2026-03-10T06:00:43.179+0000] {standard_task_runner.py:88} INFO - Job 816: Subtask print_schedule
+[2026-03-10T06:00:43.274+0000] {task_command.py:423} INFO - Running <TaskInstance: epl_match_scheduler.print_schedule scheduled__2026-03-09T06:00:00+00:00 [running]> on host 13250c608584
+[2026-03-10T06:00:43.436+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='epl_analytics' AIRFLOW_CTX_DAG_ID='epl_match_scheduler' AIRFLOW_CTX_TASK_ID='print_schedule' AIRFLOW_CTX_EXECUTION_DATE='2026-03-09T06:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-09T06:00:00+00:00'
+[2026-03-10T06:00:43.456+0000] {epl_match_scheduler.py:129} INFO - ================================================================================
+[2026-03-10T06:00:43.456+0000] {epl_match_scheduler.py:130} INFO - UPCOMING EPL MATCHES - SCRAPE SCHEDULE
+[2026-03-10T06:00:43.456+0000] {epl_match_scheduler.py:131} INFO - Teams: Arsenal, Man United, Man City, Liverpool
+[2026-03-10T06:00:43.457+0000] {epl_match_scheduler.py:132} INFO - ================================================================================
+[2026-03-10T06:00:43.466+0000] {epl_match_scheduler.py:150} INFO -  1. 2026-03-14 | West Ham             vs Manchester City      | Team: Manchester City | Scrape: 2026-03-14 19:00
+[2026-03-10T06:00:43.466+0000] {epl_match_scheduler.py:150} INFO -  2. 2026-03-15 | Arsenal              vs Everton              | Team: Arsenal         | Scrape: 2026-03-15 19:00
+[2026-03-10T06:00:43.466+0000] {epl_match_scheduler.py:150} INFO -  3. 2026-03-15 | Manchester United    vs Aston Villa          | Team: Manchester United | Scrape: 2026-03-15 19:00
+[2026-03-10T06:00:43.467+0000] {epl_match_scheduler.py:150} INFO -  4. 2026-03-15 | Liverpool            vs Tottenham            | Team: Liverpool       | Scrape: 2026-03-15 19:00
+[2026-03-10T06:00:43.467+0000] {epl_match_scheduler.py:150} INFO -  5. 2026-03-20 | Bournemouth          vs Manchester United    | Team: Manchester United | Scrape: 2026-03-20 19:00
+[2026-03-10T06:00:43.467+0000] {epl_match_scheduler.py:150} INFO -  6. 2026-03-21 | Manchester City      vs Crystal Palace       | Team: Manchester City | Scrape: 2026-03-21 19:00
+[2026-03-10T06:00:43.467+0000] {epl_match_scheduler.py:150} INFO -  7. 2026-03-21 | Brighton             vs Liverpool            | Team: Liverpool       | Scrape: 2026-03-21 19:00
+[2026-03-10T06:00:43.468+0000] {epl_match_scheduler.py:150} INFO -  8. 2026-04-11 | Arsenal              vs Bournemouth          | Team: Arsenal         | Scrape: 2026-04-11 19:00
+[2026-03-10T06:00:43.468+0000] {epl_match_scheduler.py:150} INFO -  9. 2026-04-11 | Manchester United    vs Leeds                | Team: Manchester United | Scrape: 2026-04-11 19:00
+[2026-03-10T06:00:43.468+0000] {epl_match_scheduler.py:150} INFO - 10. 2026-04-11 | Chelsea              vs Manchester City      | Team: Manchester City | Scrape: 2026-04-11 19:00
+[2026-03-10T06:00:43.469+0000] {epl_match_scheduler.py:150} INFO - 11. 2026-04-11 | Liverpool            vs Fulham               | Team: Liverpool       | Scrape: 2026-04-11 19:00
+[2026-03-10T06:00:43.469+0000] {epl_match_scheduler.py:150} INFO - 12. 2026-04-18 | Manchester City      vs Arsenal              | Team: Arsenal         | Scrape: 2026-04-18 19:00
+[2026-03-10T06:00:43.469+0000] {epl_match_scheduler.py:150} INFO - 13. 2026-04-18 | Chelsea              vs Manchester United    | Team: Manchester United | Scrape: 2026-04-18 19:00
+[2026-03-10T06:00:43.469+0000] {epl_match_scheduler.py:150} INFO - 14. 2026-04-18 | Everton              vs Liverpool            | Team: Liverpool       | Scrape: 2026-04-18 19:00
+[2026-03-10T06:00:43.470+0000] {epl_match_scheduler.py:150} INFO - 15. 2026-04-25 | Arsenal              vs Newcastle United     | Team: Arsenal         | Scrape: 2026-04-25 19:00
+[2026-03-10T06:00:43.470+0000] {epl_match_scheduler.py:150} INFO - 16. 2026-04-25 | Manchester United    vs Brentford            | Team: Manchester United | Scrape: 2026-04-25 19:00
+[2026-03-10T06:00:43.470+0000] {epl_match_scheduler.py:150} INFO - 17. 2026-04-25 | Burnley              vs Manchester City      | Team: Manchester City | Scrape: 2026-04-25 19:00
+[2026-03-10T06:00:43.470+0000] {epl_match_scheduler.py:150} INFO - 18. 2026-04-25 | Liverpool            vs Crystal Palace       | Team: Liverpool       | Scrape: 2026-04-25 19:00
+[2026-03-10T06:00:43.471+0000] {epl_match_scheduler.py:150} INFO - 19. 2026-05-02 | Arsenal              vs Fulham               | Team: Arsenal         | Scrape: 2026-05-02 19:00
+[2026-03-10T06:00:43.471+0000] {epl_match_scheduler.py:150} INFO - 20. 2026-05-02 | Manchester United    vs Liverpool            | Team: Manchester United | Scrape: 2026-05-02 19:00
+[2026-03-10T06:00:43.471+0000] {epl_match_scheduler.py:152} INFO - ================================================================================
+[2026-03-10T06:00:43.471+0000] {python.py:201} INFO - Done. Returned value was: {'printed': 20}
+[2026-03-10T06:00:43.530+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=epl_match_scheduler, task_id=print_schedule, execution_date=20260309T060000, start_date=20260310T060043, end_date=20260310T060043
+[2026-03-10T06:00:43.589+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-10T06:00:43.618+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

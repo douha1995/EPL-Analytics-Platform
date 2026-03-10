@@ -1,0 +1,329 @@
+[2026-01-19T17:38:05.506+0000] {processor.py:161} INFO - Started process (PID=45640) to work on /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:38:05.507+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/epl_smart_match_scraper.py for tasks to queue
+[2026-01-19T17:38:05.509+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:38:05.508+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:38:05.558+0000] {processor.py:840} INFO - DAG(s) 'epl_smart_match_scraper' retrieved from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:38:05.583+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:38:05.583+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-01-19T17:38:05.615+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:38:05.614+0000] {dag.py:3823} INFO - Setting next_dagrun for epl_smart_match_scraper to 2026-01-19 14:00:00+00:00, run_after=2026-01-19 16:00:00+00:00
+[2026-01-19T17:38:05.744+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/epl_smart_match_scraper.py took 0.244 seconds
+[2026-01-19T17:38:42.526+0000] {processor.py:161} INFO - Started process (PID=46828) to work on /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:38:42.548+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/epl_smart_match_scraper.py for tasks to queue
+[2026-01-19T17:38:42.550+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:38:42.549+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:38:42.625+0000] {processor.py:840} INFO - DAG(s) 'epl_smart_match_scraper' retrieved from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:38:42.989+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:38:42.989+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-01-19T17:38:43.037+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:38:43.037+0000] {dag.py:3823} INFO - Setting next_dagrun for epl_smart_match_scraper to 2026-01-19 16:00:00+00:00, run_after=2026-01-19 18:00:00+00:00
+[2026-01-19T17:38:43.159+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/epl_smart_match_scraper.py took 0.639 seconds
+[2026-01-19T17:39:16.410+0000] {processor.py:161} INFO - Started process (PID=46874) to work on /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:39:16.478+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/epl_smart_match_scraper.py for tasks to queue
+[2026-01-19T17:39:16.479+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:39:16.479+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:39:16.541+0000] {processor.py:840} INFO - DAG(s) 'epl_smart_match_scraper' retrieved from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:39:16.561+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:39:16.561+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-01-19T17:39:16.580+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:39:16.579+0000] {dag.py:3823} INFO - Setting next_dagrun for epl_smart_match_scraper to 2026-01-19 16:00:00+00:00, run_after=2026-01-19 18:00:00+00:00
+[2026-01-19T17:39:16.851+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/epl_smart_match_scraper.py took 0.447 seconds
+[2026-01-19T17:39:52.419+0000] {processor.py:161} INFO - Started process (PID=46910) to work on /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:39:52.465+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/epl_smart_match_scraper.py for tasks to queue
+[2026-01-19T17:39:52.467+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:39:52.466+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:39:52.555+0000] {processor.py:840} INFO - DAG(s) 'epl_smart_match_scraper' retrieved from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:39:52.581+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:39:52.581+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-01-19T17:39:52.608+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:39:52.608+0000] {dag.py:3823} INFO - Setting next_dagrun for epl_smart_match_scraper to 2026-01-19 16:00:00+00:00, run_after=2026-01-19 18:00:00+00:00
+[2026-01-19T17:39:52.963+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/epl_smart_match_scraper.py took 0.548 seconds
+[2026-01-19T17:40:27.429+0000] {processor.py:161} INFO - Started process (PID=46946) to work on /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:40:27.451+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/epl_smart_match_scraper.py for tasks to queue
+[2026-01-19T17:40:27.452+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:40:27.452+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:40:27.522+0000] {processor.py:840} INFO - DAG(s) 'epl_smart_match_scraper' retrieved from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:40:27.541+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:40:27.541+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-01-19T17:40:27.560+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:40:27.560+0000] {dag.py:3823} INFO - Setting next_dagrun for epl_smart_match_scraper to 2026-01-19 16:00:00+00:00, run_after=2026-01-19 18:00:00+00:00
+[2026-01-19T17:40:27.930+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/epl_smart_match_scraper.py took 0.506 seconds
+[2026-01-19T17:41:04.388+0000] {processor.py:161} INFO - Started process (PID=46988) to work on /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:41:04.393+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/epl_smart_match_scraper.py for tasks to queue
+[2026-01-19T17:41:04.394+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:41:04.393+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:41:04.464+0000] {processor.py:840} INFO - DAG(s) 'epl_smart_match_scraper' retrieved from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:41:04.483+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:41:04.483+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-01-19T17:41:04.501+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:41:04.501+0000] {dag.py:3823} INFO - Setting next_dagrun for epl_smart_match_scraper to 2026-01-19 16:00:00+00:00, run_after=2026-01-19 18:00:00+00:00
+[2026-01-19T17:41:06.117+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/epl_smart_match_scraper.py took 1.734 seconds
+[2026-01-19T17:41:39.370+0000] {processor.py:161} INFO - Started process (PID=47024) to work on /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:41:39.388+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/epl_smart_match_scraper.py for tasks to queue
+[2026-01-19T17:41:39.390+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:41:39.389+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:41:39.462+0000] {processor.py:840} INFO - DAG(s) 'epl_smart_match_scraper' retrieved from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:41:39.481+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:41:39.481+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-01-19T17:41:39.499+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:41:39.498+0000] {dag.py:3823} INFO - Setting next_dagrun for epl_smart_match_scraper to 2026-01-19 16:00:00+00:00, run_after=2026-01-19 18:00:00+00:00
+[2026-01-19T17:41:40.016+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/epl_smart_match_scraper.py took 0.651 seconds
+[2026-01-19T17:42:14.409+0000] {processor.py:161} INFO - Started process (PID=47060) to work on /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:42:14.434+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/epl_smart_match_scraper.py for tasks to queue
+[2026-01-19T17:42:14.435+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:42:14.434+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:42:14.503+0000] {processor.py:840} INFO - DAG(s) 'epl_smart_match_scraper' retrieved from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:42:14.526+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:42:14.525+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-01-19T17:42:14.545+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:42:14.545+0000] {dag.py:3823} INFO - Setting next_dagrun for epl_smart_match_scraper to 2026-01-19 16:00:00+00:00, run_after=2026-01-19 18:00:00+00:00
+[2026-01-19T17:42:14.914+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/epl_smart_match_scraper.py took 0.511 seconds
+[2026-01-19T17:42:49.335+0000] {processor.py:161} INFO - Started process (PID=47094) to work on /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:42:49.368+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/epl_smart_match_scraper.py for tasks to queue
+[2026-01-19T17:42:49.369+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:42:49.368+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:42:49.431+0000] {processor.py:840} INFO - DAG(s) 'epl_smart_match_scraper' retrieved from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:42:49.451+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:42:49.450+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-01-19T17:42:49.469+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:42:49.469+0000] {dag.py:3823} INFO - Setting next_dagrun for epl_smart_match_scraper to 2026-01-19 16:00:00+00:00, run_after=2026-01-19 18:00:00+00:00
+[2026-01-19T17:42:49.820+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/epl_smart_match_scraper.py took 0.491 seconds
+[2026-01-19T17:43:26.419+0000] {processor.py:161} INFO - Started process (PID=47132) to work on /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:43:26.453+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/epl_smart_match_scraper.py for tasks to queue
+[2026-01-19T17:43:26.455+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:43:26.454+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:43:26.530+0000] {processor.py:840} INFO - DAG(s) 'epl_smart_match_scraper' retrieved from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:43:26.550+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:43:26.549+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-01-19T17:43:26.568+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:43:26.568+0000] {dag.py:3823} INFO - Setting next_dagrun for epl_smart_match_scraper to 2026-01-19 16:00:00+00:00, run_after=2026-01-19 18:00:00+00:00
+[2026-01-19T17:43:26.974+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/epl_smart_match_scraper.py took 0.560 seconds
+[2026-01-19T17:44:01.475+0000] {processor.py:161} INFO - Started process (PID=47171) to work on /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:44:01.500+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/epl_smart_match_scraper.py for tasks to queue
+[2026-01-19T17:44:01.502+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:44:01.501+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:44:01.588+0000] {processor.py:840} INFO - DAG(s) 'epl_smart_match_scraper' retrieved from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:44:01.973+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:44:01.973+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-01-19T17:44:02.046+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:44:02.045+0000] {dag.py:3823} INFO - Setting next_dagrun for epl_smart_match_scraper to 2026-01-19 16:00:00+00:00, run_after=2026-01-19 18:00:00+00:00
+[2026-01-19T17:44:02.119+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/epl_smart_match_scraper.py took 0.649 seconds
+[2026-01-19T17:44:36.416+0000] {processor.py:161} INFO - Started process (PID=47205) to work on /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:44:36.454+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/epl_smart_match_scraper.py for tasks to queue
+[2026-01-19T17:44:36.456+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:44:36.455+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:44:36.531+0000] {processor.py:840} INFO - DAG(s) 'epl_smart_match_scraper' retrieved from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:44:36.552+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:44:36.552+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-01-19T17:44:36.572+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:44:36.571+0000] {dag.py:3823} INFO - Setting next_dagrun for epl_smart_match_scraper to 2026-01-19 16:00:00+00:00, run_after=2026-01-19 18:00:00+00:00
+[2026-01-19T17:44:36.944+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/epl_smart_match_scraper.py took 0.533 seconds
+[2026-01-19T17:45:12.422+0000] {processor.py:161} INFO - Started process (PID=47243) to work on /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:45:12.483+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/epl_smart_match_scraper.py for tasks to queue
+[2026-01-19T17:45:12.485+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:45:12.484+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:45:12.555+0000] {processor.py:840} INFO - DAG(s) 'epl_smart_match_scraper' retrieved from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:45:12.576+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:45:12.576+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-01-19T17:45:12.599+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:45:12.598+0000] {dag.py:3823} INFO - Setting next_dagrun for epl_smart_match_scraper to 2026-01-19 16:00:00+00:00, run_after=2026-01-19 18:00:00+00:00
+[2026-01-19T17:45:13.006+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/epl_smart_match_scraper.py took 0.589 seconds
+[2026-01-19T17:45:48.670+0000] {processor.py:161} INFO - Started process (PID=47279) to work on /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:45:48.699+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/epl_smart_match_scraper.py for tasks to queue
+[2026-01-19T17:45:48.700+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:45:48.700+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:45:48.744+0000] {processor.py:840} INFO - DAG(s) 'epl_smart_match_scraper' retrieved from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:45:48.771+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:45:48.771+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-01-19T17:45:48.795+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:45:48.795+0000] {dag.py:3823} INFO - Setting next_dagrun for epl_smart_match_scraper to 2026-01-19 16:00:00+00:00, run_after=2026-01-19 18:00:00+00:00
+[2026-01-19T17:45:48.836+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/epl_smart_match_scraper.py took 0.175 seconds
+[2026-01-19T17:46:23.398+0000] {processor.py:161} INFO - Started process (PID=47315) to work on /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:46:23.406+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/epl_smart_match_scraper.py for tasks to queue
+[2026-01-19T17:46:23.408+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:46:23.407+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:46:23.475+0000] {processor.py:840} INFO - DAG(s) 'epl_smart_match_scraper' retrieved from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:46:23.495+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:46:23.495+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-01-19T17:46:23.514+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:46:23.514+0000] {dag.py:3823} INFO - Setting next_dagrun for epl_smart_match_scraper to 2026-01-19 16:00:00+00:00, run_after=2026-01-19 18:00:00+00:00
+[2026-01-19T17:46:23.904+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/epl_smart_match_scraper.py took 0.511 seconds
+[2026-01-19T17:47:00.456+0000] {processor.py:161} INFO - Started process (PID=47351) to work on /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:47:00.504+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/epl_smart_match_scraper.py for tasks to queue
+[2026-01-19T17:47:00.506+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:47:00.505+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:47:00.591+0000] {processor.py:840} INFO - DAG(s) 'epl_smart_match_scraper' retrieved from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:47:00.631+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:47:00.631+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-01-19T17:47:00.669+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:47:00.669+0000] {dag.py:3823} INFO - Setting next_dagrun for epl_smart_match_scraper to 2026-01-19 16:00:00+00:00, run_after=2026-01-19 18:00:00+00:00
+[2026-01-19T17:47:01.501+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/epl_smart_match_scraper.py took 1.052 seconds
+[2026-01-19T17:47:35.781+0000] {processor.py:161} INFO - Started process (PID=47387) to work on /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:47:35.808+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/epl_smart_match_scraper.py for tasks to queue
+[2026-01-19T17:47:35.821+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:47:35.820+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:47:35.927+0000] {processor.py:840} INFO - DAG(s) 'epl_smart_match_scraper' retrieved from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:47:35.970+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:47:35.969+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-01-19T17:47:36.010+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:47:36.010+0000] {dag.py:3823} INFO - Setting next_dagrun for epl_smart_match_scraper to 2026-01-19 16:00:00+00:00, run_after=2026-01-19 18:00:00+00:00
+[2026-01-19T17:47:36.122+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/epl_smart_match_scraper.py took 0.348 seconds
+[2026-01-19T17:48:13.931+0000] {processor.py:161} INFO - Started process (PID=47423) to work on /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:48:13.943+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/epl_smart_match_scraper.py for tasks to queue
+[2026-01-19T17:48:13.947+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:48:13.945+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:48:14.287+0000] {processor.py:840} INFO - DAG(s) 'epl_smart_match_scraper' retrieved from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:48:14.405+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:48:14.404+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-01-19T17:48:14.531+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:48:14.530+0000] {dag.py:3823} INFO - Setting next_dagrun for epl_smart_match_scraper to 2026-01-19 16:00:00+00:00, run_after=2026-01-19 18:00:00+00:00
+[2026-01-19T17:48:14.656+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/epl_smart_match_scraper.py took 0.741 seconds
+[2026-01-19T17:48:46.972+0000] {processor.py:161} INFO - Started process (PID=47462) to work on /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:48:47.031+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/epl_smart_match_scraper.py for tasks to queue
+[2026-01-19T17:48:47.052+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:48:47.050+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:48:47.371+0000] {processor.py:840} INFO - DAG(s) 'epl_smart_match_scraper' retrieved from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:48:47.484+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:48:47.483+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-01-19T17:48:47.610+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:48:47.609+0000] {dag.py:3823} INFO - Setting next_dagrun for epl_smart_match_scraper to 2026-01-19 16:00:00+00:00, run_after=2026-01-19 18:00:00+00:00
+[2026-01-19T17:48:47.757+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/epl_smart_match_scraper.py took 0.805 seconds
+[2026-01-19T17:49:25.442+0000] {processor.py:161} INFO - Started process (PID=47503) to work on /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:49:27.129+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/epl_smart_match_scraper.py for tasks to queue
+[2026-01-19T17:49:27.131+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:49:27.130+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:49:27.301+0000] {processor.py:840} INFO - DAG(s) 'epl_smart_match_scraper' retrieved from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:49:27.370+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:49:27.370+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-01-19T17:49:27.431+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:49:27.430+0000] {dag.py:3823} INFO - Setting next_dagrun for epl_smart_match_scraper to 2026-01-19 16:00:00+00:00, run_after=2026-01-19 18:00:00+00:00
+[2026-01-19T17:49:27.700+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/epl_smart_match_scraper.py took 2.269 seconds
+[2026-01-19T17:50:02.090+0000] {processor.py:161} INFO - Started process (PID=47539) to work on /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:50:02.108+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/epl_smart_match_scraper.py for tasks to queue
+[2026-01-19T17:50:02.112+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:50:02.110+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:50:02.385+0000] {processor.py:840} INFO - DAG(s) 'epl_smart_match_scraper' retrieved from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:50:02.505+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:50:02.505+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-01-19T17:50:02.597+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:50:02.597+0000] {dag.py:3823} INFO - Setting next_dagrun for epl_smart_match_scraper to 2026-01-19 16:00:00+00:00, run_after=2026-01-19 18:00:00+00:00
+[2026-01-19T17:50:02.696+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/epl_smart_match_scraper.py took 0.619 seconds
+[2026-01-19T17:50:36.881+0000] {processor.py:161} INFO - Started process (PID=47575) to work on /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:50:36.902+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/epl_smart_match_scraper.py for tasks to queue
+[2026-01-19T17:50:36.907+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:50:36.905+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:50:37.129+0000] {processor.py:840} INFO - DAG(s) 'epl_smart_match_scraper' retrieved from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:50:37.246+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:50:37.245+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-01-19T17:50:37.359+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:50:37.358+0000] {dag.py:3823} INFO - Setting next_dagrun for epl_smart_match_scraper to 2026-01-19 16:00:00+00:00, run_after=2026-01-19 18:00:00+00:00
+[2026-01-19T17:50:37.464+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/epl_smart_match_scraper.py took 0.599 seconds
+[2026-01-19T17:51:12.128+0000] {processor.py:161} INFO - Started process (PID=47611) to work on /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:51:12.141+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/epl_smart_match_scraper.py for tasks to queue
+[2026-01-19T17:51:12.145+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:51:12.143+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:51:12.455+0000] {processor.py:840} INFO - DAG(s) 'epl_smart_match_scraper' retrieved from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:51:12.578+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:51:12.577+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-01-19T17:51:12.686+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:51:12.685+0000] {dag.py:3823} INFO - Setting next_dagrun for epl_smart_match_scraper to 2026-01-19 16:00:00+00:00, run_after=2026-01-19 18:00:00+00:00
+[2026-01-19T17:51:12.807+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/epl_smart_match_scraper.py took 0.692 seconds
+[2026-01-19T17:51:48.091+0000] {processor.py:161} INFO - Started process (PID=47647) to work on /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:51:48.113+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/epl_smart_match_scraper.py for tasks to queue
+[2026-01-19T17:51:48.117+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:51:48.116+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:51:48.500+0000] {processor.py:840} INFO - DAG(s) 'epl_smart_match_scraper' retrieved from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:51:48.610+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:51:48.609+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-01-19T17:51:48.729+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:51:48.728+0000] {dag.py:3823} INFO - Setting next_dagrun for epl_smart_match_scraper to 2026-01-19 16:00:00+00:00, run_after=2026-01-19 18:00:00+00:00
+[2026-01-19T17:51:48.854+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/epl_smart_match_scraper.py took 0.793 seconds
+[2026-01-19T17:52:25.214+0000] {processor.py:161} INFO - Started process (PID=47683) to work on /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:52:25.267+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/epl_smart_match_scraper.py for tasks to queue
+[2026-01-19T17:52:25.291+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:52:25.287+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:52:25.573+0000] {processor.py:840} INFO - DAG(s) 'epl_smart_match_scraper' retrieved from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:52:25.691+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:52:25.690+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-01-19T17:52:25.800+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:52:25.799+0000] {dag.py:3823} INFO - Setting next_dagrun for epl_smart_match_scraper to 2026-01-19 16:00:00+00:00, run_after=2026-01-19 18:00:00+00:00
+[2026-01-19T17:52:25.879+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/epl_smart_match_scraper.py took 0.678 seconds
+[2026-01-19T17:52:59.902+0000] {processor.py:161} INFO - Started process (PID=47719) to work on /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:52:59.918+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/epl_smart_match_scraper.py for tasks to queue
+[2026-01-19T17:52:59.922+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:52:59.920+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:53:00.228+0000] {processor.py:840} INFO - DAG(s) 'epl_smart_match_scraper' retrieved from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:53:00.356+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:53:00.355+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-01-19T17:53:00.467+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:53:00.466+0000] {dag.py:3823} INFO - Setting next_dagrun for epl_smart_match_scraper to 2026-01-19 16:00:00+00:00, run_after=2026-01-19 18:00:00+00:00
+[2026-01-19T17:53:00.551+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/epl_smart_match_scraper.py took 0.671 seconds
+[2026-01-19T17:53:35.853+0000] {processor.py:161} INFO - Started process (PID=47755) to work on /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:53:35.871+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/epl_smart_match_scraper.py for tasks to queue
+[2026-01-19T17:53:35.875+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:53:35.873+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:53:36.141+0000] {processor.py:840} INFO - DAG(s) 'epl_smart_match_scraper' retrieved from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:53:36.274+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:53:36.274+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-01-19T17:53:36.377+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:53:36.376+0000] {dag.py:3823} INFO - Setting next_dagrun for epl_smart_match_scraper to 2026-01-19 16:00:00+00:00, run_after=2026-01-19 18:00:00+00:00
+[2026-01-19T17:53:36.476+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/epl_smart_match_scraper.py took 0.646 seconds
+[2026-01-19T17:54:11.947+0000] {processor.py:161} INFO - Started process (PID=47791) to work on /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:54:11.971+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/epl_smart_match_scraper.py for tasks to queue
+[2026-01-19T17:54:11.981+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:54:11.975+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:54:12.468+0000] {processor.py:840} INFO - DAG(s) 'epl_smart_match_scraper' retrieved from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:54:12.590+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:54:12.589+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-01-19T17:54:12.736+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:54:12.735+0000] {dag.py:3823} INFO - Setting next_dagrun for epl_smart_match_scraper to 2026-01-19 16:00:00+00:00, run_after=2026-01-19 18:00:00+00:00
+[2026-01-19T17:54:12.877+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/epl_smart_match_scraper.py took 0.943 seconds
+[2026-01-19T17:54:47.923+0000] {processor.py:161} INFO - Started process (PID=47827) to work on /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:54:47.942+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/epl_smart_match_scraper.py for tasks to queue
+[2026-01-19T17:54:47.947+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:54:47.945+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:54:48.314+0000] {processor.py:840} INFO - DAG(s) 'epl_smart_match_scraper' retrieved from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:54:48.442+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:54:48.441+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-01-19T17:54:48.555+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:54:48.554+0000] {dag.py:3823} INFO - Setting next_dagrun for epl_smart_match_scraper to 2026-01-19 16:00:00+00:00, run_after=2026-01-19 18:00:00+00:00
+[2026-01-19T17:54:48.661+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/epl_smart_match_scraper.py took 0.753 seconds
+[2026-01-19T17:55:26.938+0000] {processor.py:161} INFO - Started process (PID=47861) to work on /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:55:26.998+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/epl_smart_match_scraper.py for tasks to queue
+[2026-01-19T17:55:27.002+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:55:27.001+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:55:27.267+0000] {processor.py:840} INFO - DAG(s) 'epl_smart_match_scraper' retrieved from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:55:27.393+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:55:27.392+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-01-19T17:55:27.513+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:55:27.512+0000] {dag.py:3823} INFO - Setting next_dagrun for epl_smart_match_scraper to 2026-01-19 16:00:00+00:00, run_after=2026-01-19 18:00:00+00:00
+[2026-01-19T17:55:27.697+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/epl_smart_match_scraper.py took 0.790 seconds
+[2026-01-19T17:56:04.078+0000] {processor.py:161} INFO - Started process (PID=47899) to work on /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:56:04.122+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/epl_smart_match_scraper.py for tasks to queue
+[2026-01-19T17:56:04.143+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:56:04.124+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:56:04.415+0000] {processor.py:840} INFO - DAG(s) 'epl_smart_match_scraper' retrieved from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:56:04.524+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:56:04.523+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-01-19T17:56:04.645+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:56:04.644+0000] {dag.py:3823} INFO - Setting next_dagrun for epl_smart_match_scraper to 2026-01-19 16:00:00+00:00, run_after=2026-01-19 18:00:00+00:00
+[2026-01-19T17:56:04.738+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/epl_smart_match_scraper.py took 0.672 seconds
+[2026-01-19T17:56:39.994+0000] {processor.py:161} INFO - Started process (PID=47935) to work on /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:56:40.032+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/epl_smart_match_scraper.py for tasks to queue
+[2026-01-19T17:56:40.038+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:56:40.034+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:56:40.399+0000] {processor.py:840} INFO - DAG(s) 'epl_smart_match_scraper' retrieved from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:56:40.559+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:56:40.558+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-01-19T17:56:40.683+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:56:40.682+0000] {dag.py:3823} INFO - Setting next_dagrun for epl_smart_match_scraper to 2026-01-19 16:00:00+00:00, run_after=2026-01-19 18:00:00+00:00
+[2026-01-19T17:56:40.821+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/epl_smart_match_scraper.py took 0.851 seconds
+[2026-01-19T17:57:14.637+0000] {processor.py:161} INFO - Started process (PID=47969) to work on /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:57:14.903+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/epl_smart_match_scraper.py for tasks to queue
+[2026-01-19T17:57:14.907+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:57:14.905+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:57:15.299+0000] {processor.py:840} INFO - DAG(s) 'epl_smart_match_scraper' retrieved from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:57:15.460+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:57:15.459+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-01-19T17:57:15.575+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:57:15.575+0000] {dag.py:3823} INFO - Setting next_dagrun for epl_smart_match_scraper to 2026-01-19 16:00:00+00:00, run_after=2026-01-19 18:00:00+00:00
+[2026-01-19T17:57:15.700+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/epl_smart_match_scraper.py took 1.070 seconds
+[2026-01-19T17:57:51.671+0000] {processor.py:161} INFO - Started process (PID=48005) to work on /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:57:51.977+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/epl_smart_match_scraper.py for tasks to queue
+[2026-01-19T17:57:51.981+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:57:51.979+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:57:52.282+0000] {processor.py:840} INFO - DAG(s) 'epl_smart_match_scraper' retrieved from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:57:52.403+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:57:52.402+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-01-19T17:57:52.512+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:57:52.511+0000] {dag.py:3823} INFO - Setting next_dagrun for epl_smart_match_scraper to 2026-01-19 16:00:00+00:00, run_after=2026-01-19 18:00:00+00:00
+[2026-01-19T17:57:52.592+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/epl_smart_match_scraper.py took 0.927 seconds
+[2026-01-19T17:58:25.010+0000] {processor.py:161} INFO - Started process (PID=48043) to work on /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:58:25.032+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/epl_smart_match_scraper.py for tasks to queue
+[2026-01-19T17:58:25.066+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:58:25.037+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:58:25.594+0000] {processor.py:840} INFO - DAG(s) 'epl_smart_match_scraper' retrieved from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:58:25.700+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:58:25.699+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-01-19T17:58:25.809+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:58:25.807+0000] {dag.py:3823} INFO - Setting next_dagrun for epl_smart_match_scraper to 2026-01-19 16:00:00+00:00, run_after=2026-01-19 18:00:00+00:00
+[2026-01-19T17:58:25.946+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/epl_smart_match_scraper.py took 0.971 seconds
+[2026-01-19T17:58:59.895+0000] {processor.py:161} INFO - Started process (PID=48082) to work on /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:58:59.916+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/epl_smart_match_scraper.py for tasks to queue
+[2026-01-19T17:58:59.921+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:58:59.919+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:59:00.179+0000] {processor.py:840} INFO - DAG(s) 'epl_smart_match_scraper' retrieved from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T17:59:00.295+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:59:00.294+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-01-19T17:59:00.407+0000] {logging_mixin.py:188} INFO - [2026-01-19T17:59:00.405+0000] {dag.py:3823} INFO - Setting next_dagrun for epl_smart_match_scraper to 2026-01-19 16:00:00+00:00, run_after=2026-01-19 18:00:00+00:00
+[2026-01-19T17:59:00.509+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/epl_smart_match_scraper.py took 0.630 seconds
+[2026-01-19T18:01:57.090+0000] {processor.py:161} INFO - Started process (PID=48137) to work on /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T18:01:57.506+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/epl_smart_match_scraper.py for tasks to queue
+[2026-01-19T18:01:57.508+0000] {logging_mixin.py:188} INFO - [2026-01-19T18:01:57.507+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T18:01:57.841+0000] {processor.py:840} INFO - DAG(s) 'epl_smart_match_scraper' retrieved from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T18:01:57.894+0000] {logging_mixin.py:188} INFO - [2026-01-19T18:01:57.894+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-01-19T18:01:58.010+0000] {logging_mixin.py:188} INFO - [2026-01-19T18:01:58.009+0000] {dag.py:3823} INFO - Setting next_dagrun for epl_smart_match_scraper to 2026-01-19 18:00:00+00:00, run_after=2026-01-19 20:00:00+00:00
+[2026-01-19T18:01:58.133+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/epl_smart_match_scraper.py took 1.050 seconds
+[2026-01-19T18:02:29.035+0000] {processor.py:161} INFO - Started process (PID=48173) to work on /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T18:02:29.105+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/epl_smart_match_scraper.py for tasks to queue
+[2026-01-19T18:02:29.107+0000] {logging_mixin.py:188} INFO - [2026-01-19T18:02:29.106+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T18:02:29.238+0000] {processor.py:840} INFO - DAG(s) 'epl_smart_match_scraper' retrieved from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T18:02:29.304+0000] {logging_mixin.py:188} INFO - [2026-01-19T18:02:29.304+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-01-19T18:02:29.363+0000] {logging_mixin.py:188} INFO - [2026-01-19T18:02:29.362+0000] {dag.py:3823} INFO - Setting next_dagrun for epl_smart_match_scraper to 2026-01-19 18:00:00+00:00, run_after=2026-01-19 20:00:00+00:00
+[2026-01-19T18:02:29.509+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/epl_smart_match_scraper.py took 0.480 seconds
+[2026-01-19T18:02:59.579+0000] {processor.py:161} INFO - Started process (PID=48253) to work on /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T18:02:59.580+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/epl_smart_match_scraper.py for tasks to queue
+[2026-01-19T18:02:59.582+0000] {logging_mixin.py:188} INFO - [2026-01-19T18:02:59.581+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T18:02:59.701+0000] {processor.py:840} INFO - DAG(s) 'epl_smart_match_scraper' retrieved from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T18:02:59.849+0000] {logging_mixin.py:188} INFO - [2026-01-19T18:02:59.849+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-01-19T18:02:59.914+0000] {logging_mixin.py:188} INFO - [2026-01-19T18:02:59.913+0000] {dag.py:3823} INFO - Setting next_dagrun for epl_smart_match_scraper to 2026-01-19 18:00:00+00:00, run_after=2026-01-19 20:00:00+00:00
+[2026-01-19T18:03:00.008+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/epl_smart_match_scraper.py took 0.435 seconds
+[2026-01-19T18:03:58.043+0000] {processor.py:161} INFO - Started process (PID=48771) to work on /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T18:03:58.106+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/epl_smart_match_scraper.py for tasks to queue
+[2026-01-19T18:03:58.109+0000] {logging_mixin.py:188} INFO - [2026-01-19T18:03:58.108+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T18:03:58.301+0000] {processor.py:840} INFO - DAG(s) 'epl_smart_match_scraper' retrieved from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T18:03:58.366+0000] {logging_mixin.py:188} INFO - [2026-01-19T18:03:58.365+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-01-19T18:03:58.434+0000] {logging_mixin.py:188} INFO - [2026-01-19T18:03:58.433+0000] {dag.py:3823} INFO - Setting next_dagrun for epl_smart_match_scraper to 2026-01-19 18:00:00+00:00, run_after=2026-01-19 20:00:00+00:00
+[2026-01-19T18:03:58.910+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/epl_smart_match_scraper.py took 0.878 seconds
+[2026-01-19T18:04:29.029+0000] {processor.py:161} INFO - Started process (PID=48846) to work on /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T18:04:29.057+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/epl_smart_match_scraper.py for tasks to queue
+[2026-01-19T18:04:29.059+0000] {logging_mixin.py:188} INFO - [2026-01-19T18:04:29.058+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T18:04:29.163+0000] {processor.py:840} INFO - DAG(s) 'epl_smart_match_scraper' retrieved from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T18:04:29.221+0000] {logging_mixin.py:188} INFO - [2026-01-19T18:04:29.221+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-01-19T18:04:29.267+0000] {logging_mixin.py:188} INFO - [2026-01-19T18:04:29.267+0000] {dag.py:3823} INFO - Setting next_dagrun for epl_smart_match_scraper to 2026-01-19 18:00:00+00:00, run_after=2026-01-19 20:00:00+00:00
+[2026-01-19T18:04:29.479+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/epl_smart_match_scraper.py took 0.456 seconds
+[2026-01-19T18:05:20.024+0000] {processor.py:161} INFO - Started process (PID=48880) to work on /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T18:05:20.102+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/epl_smart_match_scraper.py for tasks to queue
+[2026-01-19T18:05:20.107+0000] {logging_mixin.py:188} INFO - [2026-01-19T18:05:20.105+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T18:05:20.278+0000] {processor.py:840} INFO - DAG(s) 'epl_smart_match_scraper' retrieved from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T18:05:20.333+0000] {logging_mixin.py:188} INFO - [2026-01-19T18:05:20.332+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-01-19T18:05:20.379+0000] {logging_mixin.py:188} INFO - [2026-01-19T18:05:20.379+0000] {dag.py:3823} INFO - Setting next_dagrun for epl_smart_match_scraper to 2026-01-19 18:00:00+00:00, run_after=2026-01-19 20:00:00+00:00
+[2026-01-19T18:05:21.361+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/epl_smart_match_scraper.py took 1.350 seconds
+[2026-01-19T18:05:52.050+0000] {processor.py:161} INFO - Started process (PID=48924) to work on /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T18:05:52.056+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/epl_smart_match_scraper.py for tasks to queue
+[2026-01-19T18:05:52.059+0000] {logging_mixin.py:188} INFO - [2026-01-19T18:05:52.058+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T18:05:52.183+0000] {processor.py:840} INFO - DAG(s) 'epl_smart_match_scraper' retrieved from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T18:05:52.239+0000] {logging_mixin.py:188} INFO - [2026-01-19T18:05:52.239+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-01-19T18:05:52.511+0000] {logging_mixin.py:188} INFO - [2026-01-19T18:05:52.511+0000] {dag.py:3823} INFO - Setting next_dagrun for epl_smart_match_scraper to 2026-01-19 18:00:00+00:00, run_after=2026-01-19 20:00:00+00:00
+[2026-01-19T18:05:52.570+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/epl_smart_match_scraper.py took 0.529 seconds
+[2026-01-19T18:06:23.193+0000] {processor.py:161} INFO - Started process (PID=48960) to work on /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T18:06:23.195+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/epl_smart_match_scraper.py for tasks to queue
+[2026-01-19T18:06:23.197+0000] {logging_mixin.py:188} INFO - [2026-01-19T18:06:23.196+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T18:06:23.316+0000] {processor.py:840} INFO - DAG(s) 'epl_smart_match_scraper' retrieved from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T18:06:23.375+0000] {logging_mixin.py:188} INFO - [2026-01-19T18:06:23.375+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-01-19T18:06:23.671+0000] {logging_mixin.py:188} INFO - [2026-01-19T18:06:23.670+0000] {dag.py:3823} INFO - Setting next_dagrun for epl_smart_match_scraper to 2026-01-19 18:00:00+00:00, run_after=2026-01-19 20:00:00+00:00
+[2026-01-19T18:06:23.728+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/epl_smart_match_scraper.py took 0.543 seconds
+[2026-01-19T18:07:04.532+0000] {processor.py:161} INFO - Started process (PID=48982) to work on /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T18:07:04.540+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/epl_smart_match_scraper.py for tasks to queue
+[2026-01-19T18:07:04.543+0000] {logging_mixin.py:188} INFO - [2026-01-19T18:07:04.541+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T18:07:24.766+0000] {processor.py:840} INFO - DAG(s) 'epl_smart_match_scraper' retrieved from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T18:07:25.170+0000] {logging_mixin.py:188} INFO - [2026-01-19T18:07:25.169+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-01-19T18:07:25.225+0000] {logging_mixin.py:188} INFO - [2026-01-19T18:07:25.225+0000] {dag.py:3823} INFO - Setting next_dagrun for epl_smart_match_scraper to 2026-01-19 18:00:00+00:00, run_after=2026-01-19 20:00:00+00:00
+[2026-01-19T18:07:26.095+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/epl_smart_match_scraper.py took 21.572 seconds
+[2026-01-19T18:07:56.317+0000] {processor.py:161} INFO - Started process (PID=49021) to work on /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T18:07:56.348+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/epl_smart_match_scraper.py for tasks to queue
+[2026-01-19T18:07:56.350+0000] {logging_mixin.py:188} INFO - [2026-01-19T18:07:56.349+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T18:07:56.453+0000] {processor.py:840} INFO - DAG(s) 'epl_smart_match_scraper' retrieved from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T18:07:56.745+0000] {logging_mixin.py:188} INFO - [2026-01-19T18:07:56.744+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-01-19T18:07:56.800+0000] {logging_mixin.py:188} INFO - [2026-01-19T18:07:56.799+0000] {dag.py:3823} INFO - Setting next_dagrun for epl_smart_match_scraper to 2026-01-19 18:00:00+00:00, run_after=2026-01-19 20:00:00+00:00
+[2026-01-19T18:07:56.867+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/epl_smart_match_scraper.py took 0.556 seconds
+[2026-01-19T18:08:27.332+0000] {processor.py:161} INFO - Started process (PID=49057) to work on /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T18:08:27.334+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/epl_smart_match_scraper.py for tasks to queue
+[2026-01-19T18:08:27.336+0000] {logging_mixin.py:188} INFO - [2026-01-19T18:08:27.335+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T18:08:27.490+0000] {processor.py:840} INFO - DAG(s) 'epl_smart_match_scraper' retrieved from /opt/airflow/dags/epl_smart_match_scraper.py
+[2026-01-19T18:08:27.806+0000] {logging_mixin.py:188} INFO - [2026-01-19T18:08:27.806+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-01-19T18:08:27.858+0000] {logging_mixin.py:188} INFO - [2026-01-19T18:08:27.857+0000] {dag.py:3823} INFO - Setting next_dagrun for epl_smart_match_scraper to 2026-01-19 18:00:00+00:00, run_after=2026-01-19 20:00:00+00:00
+[2026-01-19T18:08:28.651+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/epl_smart_match_scraper.py took 1.326 seconds

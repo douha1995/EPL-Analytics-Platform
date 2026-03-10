@@ -11,12 +11,9 @@ import {
   Flex,
   Spinner,
   Badge,
-  useDisclosure,
-  Slide,
-  CloseButton,
-  Tooltip,
+  ScaleFade,
 } from '@chakra-ui/react';
-import { FiMessageCircle, FiSend, FiX } from 'react-icons/fi';
+import { FiMessageCircle, FiSend, FiX, FiMinus } from 'react-icons/fi';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -31,16 +28,19 @@ interface Message {
 }
 
 export default function AIChatbot() {
-  const { isOpen, onToggle, onClose } = useDisclosure();
+  const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'assistant',
-      content: "👋 Hello! I'm your Arsenal FC data analyst. Ask me anything about Arsenal's performance, player stats, tactical analysis, or match results!"
+      content: "⚽ Hello! I'm your EPL Analytics Assistant powered by AI. Ask me anything about Premier League teams (Arsenal, Man United, Man City, Liverpool), player stats, tactical analysis, head-to-head comparisons, or match results!"
     }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const toggleChat = () => setIsOpen(!isOpen);
+  const closeChat = () => setIsOpen(false);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -102,60 +102,29 @@ export default function AIChatbot() {
   };
 
   return (
-    <>
-      {/* Floating Chat Button */}
-      {!isOpen && (
-        <Tooltip label="Ask Arsenal AI Analyst" placement="left">
-          <IconButton
-            icon={<FiMessageCircle size={24} />}
-            aria-label="Open chat"
-            onClick={onToggle}
-            position="fixed"
-            bottom="30px"
-            right="30px"
-            size="lg"
-            borderRadius="full"
-            bg="linear-gradient(135deg, #EF0107 0%, #9C0D0F 100%)"
-            color="white"
-            boxShadow="0 8px 24px rgba(239, 1, 7, 0.4)"
-            _hover={{
-              transform: 'scale(1.1)',
-              boxShadow: '0 12px 32px rgba(239, 1, 7, 0.6)',
-            }}
-            _active={{
-              transform: 'scale(0.95)',
-            }}
-            transition="all 0.3s ease"
-            zIndex={1000}
-            width="60px"
-            height="60px"
-          />
-        </Tooltip>
-      )}
-
-      {/* Chat Window */}
-      <Slide direction="bottom" in={isOpen} style={{ zIndex: 999 }}>
+    <Box position="fixed" bottom="30px" right="30px" zIndex={9999}>
+      {/* Chat Window - shows when open */}
+      <ScaleFade in={isOpen} unmountOnExit>
         <Box
-          position="fixed"
-          bottom="30px"
-          right="30px"
           width={{ base: '90vw', md: '400px' }}
-          height="600px"
-          bg="rgba(0, 31, 63, 0.95)"
-          backdropFilter="blur(20px)"
-          borderRadius="xl"
-          border="1px solid rgba(239, 1, 7, 0.3)"
-          boxShadow="0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(239, 1, 7, 0.2)"
+          height="550px"
+          bg="rgba(15, 15, 25, 0.98)"
+          backdropFilter="blur(30px)"
+          borderRadius="2xl"
+          border="2px solid rgba(4, 245, 255, 0.3)"
+          boxShadow="0 20px 80px rgba(0, 0, 0, 0.8), 0 0 60px rgba(4, 245, 255, 0.3)"
           display="flex"
           flexDirection="column"
           overflow="hidden"
+          mb={4}
         >
-          {/* Header */}
+          {/* Header with Close Button */}
           <Flex
-            bg="linear-gradient(135deg, #EF0107 0%, #9C0D0F 100%)"
-            p={4}
+            bg="linear-gradient(135deg, #37003C 0%, #04F5FF 50%, #37003C 100%)"
+            p={3}
             align="center"
             justify="space-between"
+            borderBottom="1px solid rgba(4, 245, 255, 0.3)"
           >
             <HStack spacing={3}>
               <Box
@@ -163,18 +132,37 @@ export default function AIChatbot() {
                 height="10px"
                 borderRadius="full"
                 bg="#10B981"
-                boxShadow="0 0 10px #10B981"
+                boxShadow="0 0 15px #10B981"
               />
               <VStack align="start" spacing={0}>
-                <Heading size="sm" color="white">
-                  Arsenal FC Analyst
+                <Heading size="sm" color="white" fontWeight="black">
+                  ⚽ EPL AI Assistant
                 </Heading>
-                <Text fontSize="xs" color="whiteAlpha.800">
-                  🎯 AI-Powered Data Analysis
+                <Text fontSize="xs" color="whiteAlpha.900">
+                  Powered by Ollama
                 </Text>
               </VStack>
             </HStack>
-            <CloseButton onClick={onClose} color="white" />
+            <HStack spacing={1}>
+              <IconButton
+                icon={<FiMinus size={18} />}
+                aria-label="Minimize chat"
+                onClick={closeChat}
+                size="sm"
+                variant="ghost"
+                color="white"
+                _hover={{ bg: 'rgba(255,255,255,0.2)' }}
+              />
+              <IconButton
+                icon={<FiX size={18} />}
+                aria-label="Close chat"
+                onClick={closeChat}
+                size="sm"
+                variant="ghost"
+                color="white"
+                _hover={{ bg: 'rgba(255,255,255,0.2)' }}
+              />
+            </HStack>
           </Flex>
 
           {/* Messages */}
@@ -188,7 +176,7 @@ export default function AIChatbot() {
               '&::-webkit-scrollbar': { width: '4px' },
               '&::-webkit-scrollbar-track': { background: 'transparent' },
               '&::-webkit-scrollbar-thumb': {
-                background: 'rgba(239, 1, 7, 0.5)',
+                background: 'linear-gradient(180deg, #37003C, #04F5FF)',
                 borderRadius: '2px',
               },
             }}
@@ -197,7 +185,7 @@ export default function AIChatbot() {
               <Box
                 key={idx}
                 alignSelf={message.role === 'user' ? 'flex-end' : 'flex-start'}
-                maxW="80%"
+                maxW="85%"
               >
                 <Box
                   bg={
@@ -253,7 +241,7 @@ export default function AIChatbot() {
 
             {isLoading && (
               <HStack spacing={2} alignSelf="flex-start">
-                <Spinner size="sm" color="arsenal.500" />
+                <Spinner size="sm" color="cyan.400" />
                 <Text fontSize="sm" color="whiteAlpha.600">
                   Analyzing data...
                 </Text>
@@ -265,7 +253,7 @@ export default function AIChatbot() {
 
           {/* Input */}
           <Box
-            p={4}
+            p={3}
             borderTop="1px solid rgba(255, 255, 255, 0.1)"
             bg="rgba(0, 15, 31, 0.5)"
           >
@@ -319,7 +307,37 @@ export default function AIChatbot() {
             </HStack>
           </Box>
         </Box>
-      </Slide>
-    </>
+      </ScaleFade>
+
+      {/* Floating Toggle Button - Always at bottom right */}
+      <IconButton
+        icon={isOpen ? <FiX size={24} /> : <FiMessageCircle size={24} />}
+        aria-label={isOpen ? "Close chat" : "Open chat"}
+        onClick={toggleChat}
+        size="lg"
+        borderRadius="full"
+        bg={isOpen 
+          ? "linear-gradient(135deg, #EF0107 0%, #9C0D0F 100%)" 
+          : "linear-gradient(135deg, #37003C 0%, #04F5FF 100%)"
+        }
+        color="white"
+        boxShadow={isOpen 
+          ? "0 8px 24px rgba(239, 1, 7, 0.5)" 
+          : "0 8px 24px rgba(4, 245, 255, 0.5)"
+        }
+        _hover={{
+          transform: 'scale(1.1)',
+          boxShadow: isOpen 
+            ? '0 12px 40px rgba(239, 1, 7, 0.7)' 
+            : '0 12px 40px rgba(4, 245, 255, 0.7)',
+        }}
+        _active={{
+          transform: 'scale(0.95)',
+        }}
+        transition="all 0.3s ease"
+        width="60px"
+        height="60px"
+      />
+    </Box>
   );
 }

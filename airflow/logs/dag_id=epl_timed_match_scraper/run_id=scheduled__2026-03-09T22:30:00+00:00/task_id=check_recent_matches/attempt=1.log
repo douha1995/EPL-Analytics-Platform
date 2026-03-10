@@ -1,0 +1,34 @@
+[2026-03-10T00:30:01.850+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: epl_timed_match_scraper.check_recent_matches scheduled__2026-03-09T22:30:00+00:00 [queued]>
+[2026-03-10T00:30:01.861+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: epl_timed_match_scraper.check_recent_matches scheduled__2026-03-09T22:30:00+00:00 [queued]>
+[2026-03-10T00:30:01.861+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2026-03-10T00:30:01.893+0000] {taskinstance.py:2191} INFO - Executing <Task(BranchPythonOperator): check_recent_matches> on 2026-03-09 22:30:00+00:00
+[2026-03-10T00:30:01.904+0000] {standard_task_runner.py:60} INFO - Started process 30552 to run task
+[2026-03-10T00:30:01.907+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'epl_timed_match_scraper', 'check_recent_matches', 'scheduled__2026-03-09T22:30:00+00:00', '--job-id', '798', '--raw', '--subdir', 'DAGS_FOLDER/epl_timed_match_scraper.py', '--cfg-path', '/tmp/tmp7skgpe00']
+[2026-03-10T00:30:01.910+0000] {standard_task_runner.py:88} INFO - Job 798: Subtask check_recent_matches
+[2026-03-10T00:30:02.006+0000] {task_command.py:423} INFO - Running <TaskInstance: epl_timed_match_scraper.check_recent_matches scheduled__2026-03-09T22:30:00+00:00 [running]> on host 13250c608584
+[2026-03-10T00:30:02.168+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='epl_analytics' AIRFLOW_CTX_DAG_ID='epl_timed_match_scraper' AIRFLOW_CTX_TASK_ID='check_recent_matches' AIRFLOW_CTX_EXECUTION_DATE='2026-03-09T22:30:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-09T22:30:00+00:00'
+[2026-03-10T00:30:02.170+0000] {epl_timed_match_scraper.py:54} INFO - Checking Arsenal for recent completed matches
+[2026-03-10T00:30:02.171+0000] {playwright_scraper.py:87} INFO - Scraping Understat fixtures for Arsenal: https://understat.com/team/Arsenal/2025
+[2026-03-10T00:30:09.454+0000] {playwright_scraper.py:118} INFO - Scraped 38 fixtures from Understat
+[2026-03-10T00:30:09.543+0000] {epl_timed_match_scraper.py:54} INFO - Checking Manchester United for recent completed matches
+[2026-03-10T00:30:11.531+0000] {playwright_scraper.py:87} INFO - Scraping Understat fixtures for Manchester_United: https://understat.com/team/Manchester_United/2025
+[2026-03-10T00:30:19.020+0000] {playwright_scraper.py:118} INFO - Scraped 38 fixtures from Understat
+[2026-03-10T00:30:19.104+0000] {epl_timed_match_scraper.py:54} INFO - Checking Manchester City for recent completed matches
+[2026-03-10T00:30:21.094+0000] {playwright_scraper.py:87} INFO - Scraping Understat fixtures for Manchester_City: https://understat.com/team/Manchester_City/2025
+[2026-03-10T00:30:28.953+0000] {playwright_scraper.py:118} INFO - Scraped 38 fixtures from Understat
+[2026-03-10T00:30:29.039+0000] {epl_timed_match_scraper.py:75} INFO - Found new match: Newcastle United vs Manchester City (Manchester City)
+[2026-03-10T00:30:29.039+0000] {epl_timed_match_scraper.py:75} INFO - Found new match: Manchester City vs Chelsea (Manchester City)
+[2026-03-10T00:30:29.039+0000] {epl_timed_match_scraper.py:75} INFO - Found new match: Manchester United vs Manchester City (Manchester City)
+[2026-03-10T00:30:29.040+0000] {epl_timed_match_scraper.py:75} INFO - Found new match: Manchester City vs Fulham (Manchester City)
+[2026-03-10T00:30:29.040+0000] {epl_timed_match_scraper.py:54} INFO - Checking Liverpool for recent completed matches
+[2026-03-10T00:30:31.028+0000] {playwright_scraper.py:87} INFO - Scraping Understat fixtures for Liverpool: https://understat.com/team/Liverpool/2025
+[2026-03-10T00:30:38.538+0000] {playwright_scraper.py:118} INFO - Scraped 38 fixtures from Understat
+[2026-03-10T00:30:38.628+0000] {epl_timed_match_scraper.py:75} INFO - Found new match: Arsenal vs Liverpool (Liverpool)
+[2026-03-10T00:30:38.629+0000] {epl_timed_match_scraper.py:75} INFO - Found new match: Liverpool vs Manchester City (Liverpool)
+[2026-03-10T00:30:38.691+0000] {python.py:201} INFO - Done. Returned value was: scrape_matches
+[2026-03-10T00:30:38.692+0000] {branch.py:35} INFO - Branch into scrape_matches
+[2026-03-10T00:30:38.692+0000] {skipmixin.py:178} INFO - Following branch scrape_matches
+[2026-03-10T00:30:38.727+0000] {skipmixin.py:244} INFO - Skipping tasks [('skip_scraping', -1)]
+[2026-03-10T00:30:38.868+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=epl_timed_match_scraper, task_id=check_recent_matches, execution_date=20260309T223000, start_date=20260310T003001, end_date=20260310T003038
+[2026-03-10T00:30:38.940+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-10T00:30:38.989+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check

@@ -1,0 +1,36 @@
+[2026-03-09T20:00:05.179+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: epl_smart_match_scraper.scrape_liverpool scheduled__2026-03-09T18:00:00+00:00 [queued]>
+[2026-03-09T20:00:05.205+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: epl_smart_match_scraper.scrape_liverpool scheduled__2026-03-09T18:00:00+00:00 [queued]>
+[2026-03-09T20:00:05.206+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-03-09T20:00:05.355+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): scrape_liverpool> on 2026-03-09 18:00:00+00:00
+[2026-03-09T20:00:05.374+0000] {standard_task_runner.py:60} INFO - Started process 53752 to run task
+[2026-03-09T20:00:05.381+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'epl_smart_match_scraper', 'scrape_liverpool', 'scheduled__2026-03-09T18:00:00+00:00', '--job-id', '735', '--raw', '--subdir', 'DAGS_FOLDER/epl_smart_match_scraper.py', '--cfg-path', '/tmp/tmpitp3lz60']
+[2026-03-09T20:00:05.386+0000] {standard_task_runner.py:88} INFO - Job 735: Subtask scrape_liverpool
+[2026-03-09T20:00:05.618+0000] {task_command.py:423} INFO - Running <TaskInstance: epl_smart_match_scraper.scrape_liverpool scheduled__2026-03-09T18:00:00+00:00 [running]> on host 13250c608584
+[2026-03-09T20:00:06.123+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='epl_analytics' AIRFLOW_CTX_DAG_ID='epl_smart_match_scraper' AIRFLOW_CTX_TASK_ID='scrape_liverpool' AIRFLOW_CTX_EXECUTION_DATE='2026-03-09T18:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-09T18:00:00+00:00'
+[2026-03-09T20:00:06.126+0000] {epl_smart_match_scraper.py:42} INFO - Checking Liverpool matches for 2025-26
+[2026-03-09T20:00:06.127+0000] {playwright_scraper.py:87} INFO - Scraping Understat fixtures for Liverpool: https://understat.com/team/Liverpool/2025
+[2026-03-09T20:00:15.833+0000] {playwright_scraper.py:118} INFO - Scraped 38 fixtures from Understat
+[2026-03-09T20:00:17.672+0000] {playwright_scraper.py:140} INFO - Scraping match shots: https://understat.com/match/28797
+[2026-03-09T20:00:30.926+0000] {playwright_scraper.py:213} INFO - Scraped 15 shots for Newcastle United vs Liverpool
+[2026-03-09T20:00:31.135+0000] {db_loader.py:196} INFO - Created scrape run: epl_smart_Liverpool_e6ab06cb
+[2026-03-09T20:00:31.206+0000] {db_loader.py:359} INFO - Saved match reference for Newcastle United vs Liverpool (Team: Liverpool)
+[2026-03-09T20:00:31.231+0000] {db_loader.py:150} INFO - Saved Understat data for match 20250825_newcastle_united_vs_liverpool (ID: 437, Team: Liverpool)
+[2026-03-09T20:00:31.301+0000] {db_loader.py:242} INFO - Updated scrape run epl_smart_Liverpool_e6ab06cb: success
+[2026-03-09T20:00:31.302+0000] {epl_smart_match_scraper.py:83} INFO - ✓ Newcastle United vs Liverpool: 15 shots
+[2026-03-09T20:00:33.091+0000] {playwright_scraper.py:140} INFO - Scraping match shots: https://understat.com/match/28806
+[2026-03-09T20:01:34.852+0000] {epl_smart_match_scraper.py:86} ERROR - Error: Timeout loading https://understat.com/match/28806: Timeout 60000ms exceeded.
+[2026-03-09T20:01:34.853+0000] {playwright_scraper.py:140} INFO - Scraping match shots: https://understat.com/match/28861
+[2026-03-09T20:01:46.780+0000] {playwright_scraper.py:213} INFO - Scraped 31 shots for Brentford vs Liverpool
+[2026-03-09T20:01:48.857+0000] {db_loader.py:196} INFO - Created scrape run: epl_smart_Liverpool_50f2718a
+[2026-03-09T20:01:48.902+0000] {db_loader.py:359} INFO - Saved match reference for Brentford vs Liverpool (Team: Liverpool)
+[2026-03-09T20:01:48.931+0000] {db_loader.py:150} INFO - Saved Understat data for match 20251025_brentford_vs_liverpool (ID: 443, Team: Liverpool)
+[2026-03-09T20:01:48.992+0000] {db_loader.py:242} INFO - Updated scrape run epl_smart_Liverpool_50f2718a: success
+[2026-03-09T20:01:48.994+0000] {epl_smart_match_scraper.py:83} INFO - ✓ Brentford vs Liverpool: 31 shots
+[2026-03-09T20:01:48.994+0000] {playwright_scraper.py:140} INFO - Scraping match shots: https://understat.com/match/28975
+[2026-03-09T20:02:50.380+0000] {epl_smart_match_scraper.py:86} ERROR - Error: Timeout loading https://understat.com/match/28975: Timeout 60000ms exceeded.
+[2026-03-09T20:02:50.380+0000] {playwright_scraper.py:140} INFO - Scraping match shots: https://understat.com/match/29067
+[2026-03-09T20:03:51.814+0000] {epl_smart_match_scraper.py:86} ERROR - Error: Timeout loading https://understat.com/match/29067: Timeout 60000ms exceeded.
+[2026-03-09T20:03:51.815+0000] {python.py:201} INFO - Done. Returned value was: {'team': 'Liverpool', 'status': 'success', 'scraped': 2}
+[2026-03-09T20:03:51.920+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=epl_smart_match_scraper, task_id=scrape_liverpool, execution_date=20260309T180000, start_date=20260309T200005, end_date=20260309T200351
+[2026-03-09T20:03:51.996+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-09T20:03:52.059+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

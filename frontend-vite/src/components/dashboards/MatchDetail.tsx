@@ -25,8 +25,8 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 import Pitch from '@/components/Pitch';
 
 const GET_MATCH_LIST = gql`
-  query GetMatchList($season: String!) {
-    matchList(season: $season) {
+  query GetMatchList($season: String!, $team: String!) {
+    matchList(season: $season, team: $team) {
       matchId
       matchName
       matchDate
@@ -35,8 +35,8 @@ const GET_MATCH_LIST = gql`
 `;
 
 const GET_MATCH_SHOTS = gql`
-  query GetMatchShots($matchId: String!) {
-    matchShots(matchId: $matchId) {
+  query GetMatchShots($matchId: String!, $team: String) {
+    matchShots(matchId: $matchId, team: $team) {
       x
       y
       xg
@@ -45,24 +45,26 @@ const GET_MATCH_SHOTS = gql`
       minute
       situation
       shotType
+      team
     }
   }
 `;
 
 interface MatchDetailProps {
   season: string;
+  team: string;
 }
 
-export default function MatchDetail({ season }: MatchDetailProps) {
+export default function MatchDetail({ season, team }: MatchDetailProps) {
   const { data: matchListData, loading: matchListLoading } = useQuery(GET_MATCH_LIST, {
-    variables: { season: season || '2024-25' },
-    skip: !season,
+    variables: { season: season || '2024-25', team: team || 'Arsenal' },
+    skip: !season || !team,
   });
 
   const [selectedMatch, setSelectedMatch] = useState<string>('');
 
   const { data: shotsData, loading: shotsLoading } = useQuery(GET_MATCH_SHOTS, {
-    variables: { matchId: selectedMatch },
+    variables: { matchId: selectedMatch, team: team },
     skip: !selectedMatch,
   });
 
@@ -77,8 +79,8 @@ export default function MatchDetail({ season }: MatchDetailProps) {
   const matches = matchListData?.matchList || [];
   const shots = shotsData?.matchShots || [];
 
-  // Filter Arsenal shots (assuming team field or player names)
-  const arsenalShots = shots.filter((shot: any) => shot.playerName);
+  // Shots are now filtered by team from the server
+  const teamShots = shots.filter((shot: any) => shot.playerName);
 
   // Prepare xG timeline data
   const xgTimeline = shots.reduce((acc: any[], shot: any) => {
@@ -114,7 +116,7 @@ export default function MatchDetail({ season }: MatchDetailProps) {
   return (
     <Box>
       <Heading size="lg" mb={6}>
-        Match Detail: {season}
+        {team} Match Detail: {season}
       </Heading>
 
       {matches.length > 0 && (
@@ -139,30 +141,30 @@ export default function MatchDetail({ season }: MatchDetailProps) {
         <Center py={10}>
           <Spinner size="xl" color="arsenal.500" />
         </Center>
-      ) : selectedMatch && arsenalShots.length > 0 ? (
+      ) : selectedMatch && teamShots.length > 0 ? (
         <>
           <SimpleGrid columns={{ base: 1, md: 3 }} spacing={4} mb={6}>
             <Stat  p={4} borderRadius="xl" >
               <StatLabel>Total Shots</StatLabel>
-              <StatNumber>{arsenalShots.length}</StatNumber>
+              <StatNumber>{teamShots.length}</StatNumber>
             </Stat>
             <Stat  p={4} borderRadius="xl" >
               <StatLabel>Goals</StatLabel>
               <StatNumber>
-                {arsenalShots.filter((s: any) => s.result === 'Goal').length}
+                {teamShots.filter((s: any) => s.result === 'Goal').length}
               </StatNumber>
             </Stat>
             <Stat  p={4} borderRadius="xl" >
               <StatLabel>Total xG</StatLabel>
               <StatNumber>
-                {arsenalShots.reduce((sum: number, s: any) => sum + s.xg, 0).toFixed(2)}
+                {teamShots.reduce((sum: number, s: any) => sum + s.xg, 0).toFixed(2)}
               </StatNumber>
             </Stat>
           </SimpleGrid>
 
           <Box  p={6} borderRadius="xl"  mb={6}>
             <Heading size="md" mb={4}>Shot Map</Heading>
-            <Pitch shots={arsenalShots} />
+            <Pitch shots={teamShots} />
           </Box>
 
           <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6} mb={6}>
@@ -218,7 +220,7 @@ export default function MatchDetail({ season }: MatchDetailProps) {
                   </Tr>
                 </Thead>
                 <Tbody>
-                  {arsenalShots.slice(0, 20).map((shot: any, idx: number) => (
+                  {teamShots.slice(0, 20).map((shot: any, idx: number) => (
                     <Tr key={idx}>
                       <Td>{shot.minute}</Td>
                       <Td>{shot.playerName}</Td>

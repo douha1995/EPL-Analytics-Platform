@@ -2,13 +2,13 @@ import { query } from '../db/connection.js';
 
 export const playerResolvers = {
   Query: {
-    async playerStats(_, { season, limit = 50 }) {
+    async playerStats(_, { season, team = 'Arsenal', limit = 50 }) {
       const result = await query(
         `SELECT * FROM metrics.player_advanced_stats 
-         WHERE season = $1 
+         WHERE season = $1 AND team_name = $2
          ORDER BY total_xg DESC 
-         LIMIT $2`,
-        [season, limit]
+         LIMIT $3`,
+        [season, team, limit]
       );
 
       return result.rows.map(row => ({
@@ -51,12 +51,12 @@ export const playerResolvers = {
       }));
     },
 
-    async playerShots(_, { season, playerName }) {
+    async playerShots(_, { season, playerName, team = 'Arsenal' }) {
       const result = await query(
         `SELECT * FROM silver.shot_events 
-         WHERE season = $1 AND player_name = $2 AND team = 'Arsenal'
+         WHERE season = $1 AND player_name = $2 AND team = $3
          ORDER BY match_date DESC, minute ASC`,
-        [season, playerName]
+        [season, playerName, team]
       );
 
       return result.rows.map(row => ({
@@ -85,8 +85,7 @@ export const playerResolvers = {
       }));
     },
 
-    async assistNetwork(_, { season, limit = 50 }) {
-      // Create assist network from shot_events
+    async assistNetwork(_, { season, team = 'Arsenal', limit = 50 }) {
       const result = await query(
         `SELECT 
           assisted_by as assister,
@@ -97,13 +96,13 @@ export const playerResolvers = {
           ROUND(SUM(xg), 2) as total_xg_assisted
         FROM silver.shot_events
         WHERE season = $1 
-          AND team = 'Arsenal'
+          AND team = $2
           AND assisted_by IS NOT NULL
           AND assisted_by != ''
         GROUP BY assisted_by, player_name, season
         ORDER BY assists_count DESC
-        LIMIT $2`,
-        [season, limit]
+        LIMIT $3`,
+        [season, team, limit]
       );
 
       return result.rows.map(row => ({
@@ -116,13 +115,13 @@ export const playerResolvers = {
       }));
     },
 
-    async playerXTStats(_, { season, limit = 50 }) {
+    async playerXTStats(_, { season, team = 'Arsenal', limit = 50 }) {
       const result = await query(
         `SELECT * FROM metrics.player_xt_stats 
-         WHERE season = $1 
+         WHERE season = $1 AND team_name = $2
          ORDER BY total_xt DESC 
-         LIMIT $2`,
-        [season, limit]
+         LIMIT $3`,
+        [season, team, limit]
       );
 
       return result.rows.map(row => ({

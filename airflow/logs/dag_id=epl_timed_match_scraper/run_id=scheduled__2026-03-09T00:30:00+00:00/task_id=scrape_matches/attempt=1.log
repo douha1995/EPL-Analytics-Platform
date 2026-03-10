@@ -1,0 +1,71 @@
+[2026-03-09T17:30:22.045+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: epl_timed_match_scraper.scrape_matches scheduled__2026-03-09T00:30:00+00:00 [queued]>
+[2026-03-09T17:30:22.051+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: epl_timed_match_scraper.scrape_matches scheduled__2026-03-09T00:30:00+00:00 [queued]>
+[2026-03-09T17:30:22.051+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2026-03-09T17:30:22.070+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): scrape_matches> on 2026-03-09 00:30:00+00:00
+[2026-03-09T17:30:22.075+0000] {standard_task_runner.py:60} INFO - Started process 11239 to run task
+[2026-03-09T17:30:22.077+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'epl_timed_match_scraper', 'scrape_matches', 'scheduled__2026-03-09T00:30:00+00:00', '--job-id', '696', '--raw', '--subdir', 'DAGS_FOLDER/epl_timed_scraper.py', '--cfg-path', '/tmp/tmpxq5x11jl']
+[2026-03-09T17:30:22.079+0000] {standard_task_runner.py:88} INFO - Job 696: Subtask scrape_matches
+[2026-03-09T17:30:22.126+0000] {task_command.py:423} INFO - Running <TaskInstance: epl_timed_match_scraper.scrape_matches scheduled__2026-03-09T00:30:00+00:00 [running]> on host 13250c608584
+[2026-03-09T17:30:22.226+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='epl_analytics' AIRFLOW_CTX_DAG_ID='epl_timed_match_scraper' AIRFLOW_CTX_TASK_ID='scrape_matches' AIRFLOW_CTX_EXECUTION_DATE='2026-03-09T00:30:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-09T00:30:00+00:00'
+[2026-03-09T17:30:22.233+0000] {epl_timed_scraper.py:110} INFO - Scraping: Arsenal vs Manchester United on 2026-01-25
+[2026-03-09T17:30:22.234+0000] {playwright_scraper.py:140} INFO - Scraping match shots: https://understat.com/match/28999
+[2026-03-09T17:30:32.238+0000] {playwright_scraper.py:213} INFO - Scraped 26 shots for Arsenal vs Manchester United
+[2026-03-09T17:30:32.306+0000] {db_loader.py:196} INFO - Created scrape run: epl_timed_Arsenal_e3b6ab7b
+[2026-03-09T17:30:32.312+0000] {db_loader.py:42} ERROR - Database error: column "id" does not exist
+LINE 8:                         RETURNING id
+                                          ^
+
+[2026-03-09T17:30:32.312+0000] {db_loader.py:362} ERROR - Failed to save match reference: column "id" does not exist
+LINE 8:                         RETURNING id
+                                          ^
+
+[2026-03-09T17:30:32.318+0000] {db_loader.py:150} INFO - Saved Understat data for match 20260125_arsenal_vs_manchester_united (ID: 326, Team: Arsenal)
+[2026-03-09T17:30:32.352+0000] {db_loader.py:242} INFO - Updated scrape run epl_timed_Arsenal_e3b6ab7b: success
+[2026-03-09T17:30:32.352+0000] {epl_timed_scraper.py:128} INFO - ✓ Arsenal vs Manchester United: 26 shots, xG 1.42-0.64
+[2026-03-09T17:30:32.353+0000] {epl_timed_scraper.py:110} INFO - Scraping: Arsenal vs Sunderland on 2026-02-07
+[2026-03-09T17:30:34.279+0000] {playwright_scraper.py:140} INFO - Scraping match shots: https://understat.com/match/29019
+[2026-03-09T17:31:34.602+0000] {epl_timed_scraper.py:132} ERROR - Error scraping Arsenal vs Sunderland: Timeout loading https://understat.com/match/29019: Timeout 60000ms exceeded.
+[2026-03-09T17:31:34.602+0000] {epl_timed_scraper.py:110} INFO - Scraping: Tottenham vs Arsenal on 2026-02-22
+[2026-03-09T17:31:34.602+0000] {playwright_scraper.py:140} INFO - Scraping match shots: https://understat.com/match/29046
+[2026-03-09T17:31:45.455+0000] {playwright_scraper.py:213} INFO - Scraped 26 shots for Tottenham vs Arsenal
+[2026-03-09T17:31:48.171+0000] {db_loader.py:196} INFO - Created scrape run: epl_timed_Arsenal_7c5a74e0
+[2026-03-09T17:31:48.176+0000] {db_loader.py:42} ERROR - Database error: column "id" does not exist
+LINE 8:                         RETURNING id
+                                          ^
+
+[2026-03-09T17:31:48.177+0000] {db_loader.py:362} ERROR - Failed to save match reference: column "id" does not exist
+LINE 8:                         RETURNING id
+                                          ^
+
+[2026-03-09T17:31:48.182+0000] {db_loader.py:150} INFO - Saved Understat data for match 20260222_tottenham_vs_arsenal (ID: 339, Team: Arsenal)
+[2026-03-09T17:31:48.868+0000] {db_loader.py:242} INFO - Updated scrape run epl_timed_Arsenal_7c5a74e0: success
+[2026-03-09T17:31:48.869+0000] {epl_timed_scraper.py:128} INFO - ✓ Tottenham vs Arsenal: 26 shots, xG 0.38-3.32
+[2026-03-09T17:31:48.869+0000] {epl_timed_scraper.py:110} INFO - Scraping: Arsenal vs Chelsea on 2026-03-01
+[2026-03-09T17:31:49.586+0000] {playwright_scraper.py:140} INFO - Scraping match shots: https://understat.com/match/29049
+[2026-03-09T17:32:49.957+0000] {epl_timed_scraper.py:132} ERROR - Error scraping Arsenal vs Chelsea: Timeout loading https://understat.com/match/29049: Timeout 60000ms exceeded.
+[2026-03-09T17:32:49.957+0000] {epl_timed_scraper.py:110} INFO - Scraping: Everton vs Manchester United on 2026-02-23
+[2026-03-09T17:32:49.957+0000] {playwright_scraper.py:140} INFO - Scraping match shots: https://understat.com/match/29042
+[2026-03-09T17:33:02.015+0000] {playwright_scraper.py:213} INFO - Scraped 23 shots for Everton vs Manchester United
+[2026-03-09T17:33:04.038+0000] {db_loader.py:196} INFO - Created scrape run: epl_timed_Manchester_United_df38b646
+[2026-03-09T17:33:04.048+0000] {db_loader.py:42} ERROR - Database error: column "id" does not exist
+LINE 8:                         RETURNING id
+                                          ^
+
+[2026-03-09T17:33:04.049+0000] {db_loader.py:362} ERROR - Failed to save match reference: column "id" does not exist
+LINE 8:                         RETURNING id
+                                          ^
+
+[2026-03-09T17:33:04.056+0000] {db_loader.py:150} INFO - Saved Understat data for match 20260223_everton_vs_manchester_united (ID: 340, Team: Manchester United)
+[2026-03-09T17:33:04.234+0000] {db_loader.py:242} INFO - Updated scrape run epl_timed_Manchester_United_df38b646: success
+[2026-03-09T17:33:04.235+0000] {epl_timed_scraper.py:128} INFO - ✓ Everton vs Manchester United: 23 shots, xG 0.56-1.45
+[2026-03-09T17:33:04.235+0000] {epl_timed_scraper.py:110} INFO - Scraping: Manchester United vs Crystal Palace on 2026-03-01
+[2026-03-09T17:33:05.881+0000] {playwright_scraper.py:140} INFO - Scraping match shots: https://understat.com/match/29055
+[2026-03-09T17:34:06.674+0000] {epl_timed_scraper.py:132} ERROR - Error scraping Manchester United vs Crystal Palace: Timeout loading https://understat.com/match/29055: Timeout 60000ms exceeded.
+[2026-03-09T17:34:06.912+0000] {epl_timed_scraper.py:110} INFO - Scraping: Newcastle United vs Manchester United on 2026-03-04
+[2026-03-09T17:34:06.913+0000] {playwright_scraper.py:140} INFO - Scraping match shots: https://understat.com/match/29065
+[2026-03-09T17:35:08.482+0000] {epl_timed_scraper.py:132} ERROR - Error scraping Newcastle United vs Manchester United: Timeout loading https://understat.com/match/29065: Timeout 60000ms exceeded.
+[2026-03-09T17:35:08.482+0000] {epl_timed_scraper.py:135} INFO - Completed: 3 matches scraped, 4 errors
+[2026-03-09T17:35:08.482+0000] {python.py:201} INFO - Done. Returned value was: {'scraped': 3, 'errors': 4}
+[2026-03-09T17:35:08.561+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=epl_timed_match_scraper, task_id=scrape_matches, execution_date=20260309T003000, start_date=20260309T173022, end_date=20260309T173508
+[2026-03-09T17:35:08.667+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-09T17:35:08.681+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

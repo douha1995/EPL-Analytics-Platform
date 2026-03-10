@@ -1,0 +1,78 @@
+[2026-03-09T16:43:48.254+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: epl_smart_match_scraper.scrape_manchester_united scheduled__2026-03-09T14:00:00+00:00 [queued]>
+[2026-03-09T16:43:48.262+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: epl_smart_match_scraper.scrape_manchester_united scheduled__2026-03-09T14:00:00+00:00 [queued]>
+[2026-03-09T16:43:48.262+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-03-09T16:43:49.046+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): scrape_manchester_united> on 2026-03-09 14:00:00+00:00
+[2026-03-09T16:43:49.054+0000] {standard_task_runner.py:60} INFO - Started process 257 to run task
+[2026-03-09T16:43:49.058+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'epl_smart_match_scraper', 'scrape_manchester_united', 'scheduled__2026-03-09T14:00:00+00:00', '--job-id', '670', '--raw', '--subdir', 'DAGS_FOLDER/epl_smart_match_scraper.py', '--cfg-path', '/tmp/tmpayzcp008']
+[2026-03-09T16:43:49.060+0000] {standard_task_runner.py:88} INFO - Job 670: Subtask scrape_manchester_united
+[2026-03-09T16:43:49.321+0000] {task_command.py:423} INFO - Running <TaskInstance: epl_smart_match_scraper.scrape_manchester_united scheduled__2026-03-09T14:00:00+00:00 [running]> on host 13250c608584
+[2026-03-09T16:43:49.689+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='epl_analytics' AIRFLOW_CTX_DAG_ID='epl_smart_match_scraper' AIRFLOW_CTX_TASK_ID='scrape_manchester_united' AIRFLOW_CTX_EXECUTION_DATE='2026-03-09T14:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-09T14:00:00+00:00'
+[2026-03-09T16:43:49.690+0000] {epl_smart_match_scraper.py:42} INFO - Checking Manchester United matches for 2025-26
+[2026-03-09T16:43:49.690+0000] {playwright_scraper.py:87} INFO - Scraping Understat fixtures for Manchester_United: https://understat.com/team/Manchester_United/2025
+[2026-03-09T16:45:03.949+0000] {playwright_scraper.py:118} INFO - Scraped 38 fixtures from Understat
+[2026-03-09T16:45:04.339+0000] {playwright_scraper.py:140} INFO - Scraping match shots: https://understat.com/match/28999
+[2026-03-09T16:45:15.455+0000] {playwright_scraper.py:213} INFO - Scraped 26 shots for Arsenal vs Manchester United
+[2026-03-09T16:45:16.201+0000] {db_loader.py:196} INFO - Created scrape run: epl_smart_Manchester_United_aad13784
+[2026-03-09T16:45:16.207+0000] {db_loader.py:42} ERROR - Database error: column "id" does not exist
+LINE 8:                         RETURNING id
+                                          ^
+
+[2026-03-09T16:45:16.207+0000] {db_loader.py:362} ERROR - Failed to save match reference: column "id" does not exist
+LINE 8:                         RETURNING id
+                                          ^
+
+[2026-03-09T16:45:16.859+0000] {db_loader.py:150} INFO - Saved Understat data for match 20260125_arsenal_vs_manchester_united (ID: 326, Team: Manchester United)
+[2026-03-09T16:45:18.364+0000] {db_loader.py:242} INFO - Updated scrape run epl_smart_Manchester_United_aad13784: success
+[2026-03-09T16:45:18.365+0000] {epl_smart_match_scraper.py:83} INFO - ✓ Arsenal vs Manchester United: 26 shots
+[2026-03-09T16:45:18.365+0000] {playwright_scraper.py:140} INFO - Scraping match shots: https://understat.com/match/29012
+[2026-03-09T16:45:29.704+0000] {playwright_scraper.py:213} INFO - Scraped 27 shots for Manchester United vs Fulham
+[2026-03-09T16:45:31.923+0000] {db_loader.py:196} INFO - Created scrape run: epl_smart_Manchester_United_23753d9a
+[2026-03-09T16:45:31.932+0000] {db_loader.py:42} ERROR - Database error: column "id" does not exist
+LINE 8:                         RETURNING id
+                                          ^
+
+[2026-03-09T16:45:31.932+0000] {db_loader.py:362} ERROR - Failed to save match reference: column "id" does not exist
+LINE 8:                         RETURNING id
+                                          ^
+
+[2026-03-09T16:45:32.036+0000] {db_loader.py:150} INFO - Saved Understat data for match 20260201_manchester_united_vs_fulham (ID: 327, Team: Manchester United)
+[2026-03-09T16:45:32.476+0000] {db_loader.py:242} INFO - Updated scrape run epl_smart_Manchester_United_23753d9a: success
+[2026-03-09T16:45:32.476+0000] {epl_smart_match_scraper.py:83} INFO - ✓ Manchester United vs Fulham: 27 shots
+[2026-03-09T16:45:33.842+0000] {playwright_scraper.py:140} INFO - Scraping match shots: https://understat.com/match/29025
+[2026-03-09T16:45:42.903+0000] {playwright_scraper.py:213} INFO - Scraped 30 shots for Manchester United vs Tottenham
+[2026-03-09T16:45:42.980+0000] {db_loader.py:196} INFO - Created scrape run: epl_smart_Manchester_United_616ce15f
+[2026-03-09T16:45:42.993+0000] {db_loader.py:42} ERROR - Database error: column "id" does not exist
+LINE 8:                         RETURNING id
+                                          ^
+
+[2026-03-09T16:45:42.993+0000] {db_loader.py:362} ERROR - Failed to save match reference: column "id" does not exist
+LINE 8:                         RETURNING id
+                                          ^
+
+[2026-03-09T16:45:42.998+0000] {db_loader.py:150} INFO - Saved Understat data for match 20260207_manchester_united_vs_tottenham (ID: 328, Team: Manchester United)
+[2026-03-09T16:45:43.081+0000] {db_loader.py:242} INFO - Updated scrape run epl_smart_Manchester_United_616ce15f: success
+[2026-03-09T16:45:43.082+0000] {epl_smart_match_scraper.py:83} INFO - ✓ Manchester United vs Tottenham: 30 shots
+[2026-03-09T16:45:44.940+0000] {playwright_scraper.py:140} INFO - Scraping match shots: https://understat.com/match/29037
+[2026-03-09T16:45:54.761+0000] {playwright_scraper.py:213} INFO - Scraped 16 shots for West Ham vs Manchester United
+[2026-03-09T16:45:54.816+0000] {db_loader.py:196} INFO - Created scrape run: epl_smart_Manchester_United_45ddec8f
+[2026-03-09T16:45:54.821+0000] {db_loader.py:42} ERROR - Database error: column "id" does not exist
+LINE 8:                         RETURNING id
+                                          ^
+
+[2026-03-09T16:45:54.821+0000] {db_loader.py:362} ERROR - Failed to save match reference: column "id" does not exist
+LINE 8:                         RETURNING id
+                                          ^
+
+[2026-03-09T16:45:54.826+0000] {db_loader.py:150} INFO - Saved Understat data for match 20260210_west_ham_vs_manchester_united (ID: 329, Team: Manchester United)
+[2026-03-09T16:45:54.895+0000] {db_loader.py:242} INFO - Updated scrape run epl_smart_Manchester_United_45ddec8f: success
+[2026-03-09T16:45:54.896+0000] {epl_smart_match_scraper.py:83} INFO - ✓ West Ham vs Manchester United: 16 shots
+[2026-03-09T16:45:56.797+0000] {playwright_scraper.py:140} INFO - Scraping match shots: https://understat.com/match/29042
+[2026-03-09T16:46:57.310+0000] {epl_smart_match_scraper.py:86} ERROR - Error: Timeout loading https://understat.com/match/29042: Timeout 60000ms exceeded.
+[2026-03-09T16:46:57.311+0000] {playwright_scraper.py:140} INFO - Scraping match shots: https://understat.com/match/29055
+[2026-03-09T16:47:58.230+0000] {epl_smart_match_scraper.py:86} ERROR - Error: Timeout loading https://understat.com/match/29055: Timeout 60000ms exceeded.
+[2026-03-09T16:47:58.230+0000] {playwright_scraper.py:140} INFO - Scraping match shots: https://understat.com/match/29065
+[2026-03-09T16:48:58.632+0000] {epl_smart_match_scraper.py:86} ERROR - Error: Timeout loading https://understat.com/match/29065: Timeout 60000ms exceeded.
+[2026-03-09T16:48:58.632+0000] {python.py:201} INFO - Done. Returned value was: {'team': 'Manchester United', 'status': 'success', 'scraped': 4}
+[2026-03-09T16:48:58.667+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=epl_smart_match_scraper, task_id=scrape_manchester_united, execution_date=20260309T140000, start_date=20260309T164348, end_date=20260309T164858
+[2026-03-09T16:48:58.764+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-09T16:48:58.782+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

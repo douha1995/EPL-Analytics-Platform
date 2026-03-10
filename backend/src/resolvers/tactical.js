@@ -2,10 +2,10 @@ import { query } from '../db/connection.js';
 
 export const tacticalResolvers = {
   Query: {
-    async tacticalAnalysis(_, { season }) {
+    async tacticalAnalysis(_, { season, team = 'Arsenal' }) {
       const result = await query(
-        `SELECT * FROM metrics.tactical_analysis WHERE season = $1`,
-        [season]
+        `SELECT * FROM metrics.tactical_analysis WHERE season = $1 AND team_name = $2`,
+        [season, team]
       );
 
       if (result.rows.length === 0) {

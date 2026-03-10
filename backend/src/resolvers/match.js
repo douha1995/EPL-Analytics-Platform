@@ -1,13 +1,50 @@
 import { query } from '../db/connection.js';
 
+/**
+ * Calculate tactical phase based on shot/pass X coordinate
+ * Defensive third: X < 0.33 → low_block
+ * Middle third: 0.33 ≤ X < 0.66 → mid_block
+ * Attacking third: X ≥ 0.66 → high_press
+ */
+function calculateTacticalPhase(xCoord) {
+  const x = parseFloat(xCoord);
+  if (x < 0.33) return 'low_block';
+  if (x < 0.66) return 'mid_block';
+  return 'high_press';
+}
+
+/**
+ * Calculate pitch zone from X coordinate
+ */
+function calculatePitchZone(xCoord) {
+  const x = parseFloat(xCoord);
+  if (x < 0.33) return 'defensive_third';
+  if (x < 0.66) return 'middle_third';
+  return 'attacking_third';
+}
+
+/**
+ * Determine player position status (simplified for now)
+ * Could be enhanced with formation data
+ */
+function calculatePositionStatus(positionCategory, xCoord) {
+  // Simplified logic - can be enhanced with actual formation data
+  const x = parseFloat(xCoord);
+
+  if (positionCategory === 'Defender' && x > 0.7) return 'out_of_position';
+  if (positionCategory === 'Forward' && x < 0.3) return 'out_of_position';
+
+  return 'in_position';
+}
+
 export const matchResolvers = {
   Query: {
-    async matches(_, { season, limit = 100 }) {
-      let sql = 'SELECT * FROM metrics.arsenal_matches';
-      const params = [];
+    async matches(_, { season, team, limit = 100 }) {
+      let sql = 'SELECT * FROM metrics.team_matches WHERE team_name = $1';
+      const params = [team];
 
       if (season) {
-        sql += ' WHERE season = $1';
+        sql += ' AND season = $2';
         params.push(season);
       }
 
@@ -18,31 +55,38 @@ export const matchResolvers = {
 
       return result.rows.map(row => ({
         matchUrl: row.match_url,
-        matchId: row.match_url, // Using match_url as matchId for now
+        matchId: row.match_url,
         matchDate: row.match_date,
         season: row.season,
+        teamName: row.team_name,
         opponent: row.opponent,
         venue: row.venue,
         result: row.result,
-        arsenalGoals: parseInt(row.arsenal_goals) || 0,
+        teamGoals: parseInt(row.team_goals) || 0,
         opponentGoals: parseInt(row.opponent_goals) || 0,
-        arsenalXg: parseFloat(row.arsenal_xg) || 0,
+        teamXg: parseFloat(row.team_xg) || 0,
         opponentXg: parseFloat(row.opponent_xg) || 0,
         xgOverperformance: parseFloat(row.xg_overperformance) || 0,
+        // Backward compatibility
+        arsenalGoals: parseInt(row.team_goals) || 0,
+        arsenalXg: parseFloat(row.team_xg) || 0,
       }));
     },
 
-    async matchList(_, { season }) {
+    async matchList(_, { season, team }) {
       const result = await query(
-        `SELECT 
-          match_url as match_id,
-          home_team || ' vs ' || away_team as match_name,
-          match_date,
-          season
-        FROM metrics.arsenal_matches 
-        WHERE season = $1 
-        ORDER BY match_date DESC`,
-        [season]
+        `SELECT
+          m.match_url as match_id,
+          CASE
+            WHEN m.venue = 'H' THEN m.team_name || ' vs ' || m.opponent
+            ELSE m.opponent || ' vs ' || m.team_name
+          END as match_name,
+          m.match_date,
+          m.season
+        FROM metrics.team_matches m
+        WHERE m.season = $1 AND m.team_name = $2
+        ORDER BY m.match_date DESC`,
+        [season, team]
       );
 
       return result.rows.map(row => ({
@@ -53,39 +97,52 @@ export const matchResolvers = {
       }));
     },
 
-    async matchShots(_, { matchId }) {
+    async matchShots(_, { matchId, team }) {
       // matchId is actually match_url in the database
-      const result = await query(
-        `SELECT * FROM silver.shot_events 
-         WHERE match_url = $1 
-         ORDER BY minute ASC`,
-        [matchId]
-      );
+      // If team is provided, filter to only that team's shots
+      let sql = `SELECT * FROM silver.shot_events WHERE match_url = $1`;
+      const params = [matchId];
+      
+      if (team) {
+        sql += ` AND team = $2`;
+        params.push(team);
+      }
+      
+      sql += ` ORDER BY minute ASC`;
+      
+      const result = await query(sql, params);
 
-      return result.rows.map(row => ({
-        matchId: row.match_url,
-        matchUrl: row.match_url,
-        matchDate: row.match_date,
-        season: row.season,
-        homeTeam: row.home_team,
-        awayTeam: row.away_team,
-        homeGoals: parseInt(row.home_goals) || 0,
-        awayGoals: parseInt(row.away_goals) || 0,
-        homeXg: parseFloat(row.home_xg) || 0,
-        awayXg: parseFloat(row.away_xg) || 0,
-        playerName: row.player_name,
-        playerId: row.player_id,
-        team: row.team,
-        minute: parseInt(row.minute) || 0,
-        result: row.result,
-        situation: row.situation,
-        shotType: row.shot_type,
-        x: parseFloat(row.x_coord) || 0,
-        y: parseFloat(row.y_coord) || 0,
-        xg: parseFloat(row.xg) || 0,
-        assistedBy: row.assisted_by,
-        lastAction: row.last_action,
-      }));
+      return result.rows.map(row => {
+        const xCoord = parseFloat(row.x_coord) || 0;
+        return {
+          matchId: row.match_url,
+          matchUrl: row.match_url,
+          matchDate: row.match_date,
+          season: row.season,
+          homeTeam: row.home_team,
+          awayTeam: row.away_team,
+          homeGoals: parseInt(row.home_goals) || 0,
+          awayGoals: parseInt(row.away_goals) || 0,
+          homeXg: parseFloat(row.home_xg) || 0,
+          awayXg: parseFloat(row.away_xg) || 0,
+          playerName: row.player_name,
+          playerId: row.player_id,
+          team: row.team,
+          minute: parseInt(row.minute) || 0,
+          result: row.result,
+          situation: row.situation,
+          shotType: row.shot_type,
+          x: xCoord,
+          y: parseFloat(row.y_coord) || 0,
+          xg: parseFloat(row.xg) || 0,
+          assistedBy: row.assisted_by,
+          lastAction: row.last_action,
+          // Tactical phase calculations
+          tacticalPhase: calculateTacticalPhase(xCoord),
+          pitchZone: calculatePitchZone(xCoord),
+          playerPositionStatus: calculatePositionStatus(row.position_category, xCoord),
+        };
+      });
     },
 
     async matchShotsBySeason(_, { season, team = 'Arsenal' }) {
@@ -122,12 +179,12 @@ export const matchResolvers = {
       }));
     },
 
-    async matchPlayerShots(_, { matchId, playerName }) {
+    async matchPlayerShots(_, { matchId, playerName, team = 'Arsenal' }) {
       const result = await query(
         `SELECT * FROM silver.shot_events 
-         WHERE match_url = $1 AND player_name = $2 AND team = 'Arsenal'
+         WHERE match_url = $1 AND player_name = $2 AND team = $3
          ORDER BY minute ASC`,
-        [matchId, playerName]
+        [matchId, playerName, team]
       );
 
       return result.rows.map(row => ({
@@ -156,7 +213,7 @@ export const matchResolvers = {
       }));
     },
 
-    async matchPlayerNetwork(_, { matchId }) {
+    async matchPlayerNetwork(_, { matchId, team = 'Arsenal' }) {
       const result = await query(
         `SELECT 
           assisted_by as assister,
@@ -166,12 +223,12 @@ export const matchResolvers = {
           ROUND(SUM(xg), 2) as total_xg_assisted
         FROM silver.shot_events
         WHERE match_url = $1 
-          AND team = 'Arsenal'
+          AND team = $2
           AND assisted_by IS NOT NULL
           AND assisted_by != ''
         GROUP BY assisted_by, player_name
         ORDER BY assists_count DESC`,
-        [matchId]
+        [matchId, team]
       );
 
       return result.rows.map(row => ({
@@ -184,13 +241,13 @@ export const matchResolvers = {
       }));
     },
 
-    async matchPlayers(_, { matchId }) {
+    async matchPlayers(_, { matchId, team = 'Arsenal' }) {
       const result = await query(
         `SELECT DISTINCT player_name 
          FROM silver.shot_events 
-         WHERE match_url = $1 AND team = 'Arsenal' AND player_name IS NOT NULL
+         WHERE match_url = $1 AND team = $2 AND player_name IS NOT NULL
          ORDER BY player_name`,
-        [matchId]
+        [matchId, team]
       );
 
       return result.rows.map(row => row.player_name);
