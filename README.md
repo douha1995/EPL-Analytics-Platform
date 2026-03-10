@@ -1,29 +1,82 @@
-# ⚽ Arsenal FC Analytics Platform
+# EPL Analytics Platform
 
-> **Production-ready football analytics platform** with AI-powered chatbot, 11 interactive dashboards, and automated data collection.
+> **Production-ready football analytics platform** with AI-powered chatbot, 11 interactive dashboards, and fully automated data pipelines.
 
 [![Python](https://img.shields.io/badge/Python-3.11-blue.svg)](https://www.python.org/)
 [![React](https://img.shields.io/badge/React-18-blue.svg)](https://reactjs.org/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-blue.svg)](https://www.postgresql.org/)
 [![Airflow](https://img.shields.io/badge/Airflow-2.8.1-red.svg)](https://airflow.apache.org/)
+[![GraphQL](https://img.shields.io/badge/GraphQL-Apollo-purple.svg)](https://www.apollographql.com/)
 [![Docker](https://img.shields.io/badge/Docker-Ready-blue.svg)](https://www.docker.com/)
-
-## 📊 Overview
-
-A comprehensive football analytics platform that automatically scrapes, processes, and visualizes Arsenal FC's performance data with an AI-powered RAG chatbot for natural language queries.
-
-### Key Features
-
-- 🤖 **AI Chatbot** - RAG-powered analytics assistant using Claude
-- 📊 **11 Dashboards** - Season overview, player stats, tactical analysis, and more
-- 🎯 **Advanced Metrics** - xG, xT, shot networks, conversion rates
-- 🔄 **Automated Scraping** - Airflow DAGs scrape 2 hours after each match
-- 🏗️ **Medallion Architecture** - Bronze → Silver → Gold data layers
-- 🐳 **Dockerized** - One-command deployment
 
 ---
 
-## 🚀 Quick Start
+## Overview
+
+A comprehensive football analytics platform that automatically scrapes, processes, and visualizes match data for top EPL teams with an AI-powered RAG chatbot for natural language queries.
+
+### Supported Teams
+- **Arsenal** | **Liverpool** | **Manchester City** | **Manchester United**
+
+### Key Features
+
+| Feature | Description |
+|---------|-------------|
+| **Automated Pipeline** | Airflow DAGs trigger 2 hours after each match ends |
+| **11 Dashboards** | Season overview, player stats, tactical analysis, shot networks, xT zones |
+| **AI Chatbot** | RAG-powered assistant using local LLM (Ollama) - zero API costs |
+| **Medallion Architecture** | Bronze (raw) > Silver (cleaned) > Gold (metrics) |
+| **GraphQL API** | Multi-team resolvers with <100ms response times |
+| **Modern Visualizations** | D3.js pitch maps, force-directed networks, Recharts trends |
+
+---
+
+## Architecture
+
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│                           DATA SOURCES                                   │
+│              Understat.com (xG, shots, player positions)                │
+└────────────────────────────────┬────────────────────────────────────────┘
+                                 │
+                                 ▼
+┌─────────────────────────────────────────────────────────────────────────┐
+│                         APACHE AIRFLOW                                   │
+│      Automated scraping - triggers 2 hours after match ends             │
+└────────────────────────────────┬────────────────────────────────────────┘
+                                 │
+                                 ▼
+┌─────────────────────────────────────────────────────────────────────────┐
+│                          POSTGRESQL                                      │
+│   ┌──────────────┐    ┌──────────────┐    ┌────────────────────────┐   │
+│   │    BRONZE    │───▶│    SILVER    │───▶│         GOLD           │   │
+│   │  (Raw JSON)  │    │  (Cleaned)   │    │ player_advanced_stats  │   │
+│   │              │    │ shot_events  │    │ tactical_analysis      │   │
+│   │              │    │              │    │ player_xt_stats        │   │
+│   │              │    │              │    │ match_advanced_stats   │   │
+│   └──────────────┘    └──────────────┘    └────────────────────────┘   │
+└───────────────────┬─────────────────────────────────┬───────────────────┘
+                    │                                 │
+                    ▼                                 ▼
+┌─────────────────────────────┐       ┌───────────────────────────────────┐
+│      GRAPHQL BACKEND        │       │          RAG CHATBOT              │
+│        (Node.js)            │       │     (Python + Ollama LLM)         │
+│        Port: 4000           │       │         Port: 5000                │
+└─────────────┬───────────────┘       └─────────────────┬─────────────────┘
+              │                                         │
+              └──────────────────┬──────────────────────┘
+                                 │
+                                 ▼
+┌─────────────────────────────────────────────────────────────────────────┐
+│                        REACT FRONTEND                                    │
+│         11 Dashboards  •  AI Chatbot  •  Chakra UI  •  D3.js            │
+│                          Port: 3000                                      │
+└─────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Quick Start
 
 ```bash
 # Start all services
@@ -38,152 +91,134 @@ make status
 
 ### Access Points
 
-| Service | URL |
-|---------|-----|
-| **Dashboard** | http://localhost:3000 |
-| **GraphQL API** | http://localhost:4000/graphql |
-| **Airflow UI** | http://localhost:8080 (admin/admin) |
-| **RAG Chatbot API** | http://localhost:5000 |
+| Service | URL | Credentials |
+|---------|-----|-------------|
+| **Dashboard** | http://localhost:3000 | - |
+| **GraphQL API** | http://localhost:4000/graphql | - |
+| **Airflow UI** | http://localhost:8080 | admin / admin |
+| **Chatbot API** | http://localhost:5000 | - |
 
 ---
 
-## 🏗️ Architecture
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                     DATA SOURCES                                 │
-│   Understat.com (xG/shots)  •  FBref.com (advanced stats)       │
-└─────────────────────────────┬───────────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                   APACHE AIRFLOW                                 │
-│   Scheduled scraping • 2 hours after each match                 │
-└─────────────────────────────┬───────────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                    POSTGRESQL                                    │
-│   Bronze (raw) → Silver (cleaned) → Gold (metrics)              │
-└────────────────┬──────────────────────────┬─────────────────────┘
-                 │                          │
-                 ▼                          ▼
-┌────────────────────────┐     ┌────────────────────────────────┐
-│   GraphQL Backend      │     │      RAG Chatbot               │
-│   (Node.js:4000)       │     │   (Python/FastAPI:5000)        │
-└───────────┬────────────┘     └──────────────┬─────────────────┘
-            │                                  │
-            └─────────────┬────────────────────┘
-                          │
-                          ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                   REACT FRONTEND                                 │
-│   11 Dashboards  •  AI Chatbot  •  Chakra UI  (Port 3000)       │
-└─────────────────────────────────────────────────────────────────┘
-```
-
----
-
-## 📈 Dashboard Features
+## Dashboards
 
 | Dashboard | Description |
 |-----------|-------------|
 | **Season Overview** | W/D/L record, points, xG trends |
-| **Match Detail** | Shot maps, xG timeline, scorers |
-| **Player Stats** | Goals, xG, conversion rates |
-| **Tactical Analysis** | Formation patterns, situation breakdown |
-| **Shot Networks** | Passing and shooting connections |
+| **Match Detail** | Shot maps, xG timeline, key moments |
+| **Player Stats** | Goals, xG, conversion rates, shot accuracy |
+| **Tactical Analysis** | Shots by period, situation breakdown |
+| **Shot Networks** | Assist partnerships with D3.js visualization |
 | **Expected Threat** | Zone-based xT analysis |
-| **Player Match** | Per-match player breakdown |
+| **Passing Network** | Modern pitch visualization with curved connections |
+| **Performance Trends** | Rolling averages, shots & big chances charts |
 | **Opponent Analysis** | Head-to-head comparisons |
-| **Performance Trends** | Rolling averages |
-| **Player Comparison** | Side-by-side stats |
-| **Match Insights** | AI-generated observations |
+| **Player Comparison** | Side-by-side radar charts |
+| **Match Insights** | Detailed per-match breakdown |
 
 ---
 
-## 🤖 AI Chatbot (RAG)
+## AI Chatbot
 
 Ask questions in natural language:
 
-> "How did Arsenal perform against Liverpool this season?"
-> "Who is our top scorer?"
-> "What's our xG trend in away games?"
+```
+"How did Arsenal perform against Liverpool this season?"
+"Who is our top scorer?"
+"What's our xG trend in away games?"
+"Compare Arsenal's conversion rate to Liverpool's"
+```
 
-The chatbot uses:
-- **ChromaDB** for vector search
-- **Claude 3.5 Sonnet** for responses
-- Real match data from your database
-
-See [DOCUMENTATION.md](DOCUMENTATION.md) for a complete RAG tutorial.
+**Technology:**
+- **LLM:** Ollama with Qwen 2.5 (runs locally - no API costs)
+- **Vector DB:** ChromaDB for semantic search
+- **Embeddings:** Sentence-Transformers (all-MiniLM-L6-v2)
 
 ---
 
-## 🛠️ Development
+## Tech Stack
 
-### Project Structure
+| Layer | Technology |
+|-------|------------|
+| **Orchestration** | Apache Airflow |
+| **Database** | PostgreSQL 16 (Medallion Architecture) |
+| **Backend** | Node.js + Apollo GraphQL |
+| **Frontend** | React 18 + Vite + Chakra UI + D3.js + Recharts |
+| **AI/ML** | Ollama, ChromaDB, Sentence-Transformers |
+| **Scraping** | Python + Playwright |
+| **Infrastructure** | Docker Compose |
+
+---
+
+## Project Structure
 
 ```
 Gunners-Platform/
-├── frontend-vite/     # React + Vite + Chakra UI
-├── backend/           # Node.js + GraphQL
-├── rag-chatbot/       # Python FastAPI + RAG
-├── scrapers/          # Playwright + BeautifulSoup
-├── airflow/           # DAGs and scheduling
-├── database/          # SQL schemas
+├── airflow/              # DAGs for automated scraping
+├── backend/              # GraphQL API (Node.js)
+│   └── src/resolvers/    # Multi-team query handlers
+├── database/             # SQL migrations & views
+│   └── init/             # Medallion architecture setup
+├── frontend-vite/        # React dashboards
+│   └── src/components/   # 11 dashboard components
+├── rag-chatbot/          # AI chatbot (Python)
+│   └── rag/              # ChromaDB + Ollama integration
+├── scrapers/             # Data collection scripts
 ├── docker-compose.yml
-├── Makefile          
-└── DOCUMENTATION.md   # Complete guide + RAG tutorial
+├── Makefile
+└── DOCUMENTATION.md      # Complete technical guide
 ```
 
-### Makefile Commands
+---
+
+## Makefile Commands
 
 ```bash
 make up              # Start all services
 make down            # Stop all services
 make status          # Show container status
 make logs            # Follow all logs
-make rebuild-frontend # Rebuild frontend
 make db-shell        # PostgreSQL shell
+make rebuild-frontend # Rebuild frontend
 make clean           # Remove everything
 ```
 
 ---
 
-## 📝 Environment Variables
-
-Create `.env` in project root:
-
-```env
-# Required for RAG chatbot
-ANTHROPIC_API_KEY=sk-ant-your-key-here
-
-# Database (defaults work with Docker)
-POSTGRES_HOST=postgres
-POSTGRES_PORT=5432
-POSTGRES_DB=arsenalfc_analytics
-POSTGRES_USER=analytics_user
-POSTGRES_PASSWORD=analytics_pass
-```
-
----
-
-## 📚 Documentation
+## Documentation
 
 See **[DOCUMENTATION.md](DOCUMENTATION.md)** for:
 - Complete architecture details
 - Data flow diagrams
-- RAG tutorial (beginner-friendly)
+- Database schema reference
+- GraphQL API documentation
+- RAG chatbot tutorial
 - Troubleshooting guide
 
 ---
 
-## 📝 License
+## Environment Variables
+
+Create `.env` in project root (optional - defaults work with Docker):
+
+```env
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=arsenalfc_analytics
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
+OLLAMA_MODEL=qwen2.5:1.5b
+```
+
+---
+
+## License
 
 MIT License
 
 ---
 
 <p align="center">
-  Made with ❤️ for Arsenal FC
+  <strong>EPL Analytics Platform</strong><br>
+  Arsenal • Liverpool • Manchester City • Manchester United
 </p>

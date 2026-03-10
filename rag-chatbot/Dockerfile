@@ -12,9 +12,9 @@ RUN apt-get update && apt-get install -y \
 # Install CPU-only PyTorch FIRST (much smaller, ~200MB instead of ~2GB)
 RUN pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu
 
-# Install dependencies (no langchain needed - we use Anthropic directly)
+# Install dependencies (using Ollama for LLM)
 RUN pip install --no-cache-dir fastapi uvicorn[standard]
-RUN pip install --no-cache-dir anthropic psycopg2-binary python-dotenv pydantic
+RUN pip install --no-cache-dir ollama psycopg2-binary python-dotenv pydantic requests
 RUN pip install --no-cache-dir sentence-transformers
 RUN pip install --no-cache-dir chromadb
 

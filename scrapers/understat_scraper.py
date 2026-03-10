@@ -63,7 +63,8 @@ class UnderstatScraper:
         home_team: str,
         away_team: str,
         match_date: str,
-        season: str = "2024"
+        season: str = "2024",
+        team_context: str = "Arsenal"
     ) -> Optional[str]:
         """
         Find Understat match URL for a given fixture
@@ -75,15 +76,16 @@ class UnderstatScraper:
             away_team: Away team name
             match_date: Match date (YYYY-MM-DD)
             season: Season year (e.g., "2024" for 2024-2025)
+            team_context: Team whose season page to check (default: "Arsenal")
 
         Returns:
             Match URL if found, None otherwise
         """
-        # Get Arsenal's season page
-        arsenal_url = f"{self.base_url}/team/Arsenal/{season}"
+        # Get team's season page (Arsenal, Manchester_United, etc.)
+        team_url = f"{self.base_url}/team/{team_context}/{season}"
 
         try:
-            response = self._make_request(arsenal_url)
+            response = self._make_request(team_url)
             soup = BeautifulSoup(response.content, 'lxml')
 
             # Understat embeds match data in JavaScript
@@ -115,10 +117,10 @@ class UnderstatScraper:
                     if (self._teams_match(match_home, home_team) and
                         self._teams_match(match_away, away_team)):
                         match_url = f"{self.base_url}/match/{match_id}"
-                        logger.info(f"Found Understat match: {match_url}")
+                        logger.info(f"Found Understat match: {match_url} for {team_context}")
                         return match_url
 
-            logger.warning(f"Could not find Understat match for {home_team} vs {away_team}")
+            logger.warning(f"Could not find Understat match for {home_team} vs {away_team} (searched via {team_context})")
             return None
 
         except Exception as e:
@@ -271,19 +273,24 @@ class UnderstatScraper:
 
         return parsed_shots
 
-    def scrape_season_fixtures(self, season: str = "2024") -> List[Dict[str, Any]]:
+    def scrape_season_fixtures(
+        self,
+        season: str = "2024",
+        team_name: str = "Arsenal"
+    ) -> List[Dict[str, Any]]:
         """
-        Scrape all Arsenal fixtures from Understat for a season
+        Scrape all team fixtures from Understat for a season
 
         Args:
             season: Season year (e.g., "2024" for 2024-2025)
+            team_name: Team to scrape (e.g., "Arsenal", "Manchester_United")
 
         Returns:
             List of fixture dictionaries with match URLs
         """
-        arsenal_url = f"{self.base_url}/team/Arsenal/{season}"
+        team_url = f"{self.base_url}/team/{team_name}/{season}"
 
-        response = self._make_request(arsenal_url)
+        response = self._make_request(team_url)
         soup = BeautifulSoup(response.content, 'lxml')
 
         fixtures = []
@@ -311,14 +318,15 @@ class UnderstatScraper:
                         'home_team': match_data.get('h', {}).get('title', ''),
                         'away_team': match_data.get('a', {}).get('title', ''),
                         'date': match_data.get('datetime', ''),
-                        'is_result': match_data.get('isResult', False)
+                        'is_result': match_data.get('isResult', False),
+                        'team_context': team_name  # Track which team's page this came from
                     }
                     fixtures.append(fixture)
 
                 break
 
             except Exception as e:
-                logger.error(f"Error parsing fixtures: {e}")
+                logger.error(f"Error parsing fixtures for {team_name}: {e}")
 
-        logger.info(f"Scraped {len(fixtures)} fixtures from Understat")
+        logger.info(f"Scraped {len(fixtures)} fixtures for {team_name} from Understat")
         return fixtures

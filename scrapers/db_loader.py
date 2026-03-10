@@ -104,7 +104,8 @@ class DatabaseLoader:
         match_id: str,
         raw_shots: Dict[str, Any],
         match_url: str,
-        scrape_run_id: Optional[str] = None
+        scrape_run_id: Optional[str] = None,
+        team_name: Optional[str] = None
     ) -> bool:
         """
         Save Understat raw shot data to bronze layer
@@ -114,6 +115,7 @@ class DatabaseLoader:
             raw_shots: Raw shot data dictionary
             match_url: URL of Understat match page
             scrape_run_id: ID of scrape run for tracking
+            team_name: Team name for multi-team support
 
         Returns:
             True if successful
@@ -123,13 +125,14 @@ class DatabaseLoader:
                 with conn.cursor() as cur:
                     query = """
                         INSERT INTO bronze.understat_raw
-                            (match_id, match_url, raw_shots, scrape_run_id, scraped_at)
-                        VALUES (%s, %s, %s, %s, %s)
+                            (match_id, match_url, raw_shots, scrape_run_id, scraped_at, team_name)
+                        VALUES (%s, %s, %s, %s, %s, %s)
                         ON CONFLICT (match_id)
                         DO UPDATE SET
                             raw_shots = EXCLUDED.raw_shots,
                             match_url = EXCLUDED.match_url,
                             scraped_at = EXCLUDED.scraped_at,
+                            team_name = COALESCE(EXCLUDED.team_name, bronze.understat_raw.team_name),
                             updated_at = CURRENT_TIMESTAMP
                         RETURNING id
                     """
@@ -139,11 +142,12 @@ class DatabaseLoader:
                         match_url,
                         Json(raw_shots),
                         scrape_run_id,
-                        datetime.utcnow()
+                        datetime.utcnow(),
+                        team_name
                     ))
 
                     result = cur.fetchone()
-                    logger.info(f"Saved Understat data for match {match_id} (ID: {result[0]})")
+                    logger.info(f"Saved Understat data for match {match_id} (ID: {result[0]}, Team: {team_name})")
 
             return True
 
@@ -303,6 +307,89 @@ class DatabaseLoader:
         except Exception as e:
             logger.error(f"Failed to check match existence: {e}")
             return False
+
+    def save_match_reference(
+        self,
+        match_url: str,
+        home_team: str,
+        away_team: str,
+        match_date: str,
+        season: str,
+        team_name: str
+    ) -> bool:
+        """
+        Save or update match reference with team context
+
+        Args:
+            match_url: Understat match URL
+            home_team: Home team name
+            away_team: Away team name
+            match_date: Match date (YYYY-MM-DD)
+            season: Season string (e.g., "2024-25")
+            team_name: Team this match belongs to
+
+        Returns:
+            True if successful
+        """
+        try:
+            with self.get_connection() as conn:
+                with conn.cursor() as cur:
+                    query = """
+                        INSERT INTO bronze.match_reference
+                            (match_url, home_team, away_team, match_date, season, team_name)
+                        VALUES (%s, %s, %s, %s, %s, %s)
+                        ON CONFLICT (match_url, team_name)
+                        DO UPDATE SET
+                            home_team = EXCLUDED.home_team,
+                            away_team = EXCLUDED.away_team,
+                            match_date = EXCLUDED.match_date,
+                            season = EXCLUDED.season
+                    """
+
+                    cur.execute(query, (
+                        match_url,
+                        home_team,
+                        away_team,
+                        match_date,
+                        season,
+                        team_name
+                    ))
+
+                    conn.commit()
+                    logger.info(f"Saved match reference for {home_team} vs {away_team} (Team: {team_name})")
+
+            return True
+
+        except Exception as e:
+            logger.error(f"Failed to save match reference: {e}")
+            return False
+
+    def get_existing_matches_for_team(self, team_name: str, season_prefix: str) -> set:
+        """
+        Get existing match IDs for a team and season
+
+        Args:
+            team_name: Team name to filter
+            season_prefix: Season prefix for match_id (e.g., "2024" or "2025")
+
+        Returns:
+            Set of existing match IDs
+        """
+        try:
+            with self.get_connection() as conn:
+                with conn.cursor() as cur:
+                    query = """
+                        SELECT DISTINCT match_id
+                        FROM bronze.understat_raw
+                        WHERE team_name = %s
+                          AND match_id LIKE %s
+                    """
+                    cur.execute(query, (team_name, f"{season_prefix}%"))
+                    return set(row[0] for row in cur.fetchall())
+
+        except Exception as e:
+            logger.error(f"Failed to get existing matches: {e}")
+            return set()
 
     def save_fbref_lineups(
         self,

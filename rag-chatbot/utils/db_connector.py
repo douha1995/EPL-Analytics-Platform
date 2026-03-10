@@ -16,71 +16,108 @@ class DatabaseConnector:
     def get_connection(self):
         return psycopg2.connect(**self.conn_params)
 
-    def fetch_all_matches(self) -> List[Dict[str, Any]]:
-        """Fetch all Arsenal matches with detailed statistics"""
+    def fetch_all_matches(self, team_name: str = None) -> List[Dict[str, Any]]:
+        """Fetch all matches with detailed statistics for RAG embeddings"""
         query = """
         SELECT
             m.match_date,
             m.season,
+            m.team_name,
             m.opponent,
             m.venue,
             m.result,
-            m.arsenal_goals,
+            m.team_goals as arsenal_goals,
             m.opponent_goals,
-            m.arsenal_xg,
+            m.team_xg as arsenal_xg,
             m.opponent_xg,
 
-            -- Shot statistics
-            COUNT(s.xg) FILTER (WHERE s.team = 'Arsenal') as total_shots,
-            COUNT(s.xg) FILTER (WHERE s.team = 'Arsenal' AND s.result IN ('Goal', 'SavedShot', 'ShotOnPost')) as shots_on_target,
-            COUNT(s.xg) FILTER (WHERE s.team = 'Arsenal' AND s.result = 'Goal') as goals,
+            -- Shot statistics from silver.shot_events
+            COALESCE(shot_stats.total_shots, 0) as total_shots,
+            COALESCE(shot_stats.shots_on_target, 0) as shots_on_target,
+            COALESCE(shot_stats.goals, 0) as goals,
+            COALESCE(shot_stats.avg_shot_xg, 0) as avg_shot_xg,
+            COALESCE(shot_stats.big_chances, 0) as big_chances,
+            shot_stats.scorers
 
-            -- Conversion and quality metrics
-            ROUND(AVG(s.xg) FILTER (WHERE s.team = 'Arsenal'), 3) as avg_shot_xg,
-            COUNT(s.xg) FILTER (WHERE s.team = 'Arsenal' AND s.xg >= 0.35) as big_chances,
-
-            -- Top scorers in match
-            STRING_AGG(DISTINCT s.player_name, ', ') FILTER (WHERE s.team = 'Arsenal' AND s.result = 'Goal') as scorers
-
-        FROM metrics.arsenal_matches m
-        LEFT JOIN metrics.match_shots_detail s
-            ON m.match_date = s.match_date
-        GROUP BY
-            m.match_date,
-            m.season,
-            m.opponent,
-            m.venue,
-            m.result,
-            m.arsenal_goals,
-            m.opponent_goals,
-            m.arsenal_xg,
-            m.opponent_xg
-        ORDER BY m.match_date DESC
+        FROM metrics.team_matches m
+        LEFT JOIN LATERAL (
+            SELECT
+                COUNT(*) as total_shots,
+                COUNT(*) FILTER (WHERE s.result IN ('Goal', 'SavedShot', 'ShotOnPost')) as shots_on_target,
+                COUNT(*) FILTER (WHERE s.result = 'Goal') as goals,
+                ROUND(AVG(s.xg)::numeric, 3) as avg_shot_xg,
+                COUNT(*) FILTER (WHERE s.xg >= 0.35) as big_chances,
+                STRING_AGG(DISTINCT s.player_name, ', ') FILTER (WHERE s.result = 'Goal') as scorers
+            FROM silver.shot_events s
+            WHERE s.match_url = m.match_url
+              AND s.team = m.team_name
+        ) shot_stats ON true
+        WHERE 1=1
         """
+        
+        params = []
+        if team_name:
+            query += " AND m.team_name = %s"
+            params.append(team_name)
+        
+        query += " ORDER BY m.match_date DESC"
 
         with self.get_connection() as conn:
             with conn.cursor(cursor_factory=RealDictCursor) as cursor:
-                cursor.execute(query)
+                cursor.execute(query, params if params else None)
                 return cursor.fetchall()
 
-    def fetch_player_stats(self, season: str = None) -> List[Dict[str, Any]]:
+    def fetch_player_stats(self, season: str = None, team_name: str = None) -> List[Dict[str, Any]]:
         """Fetch player performance statistics"""
         query = """
         SELECT
             player_name,
+            team as team_name,
             season,
             total_shots,
             goals,
             total_xg,
-            conversion_pct,
+            conversion_rate,
             big_chances,
-            big_chance_conversion_pct
-        FROM metrics.arsenal_player_stats
+            big_chances_scored,
+            matches_played
+        FROM metrics.player_season_stats
+        WHERE 1=1
         """
-
+        
+        params = []
         if season:
-            query += f" WHERE season = '{season}'"
+            query += " AND season = %s"
+            params.append(season)
+        if team_name:
+            query += " AND team = %s"
+            params.append(team_name)
+            
         query += " ORDER BY goals DESC, total_xg DESC"
+
+        with self.get_connection() as conn:
+            with conn.cursor(cursor_factory=RealDictCursor) as cursor:
+                cursor.execute(query, params if params else None)
+                return cursor.fetchall()
+    
+    def fetch_all_player_stats(self) -> List[Dict[str, Any]]:
+        """Fetch all player statistics for RAG embeddings"""
+        query = """
+        SELECT
+            player_name,
+            team as team_name,
+            season,
+            total_shots,
+            goals,
+            total_xg,
+            conversion_rate,
+            big_chances,
+            big_chances_scored,
+            matches_played
+        FROM metrics.player_season_stats
+        WHERE goals > 0
+        ORDER BY season DESC, goals DESC
+        """
 
         with self.get_connection() as conn:
             with conn.cursor(cursor_factory=RealDictCursor) as cursor:

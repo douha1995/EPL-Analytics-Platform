@@ -71,25 +71,26 @@ class UnderstatPlaywrightScraper(PlaywrightScraper):
         self.base_url = config.UNDERSTAT_BASE_URL
 
     @rate_limit(config.UNDERSTAT_REQUEST_DELAY)
-    def scrape_season_fixtures(self, season: str = "2024") -> List[Dict[str, Any]]:
+    def scrape_season_fixtures(self, season: str = "2024", team_name: str = "Arsenal") -> List[Dict[str, Any]]:
         """
-        Scrape all Arsenal fixtures from Understat for a season
+        Scrape all fixtures for a team from Understat for a season
 
         Args:
             season: Season year (e.g., "2024" for 2024-2025)
+            team_name: Team name (e.g., "Arsenal", "Manchester_United")
 
         Returns:
             List of fixture dictionaries with match URLs
         """
-        arsenal_url = f"{self.base_url}/team/Arsenal/{season}"
+        team_url = f"{self.base_url}/team/{team_name}/{season}"
 
-        logger.info(f"Scraping Understat fixtures: {arsenal_url}")
+        logger.info(f"Scraping Understat fixtures for {team_name}: {team_url}")
 
         with self.get_browser() as browser:
             with self.get_page(browser) as page:
                 try:
                     # Load page
-                    page.goto(arsenal_url, wait_until='domcontentloaded', timeout=60000)
+                    page.goto(team_url, wait_until='domcontentloaded', timeout=120000)
 
                     # Wait for JavaScript to execute
                     page.wait_for_timeout(3000)
@@ -109,7 +110,8 @@ class UnderstatPlaywrightScraper(PlaywrightScraper):
                             'home_team': match_data.get('h', {}).get('title', ''),
                             'away_team': match_data.get('a', {}).get('title', ''),
                             'match_date': match_data.get('datetime', '')[:10],
-                            'is_result': match_data.get('isResult', False)
+                            'is_result': match_data.get('isResult', False),
+                            'team_name': team_name  # Add team context
                         }
                         fixtures.append(fixture)
 
@@ -117,7 +119,7 @@ class UnderstatPlaywrightScraper(PlaywrightScraper):
                     return fixtures
 
                 except PlaywrightTimeoutError as e:
-                    raise ScraperException(f"Timeout loading {arsenal_url}: {e}")
+                    raise ScraperException(f"Timeout loading {team_url}: {e}")
                 except Exception as e:
                     raise ScraperException(f"Error scraping Understat fixtures: {e}")
 
@@ -141,7 +143,7 @@ class UnderstatPlaywrightScraper(PlaywrightScraper):
             with self.get_page(browser) as page:
                 try:
                     # Load page and wait for content
-                    page.goto(match_url, wait_until='networkidle', timeout=60000)
+                    page.goto(match_url, wait_until='networkidle', timeout=120000)
                     page.wait_for_timeout(2000)
 
                     # Extract shots data from JavaScript (this still works)

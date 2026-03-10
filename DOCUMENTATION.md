@@ -1,684 +1,907 @@
-# Arsenal FC Analytics Platform - Complete Documentation
+# EPL Analytics Platform - Complete Documentation
 
-A professional-grade football analytics platform that scrapes, processes, and visualizes Arsenal FC match data with an AI-powered chatbot.
+A production-grade football analytics platform featuring automated data pipelines, 11 interactive dashboards, and an AI-powered chatbot for natural language queries across top EPL teams.
 
 ---
 
 ## Table of Contents
 
 1. [Architecture Overview](#architecture-overview)
-2. [Data Flow](#data-flow)
-3. [Quick Start](#quick-start)
-4. [RAG Chatbot - Beginner's Guide](#rag-chatbot---beginners-guide)
-5. [Component Details](#component-details)
-6. [Makefile Commands](#makefile-commands)
-7. [Troubleshooting](#troubleshooting)
+2. [Data Flow & Pipeline](#data-flow--pipeline)
+3. [Database Schema & Medallion Architecture](#database-schema--medallion-architecture)
+4. [GraphQL API Reference](#graphql-api-reference)
+5. [Dashboard Components](#dashboard-components)
+6. [AI Chatbot (RAG System)](#ai-chatbot-rag-system)
+7. [Quick Start Guide](#quick-start-guide)
+8. [Development Guide](#development-guide)
+9. [Troubleshooting](#troubleshooting)
 
 ---
 
 ## Architecture Overview
 
 ```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                           ARSENAL FC ANALYTICS PLATFORM                       │
-├─────────────────────────────────────────────────────────────────────────────┤
-│                                                                               │
-│   ┌──────────────┐    ┌──────────────┐    ┌──────────────┐                   │
-│   │   Understat  │    │    FBref     │    │  (Future)    │                   │
-│   │   (xG data)  │    │  (Advanced)  │    │  Other APIs  │                   │
-│   └──────┬───────┘    └──────┬───────┘    └──────────────┘                   │
-│          │                   │                                                │
-│          └─────────┬─────────┘                                                │
-│                    │                                                          │
-│                    ▼                                                          │
-│   ┌────────────────────────────────────────────────────────────┐             │
-│   │                    APACHE AIRFLOW                          │             │
-│   │  ┌─────────────────────────────────────────────────────┐  │             │
-│   │  │ arsenal_smart_match_scraper (runs every 6 hours)    │  │             │
-│   │  │ • Checks for new completed matches                   │  │             │
-│   │  │ • Scrapes Understat + FBref data                     │  │             │
-│   │  │ • Loads into PostgreSQL                              │  │             │
-│   │  └─────────────────────────────────────────────────────┘  │             │
-│   └────────────────────────────────────────────────────────────┘             │
-│                    │                                                          │
-│                    ▼                                                          │
-│   ┌────────────────────────────────────────────────────────────┐             │
-│   │                    POSTGRESQL DATABASE                      │             │
-│   │  ┌────────────┐  ┌────────────┐  ┌────────────┐            │             │
-│   │  │   BRONZE   │→ │   SILVER   │→ │    GOLD    │            │             │
-│   │  │ (Raw JSON) │  │ (Cleaned)  │  │ (Metrics)  │            │             │
-│   │  └────────────┘  └────────────┘  └────────────┘            │             │
-│   └────────────────────────────────────────────────────────────┘             │
-│          │                                         │                          │
-│          │                                         │                          │
-│          ▼                                         ▼                          │
-│   ┌──────────────────┐                 ┌──────────────────────┐              │
-│   │  GRAPHQL BACKEND │                 │    RAG CHATBOT       │              │
-│   │   (Node.js)      │                 │  (Python/FastAPI)    │              │
-│   │   Port: 4000     │                 │    Port: 5000        │              │
-│   └────────┬─────────┘                 └──────────┬───────────┘              │
-│            │                                       │                          │
-│            └───────────────┬───────────────────────┘                          │
-│                            │                                                  │
-│                            ▼                                                  │
-│   ┌────────────────────────────────────────────────────────────┐             │
-│   │                    REACT FRONTEND (Vite)                    │             │
-│   │                       Port: 3000                            │             │
-│   │  ┌─────────────────────────────────────────────────────┐   │             │
-│   │  │ • 11 Interactive Dashboards                          │   │             │
-│   │  │ • AI Chatbot Integration                             │   │             │
-│   │  │ • Season Selector                                    │   │             │
-│   │  │ • Data Quality Indicators                            │   │             │
-│   │  └─────────────────────────────────────────────────────┘   │             │
-│   └────────────────────────────────────────────────────────────┘             │
-│                                                                               │
-└─────────────────────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────────────────────────┐
+│                              EPL ANALYTICS PLATFORM                                  │
+│                    Arsenal • Liverpool • Man City • Man United                       │
+├─────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                      │
+│  ┌─────────────────────────────────────────────────────────────────────────────┐    │
+│  │                           DATA SOURCES                                       │    │
+│  │  ┌──────────────────┐    ┌──────────────────┐    ┌──────────────────┐       │    │
+│  │  │    Understat     │    │      FBref       │    │   Future APIs    │       │    │
+│  │  │  • xG per shot   │    │  • Advanced      │    │   • Opta         │       │    │
+│  │  │  • Shot coords   │    │    statistics    │    │   • StatsBomb    │       │    │
+│  │  │  • Player pos    │    │  • Possession    │    │                  │       │    │
+│  │  └────────┬─────────┘    └────────┬─────────┘    └──────────────────┘       │    │
+│  │           │                       │                                          │    │
+│  └───────────┼───────────────────────┼──────────────────────────────────────────┘    │
+│              │                       │                                               │
+│              └───────────┬───────────┘                                               │
+│                          │                                                           │
+│                          ▼                                                           │
+│  ┌─────────────────────────────────────────────────────────────────────────────┐    │
+│  │                         APACHE AIRFLOW                                       │    │
+│  │                        (Port 8080)                                           │    │
+│  │  ┌───────────────────────────────────────────────────────────────────────┐  │    │
+│  │  │  DAG: epl_smart_match_scraper                                         │  │    │
+│  │  │  • Monitors 4 teams for completed matches                             │  │    │
+│  │  │  • Auto-triggers 2 hours after match ends                             │  │    │
+│  │  │  • Handles rate limiting and retries                                  │  │    │
+│  │  │  • Loads data into PostgreSQL medallion layers                        │  │    │
+│  │  └───────────────────────────────────────────────────────────────────────┘  │    │
+│  └──────────────────────────────────┬──────────────────────────────────────────┘    │
+│                                     │                                                │
+│                                     ▼                                                │
+│  ┌─────────────────────────────────────────────────────────────────────────────┐    │
+│  │                         POSTGRESQL DATABASE                                  │    │
+│  │                           (Port 5432)                                        │    │
+│  │                                                                              │    │
+│  │  ┌────────────────┐    ┌────────────────┐    ┌────────────────────────┐     │    │
+│  │  │    BRONZE      │───▶│    SILVER      │───▶│        GOLD            │     │    │
+│  │  │   (Raw JSON)   │    │   (Cleaned)    │    │    (Metrics/Views)     │     │    │
+│  │  │                │    │                │    │                        │     │    │
+│  │  │ understat_raw  │    │ shot_events    │    │ player_advanced_stats  │     │    │
+│  │  │ match_reference│    │                │    │ tactical_analysis      │     │    │
+│  │  │ scrape_runs    │    │                │    │ player_xt_stats        │     │    │
+│  │  │                │    │                │    │ match_advanced_stats   │     │    │
+│  │  │                │    │                │    │ team_matches           │     │    │
+│  │  └────────────────┘    └────────────────┘    └────────────────────────┘     │    │
+│  └──────────────────────────────┬─────────────────────────┬────────────────────┘    │
+│                                 │                         │                          │
+│            ┌────────────────────┘                         └────────────────────┐     │
+│            │                                                                   │     │
+│            ▼                                                                   ▼     │
+│  ┌──────────────────────────┐                           ┌────────────────────────┐  │
+│  │    GRAPHQL BACKEND       │                           │     RAG CHATBOT        │  │
+│  │      (Port 4000)         │                           │     (Port 5000)        │  │
+│  │                          │                           │                        │  │
+│  │  Node.js + Apollo Server │                           │  Python + FastAPI      │  │
+│  │                          │                           │                        │  │
+│  │  Resolvers:              │                           │  ┌──────────────────┐  │  │
+│  │  • playerStats           │                           │  │  Ollama LLM      │  │  │
+│  │  • tacticalAnalysis      │                           │  │  (Qwen 2.5)      │  │  │
+│  │  • matchAdvancedStats    │                           │  │  Port: 11434     │  │  │
+│  │  • performanceTrends     │                           │  └──────────────────┘  │  │
+│  │  • playerXTStats         │                           │                        │  │
+│  │  • assistNetwork         │                           │  ┌──────────────────┐  │  │
+│  │                          │                           │  │  ChromaDB        │  │  │
+│  └────────────┬─────────────┘                           │  │  (Vector Store)  │  │  │
+│               │                                         │  └──────────────────┘  │  │
+│               │                                         └───────────┬────────────┘  │
+│               │                                                     │               │
+│               └─────────────────────┬───────────────────────────────┘               │
+│                                     │                                                │
+│                                     ▼                                                │
+│  ┌─────────────────────────────────────────────────────────────────────────────┐    │
+│  │                          REACT FRONTEND                                      │    │
+│  │                           (Port 3000)                                        │    │
+│  │                                                                              │    │
+│  │  ┌─────────────────────────────────────────────────────────────────────┐    │    │
+│  │  │  Vite + React 18 + Chakra UI + D3.js + Recharts                     │    │    │
+│  │  ├─────────────────────────────────────────────────────────────────────┤    │    │
+│  │  │                                                                     │    │    │
+│  │  │  11 INTERACTIVE DASHBOARDS                                          │    │    │
+│  │  │  ├── Season Overview        ├── Shot Networks                      │    │    │
+│  │  │  ├── Match Detail           ├── Expected Threat (xT)               │    │    │
+│  │  │  ├── Player Stats           ├── Player Match Analysis              │    │    │
+│  │  │  ├── Tactical Analysis      ├── Opponent Analysis                  │    │    │
+│  │  │  ├── Performance Trends     ├── Player Comparison                  │    │    │
+│  │  │  └── Match Insights                                                 │    │    │
+│  │  │                                                                     │    │    │
+│  │  │  AI CHATBOT (Popup/Minimize Design)                                 │    │    │
+│  │  │  └── Natural language queries about any team/player/match          │    │    │
+│  │  │                                                                     │    │    │
+│  │  │  TEAM & SEASON SELECTOR                                             │    │    │
+│  │  │  └── Switch between Arsenal, Liverpool, Man City, Man United       │    │    │
+│  │  │                                                                     │    │    │
+│  │  └─────────────────────────────────────────────────────────────────────┘    │    │
+│  └─────────────────────────────────────────────────────────────────────────────┘    │
+│                                                                                      │
+└──────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
 ### Services Summary
 
 | Service | Technology | Port | Purpose |
 |---------|------------|------|---------|
-| Frontend | React + Vite + Chakra UI | 3000 | User interface with dashboards |
-| Backend | Node.js + GraphQL | 4000 | API layer for data queries |
-| RAG Chatbot | Python + FastAPI | 5000 | AI-powered analytics assistant |
-| Database | PostgreSQL | 5432 | Data storage (medallion architecture) |
-| Airflow | Apache Airflow | 8080 | Scheduled data scraping |
+| **Frontend** | React 18 + Vite + Chakra UI + D3.js | 3000 | Interactive dashboards and AI chatbot UI |
+| **Backend** | Node.js + Apollo GraphQL | 4000 | API layer with multi-team resolvers |
+| **RAG Chatbot** | Python + FastAPI | 5000 | AI-powered analytics assistant |
+| **Ollama LLM** | Qwen 2.5 (1.5B) | 11434 | Local language model inference |
+| **Database** | PostgreSQL 16 | 5432 | Medallion architecture data storage |
+| **Airflow** | Apache Airflow 2.8 | 8080 | Automated data pipeline orchestration |
+
+### Supported Teams
+
+| Team | Seasons Available | Data Points |
+|------|-------------------|-------------|
+| Arsenal | 2024-25, 2025-26 | Full historical + live |
+| Liverpool | 2024-25, 2025-26 | Full historical + live |
+| Manchester City | 2024-25, 2025-26 | Full historical + live |
+| Manchester United | 2024-25, 2025-26 | Full historical + live |
 
 ---
 
-## Data Flow
+## Data Flow & Pipeline
 
-### 1. Data Collection (Scraping)
-
-```
-Match Played → Wait 2 hours → Airflow DAG triggers → Scrapers run
-                                                          │
-                        ┌─────────────────────────────────┴─────────────────────────────────┐
-                        │                                                                   │
-                        ▼                                                                   ▼
-                 ┌──────────────┐                                                  ┌──────────────┐
-                 │  Understat   │                                                  │    FBref     │
-                 │ • Match xG   │                                                  │ • Lineups    │
-                 │ • Shot data  │                                                  │ • Passing    │
-                 │ • Positions  │                                                  │ • Advanced   │
-                 └──────────────┘                                                  └──────────────┘
-```
-
-### 2. Medallion Architecture (Data Layers)
+### End-to-End Data Flow
 
 ```
-BRONZE (Raw)                    SILVER (Cleaned)                 GOLD (Metrics)
-────────────                    ────────────────                 ──────────────
-• understat_raw                 • shots_cleaned                  • arsenal_matches
-• fbref_raw                     • matches_normalized             • arsenal_player_stats
-• scrape_runs                   • player_performances            • opponent_comparison
-                                                                 • season_summary
+┌─────────────────────────────────────────────────────────────────────────────────────┐
+│                              DATA PIPELINE FLOW                                      │
+└─────────────────────────────────────────────────────────────────────────────────────┘
+
+    MATCH ENDS
+        │
+        ▼
+    ┌───────────────────┐
+    │  AIRFLOW SENSOR   │  Monitors EPL fixtures API
+    │  (Every 30 min)   │  Checks: Has match ended?
+    └─────────┬─────────┘
+              │
+              ▼ (2 hours after match)
+    ┌───────────────────┐
+    │  PLAYWRIGHT       │  Headless browser scraping
+    │  SCRAPER          │  • Opens Understat match page
+    │                   │  • Extracts shot JSON data
+    │                   │  • Handles JavaScript rendering
+    └─────────┬─────────┘
+              │
+              ▼
+    ┌───────────────────────────────────────────────────────────────────────────┐
+    │                        POSTGRESQL DATABASE                                 │
+    │                                                                            │
+    │  BRONZE LAYER (Raw)              SILVER LAYER (Clean)                     │
+    │  ┌─────────────────────┐         ┌─────────────────────┐                  │
+    │  │ bronze.understat_raw│────────▶│ silver.shot_events  │                  │
+    │  │ • Raw JSON shots    │ VIEW    │ • Normalized coords │                  │
+    │  │ • Match metadata    │         │ • Player names      │                  │
+    │  │ • Timestamps        │         │ • xG values         │                  │
+    │  └─────────────────────┘         │ • Shot outcomes     │                  │
+    │                                  └──────────┬──────────┘                  │
+    │  ┌─────────────────────┐                    │                             │
+    │  │bronze.match_reference│                   │                             │
+    │  │ • Home/Away teams   │                    │                             │
+    │  │ • Final scores      │                    │                             │
+    │  │ • Season/Date       │                    ▼                             │
+    │  └─────────────────────┘         GOLD LAYER (Metrics)                     │
+    │                                  ┌─────────────────────────────────────┐  │
+    │                                  │ metrics.player_advanced_stats      │  │
+    │                                  │ • Goals, xG, conversion rates      │  │
+    │                                  │ • Shot accuracy, big chances       │  │
+    │                                  │ • Per-match aggregations           │  │
+    │                                  ├─────────────────────────────────────┤  │
+    │                                  │ metrics.tactical_analysis          │  │
+    │                                  │ • Shots by time period (0-15, etc) │  │
+    │                                  │ • Goals by situation               │  │
+    │                                  │ • Set piece breakdown              │  │
+    │                                  ├─────────────────────────────────────┤  │
+    │                                  │ metrics.player_xt_stats            │  │
+    │                                  │ • Expected Threat values           │  │
+    │                                  │ • Zone-based threat analysis       │  │
+    │                                  │ • High threat shot percentage      │  │
+    │                                  ├─────────────────────────────────────┤  │
+    │                                  │ metrics.match_advanced_stats       │  │
+    │                                  │ • Per-match shot statistics        │  │
+    │                                  │ • First/second half breakdown      │  │
+    │                                  │ • Box vs outside box shots         │  │
+    │                                  ├─────────────────────────────────────┤  │
+    │                                  │ metrics.team_matches               │  │
+    │                                  │ • Team xG per match                │  │
+    │                                  │ • Results and opponents            │  │
+    │                                  │ • Home/Away venue                  │  │
+    │                                  └─────────────────────────────────────┘  │
+    └───────────────────────────────────────────────────────────────────────────┘
+              │                                           │
+              │                                           │
+              ▼                                           ▼
+    ┌───────────────────┐                      ┌───────────────────┐
+    │  GRAPHQL API      │                      │  CHROMADB         │
+    │  (Node.js)        │                      │  (Vector Store)   │
+    │                   │                      │                   │
+    │  Resolvers query  │                      │  Match documents  │
+    │  Gold layer views │                      │  are embedded     │
+    └─────────┬─────────┘                      └─────────┬─────────┘
+              │                                          │
+              │                                          │
+              ▼                                          ▼
+    ┌───────────────────────────────────────────────────────────────┐
+    │                      REACT FRONTEND                            │
+    │                                                                │
+    │   Dashboard Queries ─────▶ GraphQL ─────▶ Charts/Tables       │
+    │   Chatbot Questions ─────▶ RAG API ─────▶ AI Responses        │
+    │                                                                │
+    └───────────────────────────────────────────────────────────────┘
 ```
 
-### 3. Data Access
+### Automation Timeline
 
 ```
-Frontend Request → GraphQL Query → PostgreSQL (Gold Layer) → Response → Dashboard
-                                                    │
-AI Chat Request → RAG Chatbot → ChromaDB (Vector Search) → Claude API → Response
-                                         │
-                                    Uses embeddings of
-                                    match data for
-                                    semantic search
+Match Kickoff (15:00)
+        │
+        ▼ (Match duration ~2 hours)
+Match Ends (17:00)
+        │
+        ▼ (Wait 2 hours for data availability)
+Airflow Trigger (19:00)
+        │
+        ├──▶ Scrape Understat (~30 seconds)
+        │
+        ├──▶ Load to Bronze (~5 seconds)
+        │
+        ├──▶ Silver views auto-update (instant)
+        │
+        ├──▶ Gold metrics auto-update (instant)
+        │
+        └──▶ Data available in dashboards
 ```
 
 ---
 
-## Quick Start
+## Database Schema & Medallion Architecture
 
-### Prerequisites
-- Docker & Docker Compose
-- Make (optional, for convenience commands)
+### Bronze Layer (Raw Data)
 
-### Start Everything
+```sql
+-- Raw shot data from Understat
+bronze.understat_raw
+├── match_url (PRIMARY KEY)
+├── raw_shots (JSONB)        -- Full shot JSON from Understat
+├── scraped_at (TIMESTAMP)
+└── source (VARCHAR)
+
+-- Match metadata
+bronze.match_reference
+├── match_url (PRIMARY KEY)
+├── home_team (VARCHAR)
+├── away_team (VARCHAR)
+├── home_goals (INTEGER)
+├── away_goals (INTEGER)
+├── home_xg (DECIMAL)
+├── away_xg (DECIMAL)
+├── season (VARCHAR)         -- Format: "2024-25"
+├── match_date (DATE)
+└── team_name (VARCHAR)      -- Team perspective
+```
+
+### Silver Layer (Cleaned Data)
+
+```sql
+-- Normalized shot events (VIEW)
+silver.shot_events
+├── match_url
+├── match_date
+├── season
+├── home_team / away_team
+├── player_name / player_id
+├── team                     -- Which team took the shot
+├── minute
+├── result                   -- Goal, SavedShot, MissedShots, BlockedShot
+├── situation                -- OpenPlay, SetPiece, FromCorner, Penalty
+├── shot_type                -- RightFoot, LeftFoot, Head
+├── x_coord / y_coord        -- Normalized 0-1 coordinates
+├── xg                       -- Expected goals value
+├── assisted_by              -- Assister name
+├── last_action              -- Pass, Dribble, Cross, etc.
+└── position_category        -- Forward, Midfielder, Defender, Goalkeeper
+```
+
+### Gold Layer (Metric Views)
+
+```sql
+-- Player statistics aggregated by season
+metrics.player_advanced_stats
+├── team_name
+├── player_name
+├── season
+├── matches_played
+├── total_shots / goals / total_xg
+├── avg_xg_per_shot / conversion_pct
+├── shots_on_target / shot_accuracy_pct
+├── big_chances / big_chances_scored
+├── box_shots / outside_box_shots
+├── open_play_shots / corner_shots / set_piece_shots
+├── xg_overperformance
+└── goals_per_match / xg_per_match
+
+-- Tactical breakdown by team/season
+metrics.tactical_analysis
+├── team_name
+├── season
+├── shots_0_15 / shots_16_30 / ... / shots_76_90  -- By time period
+├── goals_0_15 / goals_16_30 / ... / goals_76_90
+├── shots_from_pass / dribble / cross / rebound
+├── open_play_total / goals / xg
+├── corner_total / goals / xg
+├── set_piece_total / goals / xg
+├── penalty_total / goals
+└── big_chances_created / big_chances_converted
+
+-- Expected Threat by player
+metrics.player_xt_stats
+├── team_name
+├── player_name
+├── position_category
+├── season
+├── total_shots / goals
+├── total_xt / avg_xt_per_shot / max_xt_shot
+├── total_xg / avg_xg_per_shot
+├── high_threat_shots / high_threat_pct
+└── xt_efficiency
+
+-- Per-match detailed statistics
+metrics.match_advanced_stats
+├── match_url
+├── match_date / season / team_name / opponent / venue / result
+├── team_goals / opponent_goals
+├── team_xg / opponent_xg
+├── team_shots / opponent_shots
+├── team_shots_on_target / opponent_shots_on_target
+├── shot_accuracy_pct
+├── big_chances / big_chances_scored
+├── box_shots / outside_box_shots
+├── first_half_shots / first_half_xg
+├── second_half_shots / second_half_xg
+└── avg_shot_xg
+
+-- Team match results
+metrics.team_matches
+├── match_url
+├── match_date / season
+├── team_name / opponent
+├── team_goals / opponent_goals
+├── team_xg / opponent_xg
+├── venue (Home/Away)
+└── result (W/D/L)
+```
+
+### xT Calculation Function
+
+```sql
+-- Expected Threat grid function (12x8 zones)
+metrics.calculate_xt_value(x DECIMAL, y DECIMAL) RETURNS DECIMAL
+-- Maps pitch coordinates to threat values
+-- Higher values near opponent's goal
+-- Used for zone-based attacking analysis
+```
+
+---
+
+## GraphQL API Reference
+
+### Available Queries
+
+```graphql
+type Query {
+  # Season and team data
+  seasons(team: String): [Season!]!
+  matchList(season: String!, team: String): [MatchListItem!]!
+  
+  # Player statistics
+  playerStats(season: String!, team: String, limit: Int): [PlayerAdvancedStats!]!
+  playerXTStats(season: String!, team: String, limit: Int): [PlayerXTStats!]!
+  
+  # Match analysis
+  matchShots(matchId: String!): [Shot!]!
+  matchAdvancedStats(matchId: String!): MatchAdvancedStats
+  matchShotsBySeason(season: String!, team: String): [Shot!]!
+  
+  # Tactical and trends
+  tacticalAnalysis(season: String!, team: String): TacticalAnalysis
+  performanceTrends(season: String!, team: String, windowSize: Int): [PerformanceTrend!]!
+  
+  # Network analysis
+  assistNetwork(season: String!, team: String): [AssistEdge!]!
+  
+  # Opponent analysis
+  opponentComparison(season: String, team: String): [OpponentStats!]!
+  
+  # Data quality
+  dataQuality(team: String): DataQuality
+}
+```
+
+### Example Queries
+
+```graphql
+# Get player stats for Arsenal 2025-26
+query {
+  playerStats(season: "2025-26", team: "Arsenal", limit: 10) {
+    playerName
+    goals
+    totalXg
+    conversionPct
+    xgOverperformance
+  }
+}
+
+# Get tactical analysis
+query {
+  tacticalAnalysis(season: "2025-26", team: "Liverpool") {
+    arsenalShots0_15
+    arsenalGoals0_15
+    bigChancesCreated
+    bigChancesConverted
+    openPlayGoals
+    cornerGoals
+  }
+}
+
+# Get performance trends with shot data
+query {
+  performanceTrends(season: "2025-26", team: "Arsenal") {
+    matchDate
+    opponent
+    goals
+    xg
+    shots
+    shotsOnTarget
+    bigChances
+    rollingAvgXg
+  }
+}
+
+# Get match advanced stats
+query {
+  matchAdvancedStats(matchId: "https://understat.com/match/29060") {
+    matchDate
+    opponent
+    arsenalGoals
+    opponentGoals
+    arsenalShots
+    arsenalBigChances
+    arsenalShotsOnTarget
+  }
+}
+```
+
+---
+
+## Dashboard Components
+
+### 1. Season Overview
+**File:** `frontend-vite/src/components/dashboards/SeasonOverview.tsx`
+
+Displays team performance summary for the selected season:
+- Win/Draw/Loss record with visual breakdown
+- Points total and league position
+- Goals scored vs expected (xG over/underperformance)
+- Clean sheets and failed to score counts
+
+### 2. Match Detail
+**File:** `frontend-vite/src/components/dashboards/MatchDetail.tsx`
+
+Individual match analysis with:
+- Shot map visualization on pitch (D3.js)
+- xG timeline showing cumulative expected goals
+- Goal scorers with minute and xG value
+- Shot outcomes breakdown (goals, saves, misses, blocks)
+
+### 3. Player Stats
+**File:** `frontend-vite/src/components/dashboards/PlayerStats.tsx`
+
+Comprehensive player statistics:
+- Goals, assists, total xG
+- Conversion rate and shot accuracy
+- Big chances created/converted
+- xG overperformance (clinical finishing indicator)
+- Sortable and filterable table
+
+### 4. Tactical Analysis
+**File:** `frontend-vite/src/components/dashboards/TacticalAnalysis.tsx`
+
+Team tactical patterns:
+- Shots and goals by 15-minute periods (radar chart)
+- Situation breakdown (open play, corners, set pieces, penalties)
+- Shot creation methods (pass, dribble, cross, rebound)
+- Big chances analysis
+
+### 5. Shot Networks
+**File:** `frontend-vite/src/components/dashboards/ShotNetworks.tsx`
+
+Visualizes assist partnerships:
+- Force-directed graph of passer-to-shooter connections
+- Edge thickness represents actual assists (goals)
+- Distinguishes assists (goals) from key passes (shots)
+- Top assisters bar chart
+- Partnership details table with conversion rates
+
+### 6. Expected Threat (xT)
+**File:** `frontend-vite/src/components/dashboards/ExpectedThreat.tsx`
+
+Zone-based threat analysis:
+- Player xT rankings
+- High threat shot percentage
+- xT efficiency (threat per xG)
+- Position-based comparisons
+
+### 7. Passing Network (Shot Creation)
+**File:** `frontend-vite/src/components/dashboards/advanced/PassingNetworkEnhanced.tsx`
+
+Modern pitch visualization:
+- Football pitch with realistic markings and grass gradient
+- Curved connection lines between players
+- Player nodes sized by involvement
+- Phase-based coloring (low block, mid block, high press)
+- Interactive tooltips with pass details
+
+### 8. Performance Trends
+**File:** `frontend-vite/src/components/dashboards/PerformanceTrends.tsx`
+
+Rolling performance analysis:
+- xG vs Goals trend line
+- Rolling 5-match averages
+- Shots and big chances trend chart
+- Match-by-match performance bars
+
+### 9. Player Comparison
+**File:** `frontend-vite/src/components/dashboards/PlayerComparison.tsx`
+
+Side-by-side player analysis:
+- Select two players to compare
+- Radar chart comparison
+- Key metrics table
+- xG and goals visualization
+
+### 10. Opponent Analysis
+**File:** `frontend-vite/src/components/dashboards/OpponentAnalysis.tsx`
+
+Head-to-head statistics:
+- Win rate against each opponent
+- Goals for/against breakdown
+- xG performance by opponent
+- Historical results
+
+### 11. Match Insights
+**File:** `frontend-vite/src/components/dashboards/MatchInsights.tsx`
+
+Detailed per-match breakdown:
+- Match selector dropdown
+- Shot statistics with first/second half split
+- Box vs outside box shots
+- Shot quality analysis (avg xG per shot)
+- Key moments timeline
+
+---
+
+## AI Chatbot (RAG System)
+
+### Architecture
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                           RAG CHATBOT FLOW                                   │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+User Question: "How did Arsenal perform against Liverpool?"
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  STEP 1: EMBEDDING                                                           │
+│  ┌─────────────────────────────────────────────────────────────────────┐    │
+│  │  Sentence Transformer (all-MiniLM-L6-v2)                            │    │
+│  │  Converts question to 384-dimensional vector                        │    │
+│  └─────────────────────────────────────────────────────────────────────┘    │
+└───────────────────────────────────┬─────────────────────────────────────────┘
+                                    │
+                                    ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  STEP 2: RETRIEVAL                                                           │
+│  ┌─────────────────────────────────────────────────────────────────────┐    │
+│  │  ChromaDB Vector Search                                              │    │
+│  │  • Finds top 5 most similar match documents                          │    │
+│  │  • Searches across ALL teams (Arsenal, Liverpool, etc.)              │    │
+│  │  • Returns match summaries with xG, goals, players                   │    │
+│  └─────────────────────────────────────────────────────────────────────┘    │
+└───────────────────────────────────┬─────────────────────────────────────────┘
+                                    │
+                                    ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  STEP 3: AUGMENTATION                                                        │
+│  ┌─────────────────────────────────────────────────────────────────────┐    │
+│  │  Prompt Construction                                                 │    │
+│  │  System Prompt (Football Analyst Persona)                            │    │
+│  │  + Retrieved Match Context                                           │    │
+│  │  + User Question                                                     │    │
+│  └─────────────────────────────────────────────────────────────────────┘    │
+└───────────────────────────────────┬─────────────────────────────────────────┘
+                                    │
+                                    ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  STEP 4: GENERATION                                                          │
+│  ┌─────────────────────────────────────────────────────────────────────┐    │
+│  │  Ollama LLM (Qwen 2.5 - 1.5B parameters)                             │    │
+│  │  • Runs locally (no API costs)                                       │    │
+│  │  • Generates response using retrieved context                        │    │
+│  │  • Includes source citations and confidence score                    │    │
+│  └─────────────────────────────────────────────────────────────────────┘    │
+└───────────────────────────────────┬─────────────────────────────────────────┘
+                                    │
+                                    ▼
+                        AI Response with Match Statistics
+```
+
+### UI Design
+
+The chatbot features a **popup/minimize design**:
+- Floating button at bottom-right corner
+- Click to expand chat window
+- Close (X) or minimize (-) buttons in header
+- Smooth scale animation on open/close
+- Quick question buttons for common queries
+
+### API Endpoints
 
 ```bash
-# Clone and enter directory
+# Health check
+GET http://localhost:5000/health
+Response: {"status": "healthy", "ollama": "connected", "chromadb": "connected"}
+
+# Get statistics
+GET http://localhost:5000/stats
+Response: {
+  "indexed_matches": 208,
+  "teams": ["Arsenal", "Liverpool", "Manchester City", "Manchester United"],
+  "model": "qwen2.5:1.5b"
+}
+
+# Chat endpoint
+POST http://localhost:5000/chat
+Body: {
+  "question": "Who scored the most goals for Arsenal?",
+  "conversation_history": []
+}
+Response: {
+  "answer": "Based on the data, Viktor Gyokeres leads...",
+  "sources": [{"match_date": "2025-12-27", "opponent": "Brighton", ...}],
+  "confidence": 0.85
+}
+
+# Rebuild embeddings
+POST http://localhost:5000/rebuild-embeddings
+Response: {"status": "success", "matches_indexed": 208}
+```
+
+### Example Questions
+
+```
+"How did Arsenal perform against Liverpool this season?"
+"Who is the top scorer for Manchester City?"
+"What's Arsenal's xG trend in away games?"
+"Compare Arsenal's conversion rate to Liverpool's"
+"Which player has the best big chance conversion?"
+"How many clean sheets does Arsenal have?"
+```
+
+---
+
+## Quick Start Guide
+
+### Prerequisites
+
+- Docker & Docker Compose
+- 8GB+ RAM (for Ollama LLM)
+- Make (optional, for convenience commands)
+
+### Start All Services
+
+```bash
+# Clone repository
+git clone <repo-url>
 cd Gunners-Platform
 
-# Start all services
+# Start everything
 make up
-
-# Or manually:
-docker compose up -d
+# Or: docker compose up -d
 
 # Check status
 make status
+
+# View logs
+make logs
 ```
 
 ### Access Points
 
-| Service | URL |
-|---------|-----|
-| Frontend Dashboard | http://localhost:3000 |
-| GraphQL Playground | http://localhost:4000/graphql |
-| Airflow UI | http://localhost:8080 (admin/admin) |
-| RAG Chatbot API | http://localhost:5000 |
+| Service | URL | Credentials |
+|---------|-----|-------------|
+| Frontend Dashboard | http://localhost:3000 | - |
+| GraphQL Playground | http://localhost:4000/graphql | - |
+| Airflow UI | http://localhost:8080 | admin / admin |
+| RAG Chatbot API | http://localhost:5000 | - |
 
----
-
-## RAG Chatbot - Beginner's Guide
-
-### What is RAG?
-
-**RAG = Retrieval-Augmented Generation**
-
-It's a technique that makes AI chatbots smarter by giving them access to your specific data. Instead of relying only on what the AI was trained on, RAG lets you:
-
-1. **Store your data** in a searchable format (embeddings)
-2. **Find relevant data** when a user asks a question
-3. **Pass that data** to the AI along with the question
-4. **Get accurate answers** based on YOUR data, not general knowledge
-
-### Why Use RAG?
-
-| Without RAG | With RAG |
-|-------------|----------|
-| AI might hallucinate statistics | AI uses your real match data |
-| Generic football knowledge | Specific Arsenal FC analysis |
-| Can't answer about recent matches | Knows every scraped match |
-| No sources/citations | Can cite specific match dates |
-
-### How Our RAG System Works
-
-```
-User Question: "How did Arsenal perform against Liverpool?"
-                            │
-                            ▼
-                ┌───────────────────────┐
-                │  1. EMBEDDING SEARCH   │
-                │  Convert question to   │
-                │  vector, find similar  │
-                │  match documents       │
-                └───────────┬───────────┘
-                            │
-                            ▼
-                ┌───────────────────────┐
-                │  2. RETRIEVE DATA      │
-                │  Get top 5 most        │
-                │  relevant matches      │
-                │  from ChromaDB         │
-                └───────────┬───────────┘
-                            │
-                            ▼
-                ┌───────────────────────┐
-                │  3. BUILD PROMPT       │
-                │  Combine: system       │
-                │  prompt + match data   │
-                │  + user question       │
-                └───────────┬───────────┘
-                            │
-                            ▼
-                ┌───────────────────────┐
-                │  4. CALL CLAUDE API    │
-                │  Send augmented        │
-                │  prompt, get response  │
-                └───────────┬───────────┘
-                            │
-                            ▼
-                   AI Response with
-                   real match statistics
-```
-
-### RAG Code Explained (Line by Line)
-
-#### File 1: `rag-chatbot/rag/embeddings.py`
-
-This file handles converting match data into searchable vectors.
-
-```python
-# Import the embedding model - this converts text to vectors (numbers)
-from sentence_transformers import SentenceTransformer
-
-# Import ChromaDB - a vector database that stores and searches embeddings
-import chromadb
-from chromadb.config import Settings
-
-class EmbeddingManager:
-    def __init__(self, persist_directory: str = "./data/chroma"):
-        # Load the embedding model
-        # 'all-MiniLM-L6-v2' is a small, fast model that creates 384-dimensional vectors
-        # It understands semantic meaning - "Arsenal won" and "Gunners victory" are similar
-        self.model = SentenceTransformer('all-MiniLM-L6-v2')
-        
-        # Connect to ChromaDB (vector database)
-        # This stores our match embeddings on disk
-        self.chroma_client = chromadb.Client(Settings(
-            persist_directory=persist_directory,  # Where to save the database
-            anonymized_telemetry=False           # Don't send usage data
-        ))
-        
-        # Get or create our collection (like a table in a regular database)
-        try:
-            self.collection = self.chroma_client.get_collection("arsenal_matches")
-        except:
-            # If it doesn't exist, create it
-            self.collection = self.chroma_client.create_collection(
-                name="arsenal_matches",
-                metadata={"description": "Arsenal FC match statistics"}
-            )
-    
-    def create_match_document(self, match: Dict[str, Any]) -> str:
-        """Convert match data to searchable text
-        
-        WHY: ChromaDB needs text documents to create embeddings.
-        We format each match as a readable text block with all important stats.
-        """
-        text = f"""
-        Match: Arsenal vs {match['opponent']} on {match['match_date']}
-        Result: {match['result']} ({match['arsenal_goals']}-{match['opponent_goals']})
-        
-        Expected Goals (xG):
-        - Arsenal xG: {match['arsenal_xg']:.2f}
-        - Opponent xG: {match['opponent_xg']:.2f}
-        
-        Shot Statistics:
-        - Total Shots: {match['total_shots']}
-        - Shots on Target: {match['shots_on_target']}
-        ...
-        """
-        return text
-    
-    def add_matches(self, matches: List[Dict[str, Any]]):
-        """Add matches to ChromaDB with embeddings
-        
-        HOW IT WORKS:
-        1. For each match, create a text document
-        2. ChromaDB automatically creates an embedding (vector) for each document
-        3. Store document + embedding + metadata for later retrieval
-        """
-        documents = []   # The text content
-        metadatas = []   # Extra info (date, opponent, etc.)
-        ids = []         # Unique identifier for each document
-        
-        for match in matches:
-            documents.append(self.create_match_document(match))
-            metadatas.append({
-                "match_date": str(match['match_date']),
-                "opponent": match['opponent'],
-                "result": match['result']
-            })
-            ids.append(f"{match['match_date']}_{match['opponent']}")
-        
-        # Add to ChromaDB - it handles embedding automatically!
-        self.collection.add(
-            documents=documents,
-            metadatas=metadatas,
-            ids=ids
-        )
-    
-    def search(self, query: str, n_results: int = 5) -> Dict[str, Any]:
-        """Search for relevant matches based on user query
-        
-        HOW IT WORKS:
-        1. ChromaDB converts the query to an embedding vector
-        2. It finds the 5 most similar document vectors (cosine similarity)
-        3. Returns those documents with their metadata
-        
-        EXAMPLE:
-        Query: "Liverpool matches" → Returns all Liverpool match documents
-        Query: "Big wins" → Returns matches with high goal differences
-        """
-        results = self.collection.query(
-            query_texts=[query],  # The user's question
-            n_results=n_results   # How many results to return
-        )
-        
-        return {
-            "documents": results['documents'][0],   # The actual text
-            "metadatas": results['metadatas'][0],   # Match info
-            "distances": results['distances'][0]    # How similar (lower = more similar)
-        }
-```
-
-#### File 2: `rag-chatbot/rag/chain.py`
-
-This file handles the conversation with Claude AI.
-
-```python
-from anthropic import Anthropic  # Claude's official Python client
-
-class RAGChain:
-    def __init__(self):
-        # Initialize the Anthropic client with API key from environment
-        self.client = Anthropic(api_key=os.getenv('ANTHROPIC_API_KEY'))
-        
-        # Load the system prompt - this tells Claude how to behave
-        # It's like giving Claude a job description
-        with open('./system_prompts/analyst.txt', 'r') as f:
-            self.system_prompt = f.read()
-    
-    def build_context(self, documents: List[str]) -> str:
-        """Combine retrieved documents into a context string
-        
-        WHY: We need to format the retrieved match data in a way
-        that's easy for Claude to understand and reference.
-        """
-        context_parts = []
-        for i, doc in enumerate(documents, 1):
-            context_parts.append(f"--- Match Data {i} ---\n{doc}\n")
-        return "\n".join(context_parts)
-    
-    def invoke(self, question: str, context: str, history: List[Dict] = None):
-        """Run the RAG chain - this is where the magic happens!
-        
-        STEPS:
-        1. Build message history (for multi-turn conversations)
-        2. Create prompt with context + question
-        3. Call Claude API
-        4. Return the response
-        """
-        messages = []
-        
-        # Add conversation history if exists (for follow-up questions)
-        if history:
-            for msg in history:
-                messages.append({
-                    "role": msg['role'],      # "user" or "assistant"
-                    "content": msg['content']  # The message text
-                })
-        
-        # Build the augmented prompt
-        # THIS IS THE KEY RAG STEP: We inject retrieved data into the prompt
-        user_message = f"""Using the following Arsenal FC match data, please answer:
-
-RELEVANT MATCH DATA:
-{context}  # <-- This is the retrieved match data!
-
-USER QUESTION:
-{question}
-
-Please provide data-driven analysis with specific statistics."""
-        
-        messages.append({"role": "user", "content": user_message})
-        
-        # Call Claude API
-        response = self.client.messages.create(
-            model="claude-3-5-sonnet-20241022",  # The AI model
-            max_tokens=1024,                      # Max response length
-            system=self.system_prompt,            # How Claude should behave
-            messages=messages                     # The conversation
-        )
-        
-        return {
-            "answer": response.content[0].text,
-            "model": "claude-3-5-sonnet"
-        }
-```
-
-#### File 3: `rag-chatbot/app.py`
-
-The FastAPI application that ties everything together.
-
-```python
-from fastapi import FastAPI
-from rag.embeddings import EmbeddingManager
-from rag.chain import RAGChain
-
-app = FastAPI()
-
-# Initialize our components
-embeddings = EmbeddingManager()  # Vector database
-rag_chain = RAGChain()           # Claude integration
-
-@app.post("/chat")
-async def chat(request: ChatRequest):
-    """Main chat endpoint
-    
-    THE COMPLETE RAG FLOW:
-    1. User sends question
-    2. Search vector DB for relevant matches
-    3. Build context from retrieved matches
-    4. Send context + question to Claude
-    5. Return AI response with sources
-    """
-    
-    # STEP 1: Search for relevant matches in vector database
-    search_results = embeddings.search(request.question, n_results=5)
-    
-    # STEP 2: Extract documents and metadata
-    documents = search_results['documents']   # Match text documents
-    metadatas = search_results['metadatas']   # Match info (date, opponent)
-    distances = search_results['distances']   # Similarity scores
-    
-    # STEP 3: Build context string from retrieved documents
-    context = rag_chain.build_context(documents)
-    
-    # STEP 4: Call Claude with augmented prompt
-    response = rag_chain.invoke(
-        question=request.question,
-        context=context,          # <-- The retrieved match data!
-        history=request.history
-    )
-    
-    # STEP 5: Calculate confidence based on retrieval quality
-    avg_distance = sum(distances) / len(distances)
-    confidence = 1.0 - (avg_distance / 2.0)  # Lower distance = higher confidence
-    
-    # STEP 6: Format sources for the frontend
-    sources = [
-        {"match_date": m['match_date'], "opponent": m['opponent']}
-        for m in metadatas
-    ]
-    
-    return {
-        "answer": response['answer'],
-        "sources": sources,         # What matches were used
-        "confidence": confidence    # How confident we are
-    }
-```
-
-### Building RAG in Your Own Projects
-
-#### Step-by-Step Guide
-
-1. **Choose Your Data**
-   - What knowledge does your chatbot need?
-   - Format it as text documents
-
-2. **Choose an Embedding Model**
-   - `all-MiniLM-L6-v2` - Fast, good for most cases
-   - `text-embedding-3-small` (OpenAI) - Higher quality
-   - `voyage-2` - Great for specialized domains
-
-3. **Choose a Vector Database**
-   - **ChromaDB** - Simple, good for prototypes (we use this)
-   - **Pinecone** - Managed, scales well
-   - **Weaviate** - Feature-rich
-   - **Qdrant** - Fast, Rust-based
-
-4. **Choose an LLM**
-   - **Claude** - Great reasoning (we use this)
-   - **GPT-4** - Versatile
-   - **Llama 3** - Open source, self-hosted
-
-5. **The Basic Code Pattern**
-
-```python
-# Pseudocode for any RAG application
-
-# 1. Initialize
-embedding_model = load_model("all-MiniLM-L6-v2")
-vector_db = ChromaDB()
-llm = Claude()
-
-# 2. Index your data (do once)
-for document in your_documents:
-    embedding = embedding_model.encode(document)
-    vector_db.add(document, embedding)
-
-# 3. Answer questions (on each request)
-def answer(question):
-    # Search for relevant documents
-    relevant_docs = vector_db.search(question, top_k=5)
-    
-    # Build prompt with context
-    prompt = f"""
-    Context: {relevant_docs}
-    Question: {question}
-    Answer based on the context above.
-    """
-    
-    # Get AI response
-    answer = llm.generate(prompt)
-    return answer
-```
-
----
-
-## Component Details
-
-### Frontend (React + Vite)
-
-Located in `frontend-vite/`
-
-**Key Files:**
-- `src/App.tsx` - Main app with tab navigation
-- `src/components/dashboards/` - 11 dashboard components
-- `src/components/AIChatbot.tsx` - Chatbot UI
-- `src/lib/apollo-client.ts` - GraphQL client setup
-
-**Dashboards:**
-1. Season Overview - Team performance summary
-2. Match Detail - Individual match analysis
-3. Player Stats - Player performance metrics
-4. Tactical Analysis - Formation and style insights
-5. Shot Networks - Passing and shooting patterns
-6. Expected Threat (xT) - Zone-based threat analysis
-7. Player Match Analysis - Per-match player breakdown
-8. Opponent Analysis - Head-to-head comparisons
-9. Performance Trends - Rolling averages and trends
-10. Player Comparison - Side-by-side player stats
-11. Match Insights - AI-generated match observations
-
-### Backend (Node.js + GraphQL)
-
-Located in `backend/`
-
-**Key Files:**
-- `src/server.js` - Express + Apollo Server setup
-- `src/resolvers/` - GraphQL resolvers
-- `src/schema/` - GraphQL type definitions
-- `src/db/` - PostgreSQL connection
-
-### Scrapers (Python)
-
-Located in `scrapers/`
-
-**Key Files:**
-- `playwright_scraper.py` - Browser-based scraping with Playwright
-- `fbref_scraper.py` - FBref data extraction
-- `backfill_historical.py` - Bulk historical data loading
-- `db_loader.py` - Database insertion logic
-
-### Airflow (Data Orchestration)
-
-Located in `airflow/`
-
-**Key DAG: `arsenal_smart_match_scraper`**
-- Runs every 6 hours
-- Checks for newly completed matches
-- Scrapes Understat + FBref
-- Loads data into PostgreSQL
-- Triggers dbt transformations
-
----
-
-## Makefile Commands
+### First-Time Setup
 
 ```bash
-# === Starting Services ===
-make up              # Start all services
-make up-build        # Build and start
-make down            # Stop all services
+# Wait for Ollama model download (first time only)
+docker logs -f arsenalfc_ollama
 
-# === Monitoring ===
-make status          # Show container status
-make logs            # Follow all logs
-make logs-backend    # Backend logs only
-make logs-frontend   # Frontend logs only
+# Rebuild chatbot embeddings
+curl -X POST http://localhost:5000/rebuild-embeddings
+
+# Verify data
+curl http://localhost:5000/stats
+```
+
+---
+
+## Development Guide
+
+### Project Structure
+
+```
+Gunners-Platform/
+├── airflow/                    # Data orchestration
+│   └── dags/
+│       └── epl_smart_match_scraper.py
+│
+├── backend/                    # GraphQL API
+│   └── src/
+│       ├── resolvers/          # Query handlers
+│       │   ├── advanced.js     # performanceTrends, matchAdvancedStats
+│       │   ├── player.js       # playerStats, playerXTStats, assistNetwork
+│       │   └── tactical.js     # tacticalAnalysis
+│       ├── schema/             # GraphQL type definitions
+│       └── db/                 # PostgreSQL connection
+│
+├── database/                   # SQL migrations
+│   └── init/
+│       ├── 01_init_databases.sql
+│       ├── 02_create_bronze_schema.sql
+│       ├── 03_create_views.sql
+│       ├── 08_add_multi_team_support.sql
+│       └── 09_multi_team_metric_views.sql
+│
+├── frontend-vite/              # React frontend
+│   └── src/
+│       ├── components/
+│       │   ├── dashboards/     # 11 dashboard components
+│       │   ├── AIChatbot.tsx   # Popup chatbot UI
+│       │   └── Header.tsx      # Team/season selector
+│       ├── context/            # React contexts
+│       └── lib/                # Apollo client
+│
+├── rag-chatbot/                # AI chatbot service
+│   ├── app.py                  # FastAPI application
+│   ├── rag/
+│   │   ├── chain.py            # Ollama LLM integration
+│   │   └── embeddings.py       # ChromaDB vector store
+│   └── system_prompts/
+│       └── analyst.txt         # AI persona prompt
+│
+├── scrapers/                   # Data collection
+│   ├── backfill_team.py        # Universal team scraper
+│   ├── playwright_scraper.py   # Browser automation
+│   └── db_loader.py            # Database insertion
+│
+├── docker-compose.yml          # Container orchestration
+├── Makefile                    # Convenience commands
+├── README.md                   # Quick start
+└── DOCUMENTATION.md            # This file
+```
+
+### Makefile Commands
+
+```bash
+# === Services ===
+make up                  # Start all services
+make down                # Stop all services
+make restart             # Restart all services
+make status              # Show container status
+
+# === Logs ===
+make logs                # Follow all logs
+make logs-backend        # Backend logs only
+make logs-frontend       # Frontend logs only
 
 # === Database ===
-make db-shell        # PostgreSQL shell
-make db-check        # Check database status
+make db-shell            # PostgreSQL shell
+make db-check            # Check database status
 
 # === Development ===
-make rebuild-frontend  # Rebuild frontend container
-make rebuild-backend   # Rebuild backend container
-make frontend-shell    # Shell into frontend container
-make backend-shell     # Shell into backend container
+make rebuild-frontend    # Rebuild frontend container
+make rebuild-backend     # Rebuild backend container
+make frontend-shell      # Shell into frontend container
+make backend-shell       # Shell into backend container
 
 # === Airflow ===
-make airflow-enable-dag DAG=arsenal_smart_match_scraper
+make airflow-enable-dag DAG=epl_smart_match_scraper
 
 # === Cleanup ===
-make clean           # Remove all containers and volumes
-make clean-containers  # Remove containers only
+make clean               # Remove all containers and volumes
+```
+
+### Adding a New Dashboard
+
+1. Create component in `frontend-vite/src/components/dashboards/`
+2. Add GraphQL query for data fetching
+3. Register in `App.tsx` tab list
+4. Add resolver in `backend/src/resolvers/` if needed
+5. Create database view in `database/init/` if needed
+
+### Running Database Migrations
+
+```bash
+# Run migration script manually
+cat database/init/09_multi_team_metric_views.sql | \
+  docker exec -i arsenalfc_postgres psql -U postgres
+
+# Or recreate database from scratch
+docker compose down -v
+docker compose up -d
 ```
 
 ---
 
 ## Troubleshooting
 
-### Frontend White Screen
+### Common Issues
 
-**Symptoms:** Page loads briefly then goes blank
+| Issue | Solution |
+|-------|----------|
+| **White screen on frontend** | `docker compose build --no-cache frontend && docker compose up -d frontend` |
+| **Database connection errors** | `docker compose restart postgres` then check logs |
+| **Chatbot slow responses** | Expected (2-3 min on CPU). Use smaller model or add GPU |
+| **No data in dashboards** | Run migration: `make db-shell` then run SQL scripts |
+| **Airflow DAGs not loading** | `docker compose restart airflow-scheduler airflow-webserver` |
 
-**Solution:**
+### Verify Services
+
 ```bash
-# Rebuild frontend without cache
-docker compose build --no-cache frontend
-docker compose up -d frontend
+# Check all containers are running
+docker compose ps
+
+# Check backend health
+curl http://localhost:4000/health
+
+# Check chatbot status
+curl http://localhost:5000/stats
+
+# Check database views exist
+docker exec arsenalfc_postgres psql -U postgres -d arsenalfc_analytics -c "\dv metrics.*"
 ```
 
-### Database Connection Errors
+### View Logs
 
-**Symptoms:** Backend can't connect to PostgreSQL
-
-**Solution:**
 ```bash
-# Check if postgres is running
-docker compose ps postgres
+# All services
+docker compose logs -f
 
-# Restart database
-docker compose restart postgres
-
-# Check logs
-docker compose logs postgres
+# Specific service
+docker compose logs -f backend
+docker compose logs -f rag-chatbot
+docker compose logs -f postgres
 ```
 
-### Airflow DAGs Not Loading
-
-**Symptoms:** DAGs show import errors
-
-**Solution:**
-```bash
-# Check Airflow logs
-docker compose logs airflow-scheduler
-
-# Restart Airflow
-docker compose restart airflow-scheduler airflow-webserver
-```
-
-### RAG Chatbot Not Working
-
-**Symptoms:** Chat returns errors
-
-**Checklist:**
-1. Is `ANTHROPIC_API_KEY` set in environment?
-2. Is ChromaDB data populated?
+### Reset Everything
 
 ```bash
-# Check RAG chatbot logs
-docker compose logs rag-chatbot
+# Nuclear option - removes all data
+docker compose down -v
+docker compose up -d
 
-# Rebuild embeddings
+# Then rebuild embeddings
 curl -X POST http://localhost:5000/rebuild-embeddings
 ```
 
@@ -686,21 +909,23 @@ curl -X POST http://localhost:5000/rebuild-embeddings
 
 ## Environment Variables
 
-Create a `.env` file in the project root:
+```yaml
+# docker-compose.yml environment variables
 
-```env
 # Database
-POSTGRES_HOST=postgres
-POSTGRES_PORT=5432
-POSTGRES_DB=arsenalfc_analytics
-POSTGRES_USER=analytics_user
-POSTGRES_PASSWORD=analytics_pass
+POSTGRES_HOST: postgres
+POSTGRES_PORT: 5432
+POSTGRES_DB: arsenalfc_analytics
+POSTGRES_USER: postgres
+POSTGRES_PASSWORD: postgres
 
 # RAG Chatbot
-ANTHROPIC_API_KEY=sk-ant-your-key-here
+OLLAMA_HOST: http://ollama:11434
+OLLAMA_MODEL: qwen2.5:1.5b
 
-# Airflow (optional)
-AIRFLOW_UID=50000
+# Airflow
+AIRFLOW_UID: 50000
+AIRFLOW__CORE__EXECUTOR: LocalExecutor
 ```
 
 ---
@@ -711,4 +936,4 @@ MIT License - Feel free to use this as a template for your own analytics project
 
 ---
 
-*Built with ❤️ for Arsenal FC*
+*Built for EPL Analytics - Arsenal, Liverpool, Manchester City, Manchester United*

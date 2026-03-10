@@ -1,10 +1,12 @@
-from anthropic import Anthropic
+import ollama
 import os
 from typing import List, Dict, Any
 
 class RAGChain:
     def __init__(self):
-        self.client = Anthropic(api_key=os.getenv('ANTHROPIC_API_KEY'))
+        # Initialize Ollama client
+        self.ollama_host = os.getenv('OLLAMA_HOST', 'http://ollama:11434')
+        self.model = os.getenv('OLLAMA_MODEL', 'qwen2.5:72b')  # Default to qwen2.5:72b
 
         # Load system prompt
         with open('./system_prompts/analyst.txt', 'r') as f:
@@ -19,27 +21,28 @@ class RAGChain:
         return "\n".join(context_parts)
 
     def invoke(self, question: str, context: str, history: List[Dict] = None) -> Dict[str, Any]:
-        """Run the RAG chain with retrieved context"""
+        """Run the RAG chain with retrieved context using Ollama"""
 
-        # Build messages
+        # Build messages for Ollama
         messages = []
+
+        # Add system prompt as first message
+        messages.append({
+            "role": "system",
+            "content": self.system_prompt
+        })
 
         # Add conversation history if provided
         if history:
             for msg in history:
-                if msg['role'] == 'user':
+                if msg['role'] in ['user', 'assistant']:
                     messages.append({
-                        "role": "user",
-                        "content": msg['content']
-                    })
-                elif msg['role'] == 'assistant':
-                    messages.append({
-                        "role": "assistant",
+                        "role": msg['role'],
                         "content": msg['content']
                     })
 
         # Add current question with context
-        user_message = f"""Using the following Arsenal FC match data, please answer the question:
+        user_message = f"""Using the following football match data, please answer the question:
 
 RELEVANT MATCH DATA:
 {context}
@@ -54,18 +57,29 @@ Please provide a data-driven analysis with specific statistics, match dates, and
             "content": user_message
         })
 
-        # Call Anthropic API
-        response = self.client.messages.create(
-            model="claude-3-5-sonnet-20241022",
-            max_tokens=1024,
-            system=self.system_prompt,
-            messages=messages
-        )
+        # Call Ollama API
+        try:
+            response = ollama.chat(
+                model=self.model,
+                messages=messages,
+                options={
+                    'temperature': 0.7,
+                    'top_p': 0.9,
+                    'num_predict': 1024
+                }
+            )
 
-        answer = response.content[0].text
+            answer = response['message']['content']
 
-        return {
-            "answer": answer,
-            "model": "claude-3-5-sonnet",
-            "tokens_used": response.usage.input_tokens + response.usage.output_tokens
-        }
+            return {
+                "answer": answer,
+                "model": f"ollama-{self.model}",
+                "tokens_used": response.get('eval_count', 0) + response.get('prompt_eval_count', 0)
+            }
+        except Exception as e:
+            # Fallback error handling
+            return {
+                "answer": f"Error connecting to Ollama: {str(e)}. Please ensure Ollama is running and the model '{self.model}' is installed.",
+                "model": f"ollama-{self.model}",
+                "tokens_used": 0
+            }

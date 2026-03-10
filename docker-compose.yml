@@ -152,7 +152,25 @@ services:
     networks:
       - arsenalfc_network
 
-  # RAG Chatbot - Python AI Assistant
+  # Ollama - Free Open Source LLM Server
+  ollama:
+    image: ollama/ollama:latest
+    container_name: arsenalfc_ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama-models:/root/.ollama
+    restart: always
+    networks:
+      - arsenalfc_network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:11434/api/tags"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+
+  # RAG Chatbot - Python AI Assistant (now using Ollama instead of Anthropic)
   rag-chatbot:
     build:
       context: ./rag-chatbot
@@ -164,14 +182,18 @@ services:
       POSTGRES_DB: arsenalfc_analytics
       POSTGRES_USER: analytics_user
       POSTGRES_PASSWORD: analytics_pass
-      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+      OLLAMA_HOST: http://ollama:11434
+      OLLAMA_MODEL: qwen2.5:1.5b  # Using smallest model for CPU performance
     ports:
       - "5000:5000"
     volumes:
       - rag-embeddings:/app/data
       - ./rag-chatbot:/app
     depends_on:
-      - postgres
+      ollama:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
     restart: always
     networks:
       - arsenalfc_network
@@ -201,6 +223,7 @@ services:
 volumes:
   postgres-db-volume:
   rag-embeddings:
+  ollama-models:
 
 networks:
   arsenalfc_network:
