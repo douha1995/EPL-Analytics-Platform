@@ -197,21 +197,6 @@ See **[DOCUMENTATION.md](DOCUMENTATION.md)** for:
 
 ---
 
-## Environment Variables
-
-Create `.env` in project root (optional - defaults work with Docker):
-
-```env
-POSTGRES_HOST=postgres
-POSTGRES_PORT=5432
-POSTGRES_DB=arsenalfc_analytics
-POSTGRES_USER=postgres
-POSTGRES_PASSWORD=postgres
-OLLAMA_MODEL=qwen2.5:1.5b
-```
-
----
-
 ## License
 
 MIT License
