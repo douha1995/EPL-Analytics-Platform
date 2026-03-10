@@ -33,6 +33,11 @@ A comprehensive football analytics platform that automatically scrapes, processe
 
 ## Architecture
 
+![EPL Analytics Platform Architecture](Architecture.jpg)
+
+<details>
+<summary>View Text Diagram</summary>
+
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                           DATA SOURCES                                   │
@@ -74,6 +79,8 @@ A comprehensive football analytics platform that automatically scrapes, processe
 └─────────────────────────────────────────────────────────────────────────┘
 ```
 
+</details>
+
 ---
 
 ## Quick Start
@@ -95,7 +102,7 @@ make status
 |---------|-----|-------------|
 | **Dashboard** | http://localhost:3000 | - |
 | **GraphQL API** | http://localhost:4000/graphql | - |
-| **Airflow UI** | http://localhost:8080 | **** / ******** |
+| **Airflow UI** | http://localhost:8080 | admin / admin |
 | **Chatbot API** | http://localhost:5000 | - |
 
 ---
@@ -196,6 +203,7 @@ See **[DOCUMENTATION.md](DOCUMENTATION.md)** for:
 - Troubleshooting guide
 
 ---
+
 
 ## License
 
